@@ -9,7 +9,7 @@ namespace EL.DTOs.ToDoTaskDTO
 {
     public class FilteredTasksResult
     {
-        public IEnumerable<ToDoTask> ToDoTasks { get; set; }
+        public IEnumerable<ToDoTaskResponseDTO> ToDoTasks { get; set; } = new List<ToDoTaskResponseDTO>();
         public object Pagination { get; set; }
     }
 }

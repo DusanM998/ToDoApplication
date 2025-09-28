@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import { TextField, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -10,24 +10,25 @@ import type toDoTaskModel from "../../Interfaces/toDoTaskModel";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../Storage/Redux/store";
 import { useTranslation } from "react-i18next";
+import type { TaskPriority } from "../../Interfaces/TaskPriority";
 
 function CreateTask() {
   const navigate = useNavigate();
   const [createTask] = useCreateTaskMutation();
 
-  // Check if user is logged in
   const userData = useSelector((state: RootState) => state.userAuthStore);
   const isLoggedIn = !!userData?.id;
+
+  const { t } = useTranslation();
 
   const [taskInputs, setTaskInputs] = useState<Partial<toDoTaskModel>>({
     title: "",
     description: "",
     dueDate: undefined,
+    category: "",
+    priority: 2, // default Normal
   });
 
-  const { t } = useTranslation();
-
-  // Redirect to home if not logged in
   if (!isLoggedIn) {
     toastNotify(t("createTaskPage.mustLogin"), "error");
     navigate("/");
@@ -67,6 +68,7 @@ function CreateTask() {
             required
             className="mb-3"
           />
+
           <TextField
             label={t("createTaskPage.descriptionLabel")}
             name="description"
@@ -81,6 +83,7 @@ function CreateTask() {
             multiline
             className="mb-3"
           />
+
           <DatePicker
             label={t("createTaskPage.dueDateLabel")}
             value={taskInputs.dueDate ? new Date(taskInputs.dueDate) : null}
@@ -92,6 +95,36 @@ function CreateTask() {
             }
             slotProps={{ textField: { fullWidth: true, className: "mb-3" } }}
           />
+
+          <TextField
+            label={t("createTaskPage.categoryLabel")}
+            name="category"
+            value={taskInputs.category || ""}
+            onChange={(e) =>
+              setTaskInputs((prev) => ({ ...prev, category: e.target.value }))
+            }
+            fullWidth
+            className="mb-3"
+          />
+
+          <TextField
+            select
+            label={t("createTaskPage.priorityLabel")}
+            name="priority"
+            value={taskInputs.priority || 2}
+            onChange={(e) =>
+              setTaskInputs((prev) => ({
+                ...prev,
+                priority: parseInt(e.target.value, 10) as TaskPriority,
+              }))
+            }
+            fullWidth
+            className="mb-3"
+          >
+            <MenuItem value={1}>{t("createTaskPage.low")}</MenuItem>
+            <MenuItem value={2}>{t("createTaskPage.medium")}</MenuItem>
+            <MenuItem value={3}>{t("createTaskPage.high")}</MenuItem>
+          </TextField>
 
           <div className="d-flex gap-3 mt-3">
             <button className="btn btn-success" type="submit">

@@ -12,3 +12,4 @@ D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.pdb
 D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\ref\EL.dll
 D:\Projects 1\ToDoApp\ToDoApp\EL\bin\Debug\net9.0\EL.runtimeconfig.json
 D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.genruntimeconfig.cache
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.sourcelink.json

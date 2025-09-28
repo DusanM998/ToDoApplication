@@ -15,3 +15,4 @@ D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.csproj.AssemblyReference.
 D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.csproj.Up2Date
 D:\Projects 1\ToDoApp\ToDoApp\DAL\bin\Debug\net9.0\DAL.runtimeconfig.json
 D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.genruntimeconfig.cache
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.sourcelink.json

@@ -25,7 +25,7 @@
     },
     "feature3": {
       "title": "Task Filtering",
-      "description": "Quickly find tasks using smart filters and tags."
+      "description": "Quickly find tasks using filters and tags."
     },
     "createTaskTitle": "Create a New Task",
     "createTaskButton": "Add Task"
@@ -97,7 +97,22 @@
     "dueDateFrom": "Due Date From",
     "dueDateTo": "Due Date To",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "applyFilters": "Apply Filters",
+    "clearFilters": "Clear Filters",
+    "category": "Category",
+    "summary": {
+      "title": "Task Summary",
+      "total": "Total tasks",
+      "completed": "Completed",
+      "pending": "In Progress",
+      "notCompleted": "Expired"
+    },
+    "priorityHigh": "High priority",
+    "priorityNormal": "Medium priority",
+    "priorityLow": "Low priority",
+    "priorityNone": "No priority",
+    "noSearchResults": "Nema rezultata za datu pretragu."
   },
   "createTaskPage": {
     "title": "Create New Task",
@@ -109,7 +124,12 @@
     "titleRequired": "Title is required",
     "success": "Task created successfully!",
     "error": "Error creating task",
-    "mustLogin": "You must be logged in to create a task"
+    "mustLogin": "You must be logged in to create a task",
+    "categoryLabel": "Category",
+    "priorityLabel": "Priority",
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High"
   },
   "editTaskPage": {
     "title": "Edit Task",
@@ -117,7 +137,8 @@
     "descriptionLabel": "Description",
     "dueDateLabel": "Due Date",
     "save": "Save Changes",
-    "saving": "Saving..."
+    "saving": "Saving...",
+    "back": "Back"
   },
   "toastNotify": {
     "uploadImageError": "Please upload an image.",

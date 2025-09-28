@@ -1,19 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  Box,
   Button,
-  Card,
-  CardContent,
   TextField,
-  Typography,
   Avatar,
   InputAdornment,
   IconButton,
 } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useTranslation } from "react-i18next";
 import {
   useGetUserByUserIdQuery,
@@ -189,185 +188,197 @@ export default function UserDetailsUpdate() {
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="85vh"
-      sx={{
-        background: "linear-gradient(180deg,#f5f7fa 0%, #f8f9fb 100%)",
-        p: 3,
-      }}
-    >
+    <div className="min-vh-100 bg-light d-flex flex-column align-items-center py-4 px-3" style={{marginTop: "80px"}}>
       {loading && <MainLoader />}
-      <Card
-        sx={{
-          width: 760,
-          borderRadius: 3,
-          p: 1,
-          boxShadow: "0 10px 30px rgba(13,38,59,0.08)",
-        }}
-      >
-        <CardContent>
-          <Typography
-            variant="h5"
-            align="center"
-            sx={{ fontWeight: 700, color: "#2f5168", mb: 2 }}
-          >
-            {t("userPage.update")}
-          </Typography>
-
-          <Box display="flex" gap={4} alignItems="flex-start">
-            <Box
-              sx={{
-                width: 200,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 2,
-              }}
-            >
-              <Avatar
-                src={imagePreview}
-                sx={{
-                  width: 150,
-                  height: 150,
-                  border: "3px solid #eef2f5",
-                  boxShadow: "0 6px 18px rgba(47,81,104,0.06)",
-                }}
-              >
-                {form.name?.[0]?.toUpperCase() ?? ""}
-              </Avatar>
-              <label htmlFor="file-input" style={{ width: "100%" }}>
-                <input
-                  id="file-input"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  style={{ display: "none" }}
-                />
-                <Button
-                  variant="outlined"
-                  component="span"
-                  fullWidth
-                  sx={{ textTransform: "none" }}
-                >
-                  {t("userPage.changeAvatar")}
-                </Button>
-              </label>
-            </Box>
-
-            <Box sx={{ flex: 1 }}>
-              <form onSubmit={handleSubmit}>
-                <TextField
-                  label={t("registerPage.usernamePlaceholder")}
-                  name="userName"
-                  value={form.userName}
-                  onChange={handleInput}
-                  fullWidth
-                  margin="normal"
-                  required
-                />
-
-                <TextField
-                  label={t("registerPage.namePlaceholder")}
-                  name="name"
-                  value={form.name}
-                  onChange={handleInput}
-                  fullWidth
-                  margin="normal"
-                  required
-                />
-
-                <TextField
-                  label={t("registerPage.passwordPlaceholder")}
-                  name="password"
-                  value={form.password}
-                  onChange={handleInput}
-                  type={showPassword ? "text" : "password"}
-                  fullWidth
-                  margin="normal"
-                  helperText={
-                    t("userPage.passwordHelper") ||
-                    "Leave empty to keep current password"
-                  }
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={() => setShowPassword((s) => !s)}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-
-                <TextField
-                  label={t("userPage.confirmPassword") || "Confirm Password"}
-                  name="confirmPassword"
-                  value={form.confirmPassword}
-                  onChange={handleInput}
-                  type={showConfirmPassword ? "text" : "password"}
-                  fullWidth
-                  margin="normal"
-                  helperText={
-                    t("userPage.passwordHelper") ||
-                    "Leave empty to keep current password"
-                  }
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={() => setShowConfirmPassword((s) => !s)}
-                          edge="end"
-                        >
-                          {showConfirmPassword ? (
-                            <VisibilityOff />
-                          ) : (
-                            <Visibility />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-
-                <Box mt={1}>
-                  <PhoneInput
-                    value={form.phoneNumber}
-                    onChange={handlePhoneChange}
-                    inputStyle={{ width: "100%", borderRadius: 8 }}
+      <div className="w-100" style={{ maxWidth: "900px" }}>
+        <div className="card shadow mb-4 rounded-3 border-0">
+          <div className="card-body p-4">
+            <h2 className="text-center mb-4 fw-bold" style={{ color: "#51285f" }}>
+              {t("userPage.update")}
+            </h2>
+            <div className="row g-4">
+              <div className="col-md-4 d-flex flex-column align-items-center gap-3">
+                {imagePreview ? (
+                  <Avatar
+                    src={imagePreview}
+                    className="img-fluid rounded-circle border border-3 shadow-sm"
+                    style={{ width: "150px", height: "150px", borderColor: "#4da172" }}
                   />
-                </Box>
-
-                <Box display="flex" gap={2} mt={4} justifyContent="flex-end">
+                ) : (
+                  <Avatar
+                    className="rounded-circle border border-3 shadow-sm"
+                    style={{ width: "150px", height: "150px", fontSize: "3rem", backgroundColor: "#51285f", color: "#fff" }}
+                  >
+                    {form.name?.[0]?.toUpperCase() ?? ""}
+                  </Avatar>
+                )}
+                <label htmlFor="file-input" className="w-100">
+                  <input
+                    id="file-input"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="d-none"
+                  />
                   <Button
                     variant="outlined"
-                    onClick={handleCancel}
-                    sx={{ borderRadius: 2 }}
+                    component="span"
+                    className="btn btn-outline-primary rounded-pill w-100"
+                    style={{ borderColor: "#51285f", color: "#51285f" }}
                   >
-                    {t("userPage.cancel")}
+                    {t("userPage.changeAvatar")}
                   </Button>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{
-                      borderRadius: 2,
-                      px: 4,
-                      background: "linear-gradient(90deg,#51285f,#4da172)",
-                    }}
-                  >
-                    {t("userPage.update")}
-                  </Button>
-                </Box>
-              </form>
-            </Box>
-          </Box>
-        </CardContent>
-      </Card>
-    </Box>
+                </label>
+              </div>
+              <div className="col-md-8">
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <TextField
+                      label={t("registerPage.usernamePlaceholder")}
+                      name="userName"
+                      value={form.userName}
+                      onChange={handleInput}
+                      fullWidth
+                      variant="outlined"
+                      required
+                      className="rounded"
+                      InputProps={{
+                        className: "bg-light",
+                      }}
+                      InputLabelProps={{
+                        style: { color: "#51285f" },
+                      }}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <TextField
+                      label={t("registerPage.namePlaceholder")}
+                      name="name"
+                      value={form.name}
+                      onChange={handleInput}
+                      fullWidth
+                      variant="outlined"
+                      required
+                      className="rounded"
+                      InputProps={{
+                        className: "bg-light",
+                      }}
+                      InputLabelProps={{
+                        style: { color: "#51285f" },
+                      }}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <TextField
+                      label={t("registerPage.passwordPlaceholder")}
+                      name="password"
+                      value={form.password}
+                      onChange={handleInput}
+                      type={showPassword ? "text" : "password"}
+                      fullWidth
+                      variant="outlined"
+                      className="rounded"
+                      helperText={
+                        t("userPage.passwordHelper") ||
+                        "Leave empty to keep current password"
+                      }
+                      InputProps={{
+                        className: "bg-light",
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={() => setShowPassword((s) => !s)}
+                              edge="end"
+                            >
+                              {showPassword ? (
+                                <i className="bi bi-eye-slash" style={{ color: "#51285f" }}></i>
+                              ) : (
+                                <i className="bi bi-eye" style={{ color: "#51285f" }}></i>
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      InputLabelProps={{
+                        style: { color: "#51285f" },
+                      }}
+                      FormHelperTextProps={{
+                        style: { color: "#51285f" },
+                      }}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <TextField
+                      label={t("userPage.confirmPassword") || "Confirm Password"}
+                      name="confirmPassword"
+                      value={form.confirmPassword}
+                      onChange={handleInput}
+                      type={showConfirmPassword ? "text" : "password"}
+                      fullWidth
+                      variant="outlined"
+                      className="rounded"
+                      helperText={
+                        t("userPage.passwordHelper") ||
+                        "Leave empty to keep current password"
+                      }
+                      InputProps={{
+                        className: "bg-light",
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={() => setShowConfirmPassword((s) => !s)}
+                              edge="end"
+                            >
+                              {showConfirmPassword ? (
+                                <i className="bi bi-eye-slash" style={{ color: "#51285f" }}></i>
+                              ) : (
+                                <i className="bi bi-eye" style={{ color: "#51285f" }}></i>
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      InputLabelProps={{
+                        style: { color: "#51285f" },
+                      }}
+                      FormHelperTextProps={{
+                        style: { color: "#51285f" },
+                      }}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <PhoneInput
+                      value={form.phoneNumber}
+                      onChange={handlePhoneChange}
+                      inputClass="form-control bg-light rounded"
+                      containerClass="w-100"
+                      buttonStyle={{ borderColor: "#51285f", backgroundColor: "#f8f9fa" }}
+                    />
+                  </div>
+                  <div className="d-flex gap-3 justify-content-end">
+                    <Button
+                      variant="outlined"
+                      onClick={handleCancel}
+                      className="btn btn-outline-secondary rounded-pill py-2"
+                      style={{ borderColor: "#51285f", color: "#51285f" }}
+                    >
+                      {t("userPage.cancel")}
+                    </Button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      className="btn rounded-pill py-2"
+                      style={{ backgroundColor: "#4da172", color: "#fff" }}
+                    >
+                      {t("userPage.update")}
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

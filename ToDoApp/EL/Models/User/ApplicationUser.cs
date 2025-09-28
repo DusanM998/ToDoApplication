@@ -14,5 +14,9 @@ namespace EL.Models.User
 
         // Navigaciona property koja predstavlja vezu 1-na-vise izmedju ApplicationUser i ToDoTask
         public ICollection<ToDoTask> Tasks { get; set; } = new List<ToDoTask>();
+
+        public int? CompletedTasksCount { get; set; }
+        public int? PendingTasksCount { get; set; } 
+        public int? OverdueTasksCount { get; set; }
     }
 }

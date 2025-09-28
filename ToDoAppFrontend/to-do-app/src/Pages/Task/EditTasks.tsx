@@ -107,6 +107,14 @@ const EditTask: React.FC = () => {
         >
           {isUpdating ? t("editTaskPage.saving") : t("editTaskPage.save")}
         </button>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          style={{ marginTop: "10px" }}
+          onClick={() => navigate("/tasks/myTasks")}
+        >
+          {t("editTaskPage.back")}
+        </button>
       </form>
     </div>
   );

@@ -25,7 +25,7 @@
     },
     "feature3": {
       "title": "Filtriranje zadataka",
-      "description": "Brzo pronađite zadatke pomoću pametnih filtera i oznaka."
+      "description": "Brzo pronađite zadatke pomoću filtera."
     },
     "createTaskTitle": "Kreiraj Novi Task",
     "createTaskButton": "Dodaj Task"
@@ -97,7 +97,22 @@
     "dueDateFrom": "Rok od",
     "dueDateTo": "Rok do",
     "previous": "Prethodna",
-    "next": "Sledeća"
+    "next": "Sledeća",
+    "applyFilters": "Primeni Filtere",
+    "clearFilters": "Poništi Filtere",
+    "category": "Kategorija",
+    "summary": {
+      "title": "Statistika zadataka",
+      "total": "Ukupno zadataka",
+      "completed": "Završeni",
+      "pending": "U toku",
+      "notCompleted": "Istekli"
+    },
+    "priorityHigh": "Visok prioritet",
+    "priorityNormal": "Srednji prioritet",
+    "priorityLow": "Nizak prioritet",
+    "priorityNone": "Nema prioriteta",
+    "noSearchResults": "Nema rezultata za datu pretragu."
   },
   "createTaskPage": {
     "title": "Kreiraj Novi Task",
@@ -109,7 +124,12 @@
     "titleRequired": "Naslov je obavezan",
     "success": "Task je uspešno kreiran!",
     "error": "Greška prilikom kreiranja taska",
-    "mustLogin": "Morate biti prijavljeni da biste kreirali task"
+    "mustLogin": "Morate biti prijavljeni da biste kreirali task",
+    "categoryLabel": "Kategorija",
+    "priorityLabel": "Prioritet",
+    "low": "Nizak",
+    "medium": "Srednji",
+    "high": "Visok"
   },
   "editTaskPage": {
     "title": "Izmeni zadatak",
@@ -117,7 +137,8 @@
     "descriptionLabel": "Opis",
     "dueDateLabel": "Rok",
     "save": "Sačuvaj izmene",
-    "saving": "Čuvanje..."
+    "saving": "Čuvanje...",
+    "back": "Nazad"
   },
   "toastNotify": {
     "uploadImageError": "Molimo vas da otpremite sliku.",

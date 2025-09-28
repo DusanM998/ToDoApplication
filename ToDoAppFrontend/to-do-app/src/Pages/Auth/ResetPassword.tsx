@@ -60,7 +60,7 @@ function ResetPassword() {
   , []);
 
   return (
-    <div className="container text-center">
+    <div className="container text-center" style={{marginTop: "80px"}}>
       <h1 className="mt-5">{t("loginPage.resetPasswordTitle")}</h1>
       <form method="post" onSubmit={handleSubmit}>
         <div className="mt-5">

@@ -19,5 +19,8 @@ namespace EL.Models.Task
         public string ApplicationUserId { get; set; } = string.Empty;
         [ForeignKey("ApplicationUserId")]
         public virtual ApplicationUser User { get; set; }
+
+        public TaskPriority Priority { get; set; } = TaskPriority.Medium; // Prioriteti za task - Low, Medium, High
+        public string? Category { get; set; } // Kategorija za task, npr "Work", "Personal", "School"
     }
 }

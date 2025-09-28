@@ -42,7 +42,25 @@ export const taskApi = createApi({
       }),
       invalidatesTags: ["Tasks"],
     }),
-    getFilteredTasks: builder.query<toDoTaskModel[],{search?: string;isCompleted?: boolean;dueDateFrom?: string;dueDateTo?: string;pageNumber?: number;pageSize?: number;}>({
+    getFilteredTasks: builder.query<
+      {
+        data: toDoTaskModel[];
+        pagination: {
+          CurrentPage: number;
+          PageSize: number;
+          TotalRecords: number;
+          TotalPages: number;
+        } | null;
+      },
+      {
+        search?: string;
+        isCompleted?: boolean;
+        dueDateFrom?: string;
+        dueDateTo?: string;
+        pageNumber?: number;
+        pageSize?: number;
+      }
+    >({
       query: ({
         search,
         isCompleted,
@@ -66,7 +84,17 @@ export const taskApi = createApi({
           method: "GET",
         };
       },
-      transformResponse: (response: toDoTaskModel[]) => response,
+      transformResponse: (response: toDoTaskModel[], meta) => {
+        const paginationHeader = meta?.response?.headers.get("X-Pagination");
+        const pagination = paginationHeader
+          ? JSON.parse(paginationHeader)
+          : null;
+
+        return {
+          data: response,
+          pagination,
+        };
+      },
       providesTags: ["Tasks"],
     }),
   }),
@@ -77,5 +105,5 @@ export const {
   useCreateTaskMutation,
   useUpdateTaskMutation,
   useDeleteTaskMutation,
-  useGetFilteredTasksQuery
+  useGetFilteredTasksQuery,
 } = taskApi;

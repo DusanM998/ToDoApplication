@@ -89,6 +89,10 @@ namespace BLL.Services.Implementations
                 Image = imageUrl,
                 PhoneNumber = register.PhoneNumber,
                 RefreshToken = null,
+
+                CompletedTasksCount = 0,
+                PendingTasksCount = 0,
+                OverdueTasksCount = 0
             };
 
             try
@@ -293,7 +297,10 @@ namespace BLL.Services.Implementations
                 userFromDb.Email,
                 userFromDb.PhoneNumber,
                 userFromDb.Image,
-                Role = role
+                Role = role,
+                userFromDb.CompletedTasksCount,
+                userFromDb.PendingTasksCount,
+                userFromDb.OverdueTasksCount,
             };
 
             _response.StatusCode = HttpStatusCode.OK;
@@ -402,16 +409,6 @@ namespace BLL.Services.Implementations
 
                 var user = await _db.ApplicationUsers
                     .Where(u => u.Id == userId)
-                    .Select(u => new
-                    {
-                        u.Id,
-                        u.UserName,
-                        u.Name,
-                        u.Email,
-                        u.PhoneNumber,
-                        u.Image,
-                        Roles = _userManager.GetRolesAsync(u).Result
-                    })
                     .FirstOrDefaultAsync();
 
                 if (user == null)
@@ -421,9 +418,24 @@ namespace BLL.Services.Implementations
                     return _response;
                 }
 
+                // dohvata rolu korisnika
+                var roles = await _userManager.GetRolesAsync(user);
+
                 _response.StatusCode = HttpStatusCode.OK;
                 _response.IsSuccess = true;
-                _response.Result = user;
+                _response.Result = new
+                {
+                    user.Id,
+                    user.UserName,
+                    user.Name,
+                    user.Email,
+                    user.PhoneNumber,
+                    user.Image,
+                    Roles = roles,
+                    user.CompletedTasksCount,
+                    user.PendingTasksCount,
+                    user.OverdueTasksCount
+                };
                 return _response;
             }
             catch (Exception ex)
