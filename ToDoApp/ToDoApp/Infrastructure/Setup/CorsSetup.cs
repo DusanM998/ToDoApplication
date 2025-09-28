@@ -8,7 +8,9 @@
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:5174")
+                    policy.SetIsOriginAllowed(origin =>
+                            Uri.TryCreate(origin, UriKind.Absolute, out var uri) 
+                            && uri.Host == "localhost")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .WithExposedHeaders("X-Pagination")
