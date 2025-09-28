@@ -1,0 +1,17 @@
+D:\Projects 1\ToDoApp\ToDoApp\DAL\bin\Debug\net9.0\DAL.deps.json
+D:\Projects 1\ToDoApp\ToDoApp\DAL\bin\Debug\net9.0\DAL.dll
+D:\Projects 1\ToDoApp\ToDoApp\DAL\bin\Debug\net9.0\DAL.pdb
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.AssemblyInfoInputs.cache
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.AssemblyInfo.cs
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.csproj.CoreCompileInputs.cache
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.dll
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\refint\DAL.dll
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.pdb
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\ref\DAL.dll
+D:\Projects 1\ToDoApp\ToDoApp\DAL\bin\Debug\net9.0\EL.dll
+D:\Projects 1\ToDoApp\ToDoApp\DAL\bin\Debug\net9.0\EL.pdb
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.csproj.AssemblyReference.cache
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.csproj.Up2Date
+D:\Projects 1\ToDoApp\ToDoApp\DAL\bin\Debug\net9.0\DAL.runtimeconfig.json
+D:\Projects 1\ToDoApp\ToDoApp\DAL\obj\Debug\net9.0\DAL.genruntimeconfig.cache

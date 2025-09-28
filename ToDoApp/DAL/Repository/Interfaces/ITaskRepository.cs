@@ -1,0 +1,14 @@
+﻿using EL.Models.Task;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DAL.Repository.Interfaces
+{
+    public interface ITaskRepository : IRepository<ToDoTask>
+    {
+        Task<List<ToDoTask>> GetTasksByUserIdAsync(string userId);
+    }
+}

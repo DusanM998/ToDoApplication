@@ -1,0 +1,133 @@
+{
+  "header": {
+    "home": "Početna",
+    "myTasks": "Moji Taskovi",
+    "welcome": "Dobrodošli",
+    "profile": "Profil",
+    "logout": "Odjavi se",
+    "login": "Prijavi se",
+    "register": "Registruj se",
+    "language": "Jezik",
+    "english": "Engleski",
+    "serbian": "Srpski"
+  },
+  "homePage": {
+    "title": "To-Do Aplikacija",
+    "subtitle": "Organizujte svoje zadatke lako i efikasno!",
+    "featuresTitle": "Šta naša aplikacija nudi?",
+    "feature1": {
+      "title": "Upravljanje zadacima",
+      "description": "Dodajte, izmenite i obrišite zadatke uz jednostavan i intuitivan interfejs."
+    },
+    "feature2": {
+      "title": "Korisnički nalog",
+      "description": "Prijavite se i upravljajte svojim zadacima bezbedno unutar naloga."
+    },
+    "feature3": {
+      "title": "Filtriranje zadataka",
+      "description": "Brzo pronađite zadatke pomoću pametnih filtera i oznaka."
+    },
+    "createTaskTitle": "Kreiraj Novi Task",
+    "createTaskButton": "Dodaj Task"
+  },
+  "registerPage": {
+    "title": "Registracija",
+    "usernamePlaceholder": "Korisničko ime",
+    "namePlaceholder": "Ime i prezime",
+    "passwordPlaceholder": "Lozinka",
+    "roleLabel": "Odaberite ulogu",
+    "submitBtn": "Registruj se",
+    "cancelBtn": "Otkaži"
+  },
+  "loginPage": {
+    "title": "Prijava",
+    "usernamePlaceholder": "Korisničko ime",
+    "passwordPlaceholder": "Lozinka",
+    "forgotPassword": "Zaboravili ste lozinku?",
+    "submitBtn": "Prijavi se",
+    "cancelBtn": "Otkaži",
+    "loginSuccess": "Uspešno ste se prijavili!",
+    "forgotPasswordTitle": "Zaboravljena Lozinka",
+    "forgotPasswordEmailPlaceholder": "Unesite Email",
+    "forgotPasswordSubmitBtn": "Pošalji Link za Reset",
+    "forgotPasswordSuccess": "Ako email postoji, poslat je link za reset lozinke.",
+    "forgotPasswordError": "Greška prilikom slanja zahteva!",
+    "resetPasswordTitle": "Resetovanje Lozinke",
+    "resetPasswordNewPasswordPlaceholder": "Unesite Novu Lozinku",
+    "resetPasswordConfirmPasswordPlaceholder": "Potvrdite Novu Lozinku",
+    "resetPasswordSubmitBtn": "Resetuj Lozinku",
+    "resetPasswordSuccess": "Lozinka uspešno resetovana!",
+    "resetPasswordError": "Greška prilikom resetovanja lozinke!",
+    "resetPasswordInvalidLink": "Nevažeći link za resetovanje lozinke!",
+    "resetPasswordMismatch": "Lozinke se ne podudaraju!",
+    "backToLogin": "Nazad na Prijavu"
+  },
+  "userPage": {
+    "title": "Korisnički profil",
+    "username": "Korisničko ime",
+    "name": "Puno ime",
+    "password": "Lozinka",
+    "update": "Izmeni",
+    "cancel": "Otkaži",
+    "verifyIdentity": "Potvrdite identitet",
+    "verifyInstruction": "Molimo potvrdite svoju lozinku da biste nastavili.",
+    "enterPassword": "Unesite lozinku",
+    "enterPasssword": "Unesite lozinku",
+    "verifyBtn": "Potvrdi",
+    "confirmPassword": "Potvrdi lozinku",
+    "passwordHelper": "Ostavite prazno da zadržite trenutnu lozinku",
+    "changeAvatar": "Promeni sliku",
+    "passwordMismatch": "Lozinke se ne podudaraju.",
+    "updateSuccess": "Korisnik je uspešno ažuriran."
+  },
+  "myTasksPage": {
+    "title": "Moji Zadaci",
+    "addNewTask": "Dodaj Novi Zadatak",
+    "noTasksFound": "Nema zadataka. Dodajte prvi zadatak!",
+    "createFirstTask": "Kreiraj Prvi Zadatak",
+    "dueDate": "Rok:",
+    "loading": "Učitavanje zadataka...",
+    "error": "Greška pri učitavanju zadataka. Pokušajte ponovo kasnije.",
+    "search": "Pretraga",
+    "searchPlaceholder": "Pretraži zadatke...",
+    "status": "Status",
+    "all": "Svi",
+    "completed": "Završeni",
+    "pending": "U toku",
+    "dueDateFrom": "Rok od",
+    "dueDateTo": "Rok do",
+    "previous": "Prethodna",
+    "next": "Sledeća"
+  },
+  "createTaskPage": {
+    "title": "Kreiraj Novi Task",
+    "titleLabel": "Naslov",
+    "descriptionLabel": "Opis",
+    "dueDateLabel": "Rok",
+    "saveBtn": "Sačuvaj Task",
+    "cancelBtn": "Otkaži",
+    "titleRequired": "Naslov je obavezan",
+    "success": "Task je uspešno kreiran!",
+    "error": "Greška prilikom kreiranja taska",
+    "mustLogin": "Morate biti prijavljeni da biste kreirali task"
+  },
+  "editTaskPage": {
+    "title": "Izmeni zadatak",
+    "titleLabel": "Naslov",
+    "descriptionLabel": "Opis",
+    "dueDateLabel": "Rok",
+    "save": "Sačuvaj izmene",
+    "saving": "Čuvanje..."
+  },
+  "toastNotify": {
+    "uploadImageError": "Molimo vas da otpremite sliku.",
+    "registrationSuccess": "Registracija uspešna!",
+    "loginSuccess": "Prijava uspešna!",
+    "loginError": "Pogrešno korisničko ime ili lozinka.",
+    "logoutSuccess": "Uspešno ste se odjavili.",
+    "errorUniform": "Došlo je do greške, pokušajte ponovo.",
+    "fileSizeError": "Veličina fajla prelazi limit (5MB).",
+    "fileTypeError": "Neispravan tip fajla. Dozvoljeni su samo JPEG, JPG i PNG.",
+    "taskUpdateSuccess": "Uspešna izmena taska!"
+  }
+}

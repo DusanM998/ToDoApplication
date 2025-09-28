@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BLL/BLL.csproj" Id="f10b98dc-ac78-4670-a3c7-9cf5e01e4f7d" />
+  <Project Path="DAL/DAL.csproj" Id="744d4940-24b3-4f8f-968b-ce5db38e1fa2" />
+  <Project Path="EL/EL.csproj" Id="a5afdf46-aad5-43a3-8084-84c3c9d5d70f" />
+  <Project Path="ToDoApp/ToDoApp.csproj" />
+</Solution>

@@ -1,0 +1,133 @@
+{
+  "header": {
+    "home": "Home",
+    "myTasks": "My Tasks",
+    "welcome": "Welcome",
+    "profile": "Profile",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "language": "Language",
+    "english": "English",
+    "serbian": "Serbian"
+  },
+  "homePage": {
+    "title": "To-Do Application",
+    "subtitle": "Organize your tasks easily and efficiently!",
+    "featuresTitle": "What does our application offer?",
+    "feature1": {
+      "title": "Task Management",
+      "description": "Add, edit, and delete tasks with a simple and intuitive interface."
+    },
+    "feature2": {
+      "title": "User Account",
+      "description": "Log in and manage your tasks securely within your account."
+    },
+    "feature3": {
+      "title": "Task Filtering",
+      "description": "Quickly find tasks using smart filters and tags."
+    },
+    "createTaskTitle": "Create a New Task",
+    "createTaskButton": "Add Task"
+  },
+  "registerPage": {
+    "title": "Register",
+    "usernamePlaceholder": "Username",
+    "namePlaceholder": "Full Name",
+    "passwordPlaceholder": "Password",
+    "roleLabel": "Select Role",
+    "submitBtn": "Register",
+    "cancelBtn": "Cancel"
+  },
+  "loginPage": {
+    "title": "Login",
+    "usernamePlaceholder": "Username",
+    "passwordPlaceholder": "Password",
+    "forgotPassword": "Forgot password?",
+    "submitBtn": "Login",
+    "cancelBtn": "Cancel",
+    "loginSuccess": "You have successfully logged in!",
+    "forgotPasswordTitle": "Forgot Password",
+    "forgotPasswordEmailPlaceholder": "Enter Email",
+    "forgotPasswordSubmitBtn": "Send Reset Link",
+    "forgotPasswordSuccess": "If the email exists, a reset link has been sent.",
+    "forgotPasswordError": "Error while sending the request!",
+    "resetPasswordTitle": "Reset Password",
+    "resetPasswordNewPasswordPlaceholder": "Enter New Password",
+    "resetPasswordConfirmPasswordPlaceholder": "Confirm New Password",
+    "resetPasswordSubmitBtn": "Reset Password",
+    "resetPasswordSuccess": "Password successfully reset!",
+    "resetPasswordError": "Error while resetting the password!",
+    "resetPasswordInvalidLink": "Invalid password reset link!",
+    "resetPasswordMismatch": "Passwords do not match!",
+    "backToLogin": "Back to Login"
+  },
+  "userPage": {
+    "title": "User Profile",
+    "username": "Username",
+    "name": "Full Name",
+    "password": "Password",
+    "update": "Update",
+    "cancel": "Cancel",
+    "verifyIdentity": "Verify Identity",
+    "verifyInstruction": "Please confirm your password to continue.",
+    "enterPassword": "Enter your password",
+    "enterPasssword": "Enter your password",
+    "verifyBtn": "Verify",
+    "confirmPassword": "Confirm Password",
+    "passwordHelper": "Leave empty to keep current password",
+    "changeAvatar": "Change avatar",
+    "passwordMismatch": "Passwords do not match.",
+    "updateSuccess": "User updated successfully."
+  },
+  "myTasksPage": {
+    "title": "My Tasks",
+    "addNewTask": "Add New Task",
+    "noTasksFound": "No tasks found. Start by adding a new task!",
+    "createFirstTask": "Create Your First Task",
+    "dueDate": "Due:",
+    "loading": "Loading tasks...",
+    "error": "Error loading tasks. Please try again later.",
+    "search": "Search",
+    "searchPlaceholder": "Search tasks...",
+    "status": "Status",
+    "all": "All",
+    "completed": "Completed",
+    "pending": "Pending",
+    "dueDateFrom": "Due Date From",
+    "dueDateTo": "Due Date To",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "createTaskPage": {
+    "title": "Create New Task",
+    "titleLabel": "Title",
+    "descriptionLabel": "Description",
+    "dueDateLabel": "Due Date",
+    "saveBtn": "Save Task",
+    "cancelBtn": "Cancel",
+    "titleRequired": "Title is required",
+    "success": "Task created successfully!",
+    "error": "Error creating task",
+    "mustLogin": "You must be logged in to create a task"
+  },
+  "editTaskPage": {
+    "title": "Edit Task",
+    "titleLabel": "Title",
+    "descriptionLabel": "Description",
+    "dueDateLabel": "Due Date",
+    "save": "Save Changes",
+    "saving": "Saving..."
+  },
+  "toastNotify": {
+    "uploadImageError": "Please upload an image.",
+    "registrationSuccess": "Registration successful!",
+    "loginSuccess": "Login successful!",
+    "loginError": "Incorrect username or password.",
+    "logoutSuccess": "You have successfully logged out.",
+    "errorUniform": "Something went wrong, please try again.",
+    "fileSizeError": "File size exceeds limit (5MB).",
+    "fileTypeError": "Invalid file type. Only JPEG, JPG, PNG allowed.",
+    "taskUpdateSuccess": "Task updated successfully!"
+  }
+}

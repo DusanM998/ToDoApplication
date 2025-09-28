@@ -1,0 +1,14 @@
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.csproj.AssemblyReference.cache
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.AssemblyInfoInputs.cache
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.AssemblyInfo.cs
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.csproj.CoreCompileInputs.cache
+D:\Projects 1\ToDoApp\ToDoApp\EL\bin\Debug\net9.0\EL.deps.json
+D:\Projects 1\ToDoApp\ToDoApp\EL\bin\Debug\net9.0\EL.dll
+D:\Projects 1\ToDoApp\ToDoApp\EL\bin\Debug\net9.0\EL.pdb
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.dll
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\refint\EL.dll
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.pdb
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\ref\EL.dll
+D:\Projects 1\ToDoApp\ToDoApp\EL\bin\Debug\net9.0\EL.runtimeconfig.json
+D:\Projects 1\ToDoApp\ToDoApp\EL\obj\Debug\net9.0\EL.genruntimeconfig.cache
