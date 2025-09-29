@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetTasksQuery, useUpdateTaskMutation } from "../../apis/taskApi";
-import type { toDoTaskModel } from "../../Interfaces";
+import { type toDoTaskModel } from "../../Interfaces";
 import { MainLoader } from "../../Components/Layout/Common";
 import { toastNotify } from "../../Helper";
+import { MenuItem, TextField } from "@mui/material";
+import type { TaskPriority } from "../../Interfaces/TaskPriority";
+import { TaskPriority as TaskPriorityConst } from "../../Interfaces/TaskPriority";
 
 const EditTask: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,6 +22,9 @@ const EditTask: React.FC = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [priority, setPriority] = useState<TaskPriority>(
+    TaskPriorityConst.Normal
+  );
 
   // Pronađi task na osnovu id
   useEffect(() => {
@@ -29,6 +35,7 @@ const EditTask: React.FC = () => {
         setTitle(foundTask.title);
         setDescription(foundTask.description || "");
         setDueDate(foundTask.dueDate || "");
+        setPriority(foundTask.priority as TaskPriority);
       }
     }
   }, [tasks, id]);
@@ -43,6 +50,7 @@ const EditTask: React.FC = () => {
         title,
         description,
         dueDate,
+        priority,
         isCompleted: task.isCompleted,
         applicationUserId: task.applicationUserId,
       }).unwrap();
@@ -98,7 +106,29 @@ const EditTask: React.FC = () => {
             onChange={(e) => setDueDate(e.target.value)}
           />
         </div>
-
+        <div className="mb-3">
+          <TextField
+            select
+            label={t("createTaskPage.priorityLabel")}
+            name="priority"
+            value={priority}
+            onChange={(e) =>
+              setPriority(parseInt(e.target.value, 10) as TaskPriority)
+            }
+            fullWidth
+            className="mb-3"
+          >
+            <MenuItem value={TaskPriorityConst.Low}>
+              {t("createTaskPage.low")}
+            </MenuItem>
+            <MenuItem value={TaskPriorityConst.Normal}>
+              {t("createTaskPage.medium")}
+            </MenuItem>
+            <MenuItem value={TaskPriorityConst.High}>
+              {t("createTaskPage.high")}
+            </MenuItem>
+          </TextField>
+        </div>
         <button
           type="submit"
           className="btn btn-primary"

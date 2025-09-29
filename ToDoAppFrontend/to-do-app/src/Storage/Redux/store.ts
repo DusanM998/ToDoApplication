@@ -11,7 +11,7 @@ import { combineReducers } from "redux";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["userAuthStore", "taskStore"], // sta hoces da sacuvas
+  whitelist: ["userAuthStore", "taskStore"],
 };
 
 const rootReducer = combineReducers({

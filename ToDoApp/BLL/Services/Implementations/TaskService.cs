@@ -261,7 +261,8 @@ namespace BLL.Services.Implementations
                 IQueryable<ToDoTask> query = (await _unitOfWork.Tasks.GetAllAsync())
                     .AsQueryable()
                     .Where(t => t.ApplicationUserId == userId)
-                    .OrderByDescending(t => t.CreatedAt);
+                    .OrderByDescending(t => t.Priority)
+                    .ThenByDescending(t => t.DueDate);
 
                 if (!string.IsNullOrEmpty(search))
                 {

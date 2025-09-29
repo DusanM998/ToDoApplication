@@ -21,7 +21,20 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
   const isFilterSet = search || status || dueDateFrom || dueDateTo;
 
   const handleApplyFilters = () => {
-    onFilterChange({ search, status, dueDateFrom, dueDateTo });
+    const from = dueDateFrom
+      ? new Date(dueDateFrom + "T00:00:00Z").toISOString()
+      : undefined;
+
+    const to = dueDateTo
+      ? new Date(dueDateTo + "T23:59:59Z").toISOString()
+      : undefined;
+
+    onFilterChange({
+      search,
+      status,
+      dueDateFrom: from,
+      dueDateTo: to,
+    });
   };
 
   const handleClearFilters = () => {
@@ -92,10 +105,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
               padding: "10px",
             }}
             value={dueDateFrom}
-            onChange={(e) => {
-              const value = e.target.value;
-              setDueDateFrom(value);
-            }}
+            onChange={(e) => setDueDateFrom(e.target.value)}
           />
         </div>
         <div className="col-md-3">
@@ -111,10 +121,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
               padding: "10px",
             }}
             value={dueDateTo}
-            onChange={(e) => {
-              const value = e.target.value;
-              setDueDateTo(value);
-            }}
+            onChange={(e) => setDueDateTo(e.target.value)}
           />
         </div>
         {isFilterSet && (

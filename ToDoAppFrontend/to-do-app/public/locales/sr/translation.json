@@ -136,6 +136,7 @@
     "titleLabel": "Naslov",
     "descriptionLabel": "Opis",
     "dueDateLabel": "Rok",
+    "priorityLabel": "Prioritet",
     "save": "Sačuvaj izmene",
     "saving": "Čuvanje...",
     "back": "Nazad"

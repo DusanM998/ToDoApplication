@@ -136,6 +136,7 @@
     "titleLabel": "Title",
     "descriptionLabel": "Description",
     "dueDateLabel": "Due Date",
+    "priorityLabel": "Priority",
     "save": "Save Changes",
     "saving": "Saving...",
     "back": "Back"

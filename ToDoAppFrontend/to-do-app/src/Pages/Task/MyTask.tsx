@@ -78,6 +78,12 @@ const MyTasks: React.FC = () => {
 
   console.log("Taskovi:", tasks, "Paginacija:", pagination);
 
+  useEffect(() => {
+    if (userData?.id) {
+      refetch();
+    }
+  }, [userData?.id, refetch]); // Povlaci najnovije taskove cim se aplikacija otvori sa perzistovanim korisnikom
+
   const handleToggleComplete = useCallback(
     async (task: toDoTaskModel) => {
       try {
