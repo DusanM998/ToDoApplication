@@ -20,5 +20,7 @@ namespace BLL.Services.Interfaces
             DateTime? dueDateTo,
             int pageNumber = 1,
             int pageSize = 10);
+
+        Task<ApiResponse> UpdateOverdueTasksAsync();
     }
 }

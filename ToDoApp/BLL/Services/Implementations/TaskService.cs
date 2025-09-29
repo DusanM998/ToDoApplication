@@ -96,6 +96,16 @@ namespace BLL.Services.Implementations
                 return response;
             }
 
+            var today = DateTime.UtcNow.Date;
+            // Provera da li je dueDate prosao
+            if (taskDto.DueDate.HasValue && taskDto.DueDate.Value.Date < today)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = HttpStatusCode.BadRequest;
+                response.ErrorMessages.Add("Rok za task ne moze biti u proslosti!. Izaberite drugi datum.");
+                return response;
+            }
+
             var task = new ToDoTask
             {
                 Title = taskDto.Title,
@@ -157,6 +167,15 @@ namespace BLL.Services.Implementations
                 response.IsSuccess = false;
                 response.StatusCode = HttpStatusCode.Forbidden;
                 response.ErrorMessages.Add("Nemate pristup ovom tasku.");
+                return response;
+            }
+
+            var today = DateTime.UtcNow.Date;
+            if (taskDto.DueDate.HasValue && taskDto.DueDate.Value.Date < today)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = HttpStatusCode.BadRequest;
+                response.ErrorMessages.Add("Rok za task ne moze biti u proslosti!. Izaberite drugi datum.");
                 return response;
             }
 
@@ -344,6 +363,53 @@ namespace BLL.Services.Implementations
                 response.StatusCode = HttpStatusCode.InternalServerError;
             }
 
+            return response;
+        }
+
+        // Metoda koja prolazi kroz sve taskove i azurira im status na "Overdue"
+        // Ako ih korisnik nije oznacio kao zavrsene
+        public async Task<ApiResponse> UpdateOverdueTasksAsync()
+        {
+            var response = new ApiResponse();
+
+            // uzmi sve taskove
+            var tasks = await _unitOfWork.Tasks.GetAllAsync();
+
+            var now = DateTime.UtcNow;
+            var updatedCount = 0;
+
+            foreach (var task in tasks)
+            {
+                // samo oni koji imaju due date u proslosti i nisu Completed
+                if (task.DueDate.HasValue &&
+                    task.DueDate.Value < now &&
+                    task.Status != StatusTaska.Completed &&
+                    task.Status != StatusTaska.Overdue)
+                {
+                    var user = await _userManager.FindByIdAsync(task.ApplicationUserId);
+                    if (user != null)
+                    {
+                        // Skini jedan sa Pending count-a
+                        if (task.Status == StatusTaska.Pending)
+                        {
+                            user.PendingTasksCount -= 1;
+                            user.OverdueTasksCount += 1;
+                        }
+
+                        await _userManager.UpdateAsync(user);
+                    }
+
+                    task.Status = StatusTaska.Overdue;
+                    _unitOfWork.Tasks.Update(task);
+                    updatedCount++;
+                }
+            }
+
+            await _unitOfWork.SaveChangesAsync();
+
+            response.IsSuccess = true;
+            response.StatusCode = HttpStatusCode.OK;
+            response.Result = $"{updatedCount} taskova je automatski označeno kao Overdue.";
             return response;
         }
     }

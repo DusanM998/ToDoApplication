@@ -20,7 +20,7 @@ namespace BLL.Services.Implementations
         {
             try
             {
-                // Učitavanje SMTP konfiguracije iz appsettings.json
+                // Ucitavanje SMTP konfiguracije iz appsettings.json
                 var smtpHost = _configuration["Smtp:Host"];
                 var smtpPortStr = _configuration["Smtp:Port"];
                 var smtpUsername = _configuration["Smtp:Username"];
@@ -52,9 +52,9 @@ namespace BLL.Services.Implementations
                 };
                 mailMessage.To.Add(toEmail);
 
-                _logger.LogInformation($"Pokušavam da pošaljem email na: {toEmail} | Subject: {subject}");
+                _logger.LogInformation($"Pokusavam da posaljem email na: {toEmail} | Subject: {subject}");
 
-                // SmtpClient implementira IDisposable → koristi using
+                // SmtpClient implementira IDisposable - koristi using
                 using (var smtpClient = new SmtpClient())
                 {
                     smtpClient.Host = smtpHost;
@@ -66,17 +66,17 @@ namespace BLL.Services.Implementations
                     await smtpClient.SendMailAsync(mailMessage);
                 }
 
-                _logger.LogInformation($"Email uspešno poslat na: {toEmail}");
+                _logger.LogInformation($"Email uspesno poslat na: {toEmail}");
             }
             catch (SmtpException smtpEx)
             {
-                _logger.LogError(smtpEx, $"SMTP greška prilikom slanja email-a na {toEmail}: {smtpEx.Message}");
-                throw new Exception($"Greška sa email serverom: {smtpEx.Message}", smtpEx);
+                _logger.LogError(smtpEx, $"SMTP greska prilikom slanja email-a na {toEmail}: {smtpEx.Message}");
+                throw new Exception($"Greska sa email serverom: {smtpEx.Message}", smtpEx);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Opšta greška prilikom slanja email-a na {toEmail}: {ex.Message}");
-                throw new Exception($"Greška prilikom slanja email-a: {ex.Message}", ex);
+                _logger.LogError(ex, $"Opsta greska prilikom slanja email-a na {toEmail}: {ex.Message}");
+                throw new Exception($"Greska prilikom slanja email-a: {ex.Message}", ex);
             }
         }
     }

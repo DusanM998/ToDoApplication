@@ -3,104 +3,12 @@
   "WorkspaceRootPath": "D:\\Projects 1\\ToDoApp\\ToDoApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\todotaskdto\\todotaskresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\todotaskdto\\todotaskresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\task\\statustaska.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\task\\statustaska.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\task\\todotask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\task\\todotask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\user\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\user\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\todotaskdto\\todotaskupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\todotaskdto\\todotaskupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\todotaskdto\\filteredtasksresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\todotaskdto\\filteredtasksresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\task\\taskpriority.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\task\\taskpriority.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\todotaskdto\\taskwithuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\todotaskdto\\taskwithuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\interfaces\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\interfaces\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\todotaskdto\\todotaskcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\todotaskdto\\todotaskcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\interfaces\\itaskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\interfaces\\itaskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\uof\\implementations\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\uof\\implementations\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\infrastructure\\setup\\corssetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\infrastructure\\setup\\corssetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\dbcontexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\dbcontexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\uof\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\uof\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\shared\\sd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\shared\\sd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\implementations\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\implementations\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -109,6 +17,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -118,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -126,345 +42,81 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TaskService.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
-              "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\TaskService.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
-              "RelativeToolTip": "BLL\\Services\\Implementations\\TaskService.cs",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAAAKwAAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T09:03:28.806Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TaskPriority.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Task\\TaskPriority.cs",
-              "RelativeDocumentMoniker": "EL\\Models\\Task\\TaskPriority.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Task\\TaskPriority.cs",
-              "RelativeToolTip": "EL\\Models\\Task\\TaskPriority.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T14:52:48.273Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ToDoTaskUpdateDTO.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\ToDoTaskUpdateDTO.cs",
-              "RelativeDocumentMoniker": "EL\\DTOs\\ToDoTaskDTO\\ToDoTaskUpdateDTO.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\ToDoTaskUpdateDTO.cs",
-              "RelativeToolTip": "EL\\DTOs\\ToDoTaskDTO\\ToDoTaskUpdateDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T15:39:14.126Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ToDoTaskResponseDTO.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\ToDoTaskResponseDTO.cs",
-              "RelativeDocumentMoniker": "EL\\DTOs\\ToDoTaskDTO\\ToDoTaskResponseDTO.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\ToDoTaskResponseDTO.cs",
-              "RelativeToolTip": "EL\\DTOs\\ToDoTaskDTO\\ToDoTaskResponseDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T16:01:15.177Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "StatusTaska.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Task\\StatusTaska.cs",
-              "RelativeDocumentMoniker": "EL\\Models\\Task\\StatusTaska.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Task\\StatusTaska.cs",
-              "RelativeToolTip": "EL\\Models\\Task\\StatusTaska.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T08:16:07.902Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "FilteredTasksResult.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\FilteredTasksResult.cs",
-              "RelativeDocumentMoniker": "EL\\DTOs\\ToDoTaskDTO\\FilteredTasksResult.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\FilteredTasksResult.cs",
-              "RelativeToolTip": "EL\\DTOs\\ToDoTaskDTO\\FilteredTasksResult.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T10:29:06.345Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TasksController.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\TasksController.cs",
-              "RelativeDocumentMoniker": "ToDoApp\\Controllers\\TasksController.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\TasksController.cs",
-              "RelativeToolTip": "ToDoApp\\Controllers\\TasksController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAQwDQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T23:50:43.472Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\User\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "EL\\Models\\User\\ApplicationUser.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\User\\ApplicationUser.cs",
-              "RelativeToolTip": "EL\\Models\\User\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T14:35:18.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ToDoTask.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Task\\ToDoTask.cs",
-              "RelativeDocumentMoniker": "EL\\Models\\Task\\ToDoTask.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Task\\ToDoTask.cs",
-              "RelativeToolTip": "EL\\Models\\Task\\ToDoTask.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T10:46:32.167Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ITaskRepository.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Interfaces\\ITaskRepository.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\Interfaces\\ITaskRepository.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Interfaces\\ITaskRepository.cs",
-              "RelativeToolTip": "DAL\\Repository\\Interfaces\\ITaskRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T09:25:56.88Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "TaskWithUserDTO.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\TaskWithUserDTO.cs",
-              "RelativeDocumentMoniker": "EL\\DTOs\\ToDoTaskDTO\\TaskWithUserDTO.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\TaskWithUserDTO.cs",
-              "RelativeToolTip": "EL\\DTOs\\ToDoTaskDTO\\TaskWithUserDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T10:03:41.008Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TaskRepository.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "RelativeToolTip": "DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAkwCUAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T09:26:19.291Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ITaskService.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\ITaskService.cs",
-              "RelativeDocumentMoniker": "BLL\\Services\\Interfaces\\ITaskService.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\ITaskService.cs",
-              "RelativeToolTip": "BLL\\Services\\Interfaces\\ITaskService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T09:12:14.827Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ToDoTaskCreateDTO.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\ToDoTaskCreateDTO.cs",
-              "RelativeDocumentMoniker": "EL\\DTOs\\ToDoTaskDTO\\ToDoTaskCreateDTO.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\ToDoTaskDTO\\ToDoTaskCreateDTO.cs",
-              "RelativeToolTip": "EL\\DTOs\\ToDoTaskDTO\\ToDoTaskCreateDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T15:39:08.801Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\AuthService.cs",
-              "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\AuthService.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\AuthService.cs",
-              "RelativeToolTip": "BLL\\Services\\Implementations\\AuthService.cs",
-              "ViewState": "AgIAAJEBAAAAAAAAAAAAAKQBAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T08:43:43.31Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "IRepository.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Interfaces\\IRepository.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\Interfaces\\IRepository.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Interfaces\\IRepository.cs",
-              "RelativeToolTip": "DAL\\Repository\\Interfaces\\IRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T09:26:26.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "UnitOfWork.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\UoF\\Implementations\\UnitOfWork.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\UoF\\Implementations\\UnitOfWork.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\UoF\\Implementations\\UnitOfWork.cs",
-              "RelativeToolTip": "DAL\\Repository\\UoF\\Implementations\\UnitOfWork.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T09:05:04.9Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\appsettings.json",
               "RelativeDocumentMoniker": "ToDoApp\\appsettings.json",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\appsettings.json",
               "RelativeToolTip": "ToDoApp\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-29T08:33:31.34Z",
+              "WhenOpened": "2025-09-29T18:32:51.24Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "ToDoApp\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "ToDoApp\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAqwD4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T23:50:34.139Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "CorsSetup.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Infrastructure\\Setup\\CorsSetup.cs",
-              "RelativeDocumentMoniker": "ToDoApp\\Infrastructure\\Setup\\CorsSetup.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Infrastructure\\Setup\\CorsSetup.cs",
-              "RelativeToolTip": "ToDoApp\\Infrastructure\\Setup\\CorsSetup.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T15:27:46.693Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "IUnitOfWork.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\UoF\\Interfaces\\IUnitOfWork.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\UoF\\Interfaces\\IUnitOfWork.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\UoF\\Interfaces\\IUnitOfWork.cs",
-              "RelativeToolTip": "DAL\\Repository\\UoF\\Interfaces\\IUnitOfWork.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T09:04:40.908Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\DbContexts\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "DAL\\DbContexts\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\DbContexts\\ApplicationDbContext.cs",
-              "RelativeToolTip": "DAL\\DbContexts\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T09:06:16.617Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Program.cs",
-              "RelativeDocumentMoniker": "ToDoApp\\Program.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Program.cs",
-              "RelativeToolTip": "ToDoApp\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAwwFAAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T23:41:55.66Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Repository.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\Repository.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\Implementations\\Repository.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\Repository.cs",
-              "RelativeToolTip": "DAL\\Repository\\Implementations\\Repository.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAgwC0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T09:26:04.188Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "SD.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Shared\\SD.cs",
-              "RelativeDocumentMoniker": "EL\\Shared\\SD.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Shared\\SD.cs",
-              "RelativeToolTip": "EL\\Shared\\SD.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T10:45:44.437Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IAuthService.cs",
-              "RelativeDocumentMoniker": "BLL\\Services\\Interfaces\\IAuthService.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IAuthService.cs",
-              "RelativeToolTip": "BLL\\Services\\Interfaces\\IAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T08:44:25.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 3,
               "Title": "EmailService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\EmailService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\EmailService.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\EmailService.cs",
               "RelativeToolTip": "BLL\\Services\\Implementations\\EmailService.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAD4vxMAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAAE4AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T08:43:09.529Z"
+              "WhenOpened": "2025-09-29T18:31:23.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TaskService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\TaskService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
+              "RelativeToolTip": "BLL\\Services\\Implementations\\TaskService.cs",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAAAK0AAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T18:19:12.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ToDoApp\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "ToDoApp\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T16:24:16.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IAuthService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Interfaces\\IAuthService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IAuthService.cs",
+              "RelativeToolTip": "BLL\\Services\\Interfaces\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T16:20:47.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\AuthService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\AuthService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\AuthService.cs",
+              "RelativeToolTip": "BLL\\Services\\Implementations\\AuthService.cs",
+              "ViewState": "AgIAAFECAAAAAAAAAAAAAGgCAAB7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-28T08:43:43.31Z",
+              "EditorCaption": ""
             }
           ]
         }

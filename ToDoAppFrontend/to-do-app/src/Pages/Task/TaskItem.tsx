@@ -8,6 +8,7 @@ import {
   ChevronUp,
   Circle,
   Trash2,
+  XCircle,
 } from "lucide-react";
 import { StatusTaska } from "../../Interfaces/StatusTaska";
 
@@ -51,17 +52,34 @@ const TaskItem: React.FC<TaskItemProps> = ({
     <div className="col-12 col-md-6">
       <div
         className={`card shadow-sm ${
-          task.status === StatusTaska.Completed ? "border-success bg-light" : ""
+          task.status === StatusTaska.Completed
+            ? "border-success bg-light"
+            : task.status === StatusTaska.Overdue
+            ? "border-danger bg-light"
+            : ""
         }`}
       >
-        <div className="card-body">
+        <div
+          className="card-body"
+          style={{
+            pointerEvents:
+              task.status === StatusTaska.Overdue ? "none" : "auto",
+            opacity: task.status === StatusTaska.Overdue ? 0.6 : 1,
+          }}
+        >
           <div
             className="d-flex cursor-pointer"
             onClick={() => onToggleComplete(task)}
+            style={{
+              pointerEvents:
+                task.status === StatusTaska.Overdue ? "none" : "auto",
+            }}
           >
             <div className="me-3 d-flex align-items-start">
               {task.status === StatusTaska.Completed ? (
                 <CheckCircle className="text-success" size={24} />
+              ) : task.status === StatusTaska.Overdue ? (
+                <XCircle className="text-danger" size={24} />
               ) : (
                 <Circle className="text-secondary" size={24} />
               )}
@@ -114,11 +132,17 @@ const TaskItem: React.FC<TaskItemProps> = ({
             </button>
           </div>
           {isTaskExpanded && task.description && (
-            <p className="card-text mt-2 text-secondary">{t("createTaskPage.descriptionLabel")}: {task.description}</p>
+            <p className="card-text mt-2 text-secondary">
+              {t("createTaskPage.descriptionLabel")}: {task.description}
+            </p>
           )}
           <div className="d-flex justify-content-end mt-2">
             <button
               className="btn btn-danger btn-sm me-2"
+              style={{
+                pointerEvents: "auto", 
+                opacity: 4, 
+              }}
               onClick={(e) => {
                 e.stopPropagation();
                 onDelete(task.id);
@@ -126,7 +150,8 @@ const TaskItem: React.FC<TaskItemProps> = ({
             >
               <Trash2 size={16} />
             </button>
-            {task.status !== StatusTaska.Completed && (
+
+            {task.status === StatusTaska.Pending && (
               <button
                 className="btn btn-warning btn-sm"
                 onClick={(e) => {

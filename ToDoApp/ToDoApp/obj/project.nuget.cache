@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "J8C1P/+7KOU=",
+  "dgSpecHash": "p/1akIeUsjE=",
   "success": true,
   "projectFilePath": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\ToDoApp.csproj",
   "expectedPackageFiles": [
@@ -47,9 +47,11 @@
     "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.9\\microsoft.extensions.dependencyinjection.9.0.9.nupkg.sha512",
     "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.9\\microsoft.extensions.dependencyinjection.abstractions.9.0.9.nupkg.sha512",
     "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.9\\microsoft.extensions.dependencymodel.9.0.9.nupkg.sha512",
+    "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.diagnostics.abstractions\\9.0.9\\microsoft.extensions.diagnostics.abstractions.9.0.9.nupkg.sha512",
     "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\9.0.9\\microsoft.extensions.fileproviders.abstractions.9.0.9.nupkg.sha512",
     "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\9.0.9\\microsoft.extensions.fileproviders.physical.9.0.9.nupkg.sha512",
     "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\9.0.9\\microsoft.extensions.filesystemglobbing.9.0.9.nupkg.sha512",
+    "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\9.0.9\\microsoft.extensions.hosting.abstractions.9.0.9.nupkg.sha512",
     "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.identity.core\\9.0.9\\microsoft.extensions.identity.core.9.0.9.nupkg.sha512",
     "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.identity.stores\\9.0.9\\microsoft.extensions.identity.stores.9.0.9.nupkg.sha512",
     "C:\\Users\\miloj\\.nuget\\packages\\microsoft.extensions.logging\\9.0.9\\microsoft.extensions.logging.9.0.9.nupkg.sha512",

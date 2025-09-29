@@ -32,6 +32,7 @@ namespace BLL.Services.Implementations
         private readonly ICloudinaryService _cloudinaryService;
         private readonly IEmailService _emailService;
         private readonly string _secretKey;
+        private readonly string _frontendURL;
 
         public AuthService(ApplicationDbContext db, IConfiguration configuration, 
             UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
@@ -44,6 +45,8 @@ namespace BLL.Services.Implementations
             _cloudinaryService = cloudinaryService;
             _emailService = emailService;
             _secretKey = configuration.GetValue<string>("ApiSettings:Secret");
+
+            _frontendURL = configuration.GetValue<string>("FrontendSettings:Url");
         }
 
         public async Task<ApiResponse> RegisterAsync(RegisterRequestDTO register)
@@ -262,6 +265,61 @@ namespace BLL.Services.Implementations
             _response.IsSuccess = true;
             _response.Result = new { message = "Logout successful!" };
             return _response;
+        }
+
+        public async Task<ApiResponse> GetAllUsersAsync()
+        {
+            try
+            {
+                // Dohvatanje svih korisnika sa njihovim taskovima
+                var usersFromDb = await _db.ApplicationUsers
+                    .Include(u => u.Tasks)
+                    .ToListAsync();
+
+                // Kreiranje custom objekata za rezultat
+                var usersResult = new List<object>();
+                foreach (var user in usersFromDb)
+                {
+                    var roles = await _userManager.GetRolesAsync(user);
+                    var role = roles.FirstOrDefault(); // Ako ima samo jednu rolu
+
+                    usersResult.Add(new
+                    {
+                        user.Id,
+                        user.UserName,
+                        user.Name,
+                        user.Email,
+                        user.PhoneNumber,
+                        user.Image,
+                        Role = role,
+                        user.CompletedTasksCount,
+                        user.PendingTasksCount,
+                        user.OverdueTasksCount,
+                        Tasks = user.Tasks.Select(t => new
+                        {
+                            t.Id,
+                            t.Title,
+                            t.Description,
+                            t.DueDate,
+                            t.Status,
+                            t.Priority,
+                            t.Category
+                        }).ToList()
+                    });
+                }
+
+                _response.Result = usersResult;
+                _response.StatusCode = HttpStatusCode.OK;
+                _response.IsSuccess = true;
+                return _response;
+            }
+            catch (Exception ex)
+            {
+                _response.StatusCode = HttpStatusCode.InternalServerError;
+                _response.IsSuccess = false;
+                _response.ErrorMessages.Add(ex.Message);
+                return _response;
+            }
         }
 
         public async Task<ApiResponse> GetUserDetailsAsync(string id)
@@ -555,8 +613,8 @@ namespace BLL.Services.Implementations
             // Token mora biti URL safe
             var encodedToken = Uri.EscapeDataString(token);
 
-            // Link ka tvojoj React aplikaciji (frontend)
-            var resetLink = $"http://localhost:5173/reset-password?email={Uri.EscapeDataString(user.Email)}&token={encodedToken}";
+            // Link ka React aplikaciji (frontend)
+            var resetLink = $"{_frontendURL}/reset-password?email={Uri.EscapeDataString(user.Email)}&token={encodedToken}";
 
             try
             {

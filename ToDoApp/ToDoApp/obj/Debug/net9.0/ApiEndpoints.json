@@ -64,6 +64,16 @@
   },
   {
     "ContainingType": "ToDoApp.Controllers.AuthController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/auth/allUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToDoApp.Controllers.AuthController",
     "Method": "ForgotPassword",
     "RelativePath": "api/auth/forgot-password",
     "HttpMethod": "POST",

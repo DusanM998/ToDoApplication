@@ -177,7 +177,7 @@ const Header = () => {
                         <li>
                           <NavLink
                             className="dropdown-item"
-                            to="/admin/users"
+                            to="/admin/viewAllUsers"
                             onClick={() => setAdminMenuOpen(false)}
                           >
                             {t("header.viewUsers")}

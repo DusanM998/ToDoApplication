@@ -21,11 +21,11 @@ const TasksTable: React.FC<TasksTableProps> = ({
   const getStatusLabel = (status: number) => {
     switch (status) {
       case StatusTaska.Pending:
-        return <span className="badge bg-warning text-dark">{t("myTasksPage.statusPending")}</span>;
+        return <span className="badge bg-warning text-dark">{t("myTasksPage.summary.pending")}</span>;
       case StatusTaska.Completed:
-        return <span className="badge bg-success">{t("myTasksPage.statusCompleted")}</span>;
+        return <span className="badge bg-success">{t("myTasksPage.summary.completed")}</span>;
       default:
-        return <span className="badge bg-secondary">{t("myTasksPage.statusUnknown")}</span>;
+        return <span className="badge bg-secondary">{t("myTasksPage.summary.Expired")}</span>;
     }
   };
 

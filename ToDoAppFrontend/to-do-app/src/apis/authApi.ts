@@ -102,6 +102,13 @@ const authApi = createApi({
       }),
       providesTags: ["AuthApi"],
     }),
+    getAllUsers: builder.query({
+    query: () => ({
+      url: "auth/allUsers",
+      method: "GET",
+    }),
+    providesTags: ["AuthApi"],
+  }),
   }),
 });
 
@@ -116,6 +123,7 @@ export const {
   useResetPasswordRequestMutation,
   useConfirmResetPasswordMutation,
   useGetCurrentUserQuery,
+  useGetAllUsersQuery
 } = authApi;
 
 export default authApi;

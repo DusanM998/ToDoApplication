@@ -17,7 +17,7 @@
   "homePage": {
     "title": "To-Do Aplikacija",
     "subtitle": "Organizujte svoje zadatke lako i efikasno!",
-    "featuresTitle": "Šta naša aplikacija nudi?",
+    "featuresTitle": "Šta aplikacija nudi?",
     "feature1": {
       "title": "Upravljanje zadacima",
       "description": "Dodajte, izmenite i obrišite zadatke uz jednostavan i intuitivan interfejs."
@@ -81,7 +81,9 @@
     "passwordHelper": "Ostavite prazno da zadržite trenutnu lozinku",
     "changeAvatar": "Promeni sliku",
     "passwordMismatch": "Lozinke se ne podudaraju.",
-    "updateSuccess": "Korisnik je uspešno ažuriran."
+    "updateSuccess": "Korisnik je uspešno ažuriran.",
+    "phone": "Broj telefona",
+    "role": "Uloga"
   },
   "myTasksPage": {
     "title": "Moji Zadaci",
@@ -157,6 +159,7 @@
     "errorUniform": "Došlo je do greške, pokušajte ponovo.",
     "fileSizeError": "Veličina fajla prelazi limit (5MB).",
     "fileTypeError": "Neispravan tip fajla. Dozvoljeni su samo JPEG, JPG i PNG.",
-    "taskUpdateSuccess": "Uspešna izmena taska!"
+    "taskUpdateSuccess": "Uspešna izmena taska!",
+    "taskUpdateError": "Greška prilikom ažuriranja taska! Pokušajte ponovo."
   }
 }

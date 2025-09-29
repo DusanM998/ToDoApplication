@@ -19,5 +19,6 @@ namespace BLL.Services.Interfaces
         Task<ApiResponse> RefreshTokenAsync(string refreshToken);
         Task<ApiResponse> ForgotPasswordAsync(ForgotPasswordDTO forgotPasswordDTO);
         Task<ApiResponse> ResetPasswordAsync(ResetPasswordDTO resetPasswordDTO);
+        Task<ApiResponse> GetAllUsersAsync();
     }
 }

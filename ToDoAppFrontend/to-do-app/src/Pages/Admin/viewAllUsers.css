@@ -1,0 +1,45 @@
+:root {
+  --primary-color: #51285f;
+  --accent-color: #4da172;
+}
+
+.text-primary-custom {
+  color: var(--primary-color);
+}
+
+.btn-primary-custom {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary-custom:hover {
+  background-color: #3f204a;
+  border-color: #3f204a;
+}
+
+.badge-pending {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.badge-completed {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.badge-overdue {
+  background-color: #dc3545;
+  color: white;
+}
+
+.border-pending {
+  border-color: #6c757d !important;
+}
+
+.border-completed {
+  border-color: var(--accent-color) !important;
+}
+
+.border-overdue {
+  border-color: #dc3545 !important;
+}

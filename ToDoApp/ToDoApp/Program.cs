@@ -48,6 +48,9 @@ builder.Services.AddBusinessLogic();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+// Registracija background servisa za automatsko azuriranje statusa taska
+builder.Services.AddHostedService<OverdueTaskBackgroundService>();
+
 // Eksterni servisi Cloudinary
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddSingleton<ICloudinaryService, CloudinaryService>();

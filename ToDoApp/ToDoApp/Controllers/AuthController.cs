@@ -36,6 +36,13 @@ namespace ToDoApp.Controllers
             return Ok(result);
         }
 
+        [HttpGet("allUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var response = await _authService.GetAllUsersAsync();
+            return StatusCode((int)response.StatusCode, response);
+        }
+
         [HttpGet("{id}", Name = "GetUserDetails")]
         public async Task<IActionResult> GetUserDetails(string id)
         {

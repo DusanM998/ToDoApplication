@@ -81,7 +81,9 @@
     "passwordHelper": "Leave empty to keep current password",
     "changeAvatar": "Change avatar",
     "passwordMismatch": "Passwords do not match.",
-    "updateSuccess": "User updated successfully."
+    "updateSuccess": "User updated successfully.",
+    "phone": "Phone",
+    "role": "Role"
   },
   "myTasksPage": {
     "title": "My Tasks",
@@ -157,6 +159,7 @@
     "errorUniform": "Something went wrong, please try again.",
     "fileSizeError": "File size exceeds limit (5MB).",
     "fileTypeError": "Invalid file type. Only JPEG, JPG, PNG allowed.",
-    "taskUpdateSuccess": "Task updated successfully!"
+    "taskUpdateSuccess": "Task updated successfully!",
+    "taskUpdateError": "Error while update a task! Try again."
   }
 }

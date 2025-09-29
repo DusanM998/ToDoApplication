@@ -9,7 +9,7 @@ import { jwtDecode } from "jwt-decode";
 import { ForgotPassword, Login, Register, ResetPassword } from "../Pages/Auth";
 import { UserDetailsUpdate, UserPage } from "../Pages/UserPage";
 import { CreateTask, EditTask, MyTasks } from "../Pages/Task";
-import { ViewAllTasks } from "../Pages/Admin";
+import { ViewAllTasks, ViewAllUsers } from "../Pages/Admin";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +49,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />}></Route>
           <Route path="/tasks/editTask/:id" element={<EditTask />}></Route>
           <Route path="/admin/viewAllTasks" element={<ViewAllTasks />}></Route>
+          <Route path="/admin/viewAllUsers" element={<ViewAllUsers />} ></Route>
         </Routes>
       </div>
     </div>

@@ -15,11 +15,11 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
   const { t } = useTranslation();
 
   const [search, setSearch] = useState("");
-  const [status, setStatus] = useState<StatusTaska | "">("");
+  const [status, setStatus] = useState<StatusTaska | undefined>(undefined);
   const [dueDateFrom, setDueDateFrom] = useState("");
   const [dueDateTo, setDueDateTo] = useState("");
 
-  const isFilterSet = search || status || dueDateFrom || dueDateTo;
+  //const isFilterSet = search !== "" || status !== undefined || dueDateFrom !== "" || dueDateTo !== "";
 
   const handleApplyFilters = () => {
     const from = dueDateFrom
@@ -32,7 +32,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
 
     onFilterChange({
       search,
-      status: status === "" ? undefined : status,
+      status: status,
       dueDateFrom: from,
       dueDateTo: to,
     });
@@ -40,10 +40,15 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
 
   const handleClearFilters = () => {
     setSearch("");
-    setStatus("");
+    setStatus(undefined);
     setDueDateFrom("");
     setDueDateTo("");
-    onFilterChange({ search: "", status: undefined, dueDateFrom: "", dueDateTo: "" });
+    onFilterChange({
+      search: "",
+      status: undefined,
+      dueDateFrom: "",
+      dueDateTo: "",
+    });
   };
 
   return (
@@ -66,7 +71,12 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
               const newSearch = e.target.value;
               setSearch(newSearch);
               if (newSearch === "") {
-                onFilterChange({ search: "", status: undefined, dueDateFrom, dueDateTo });
+                onFilterChange({
+                  search: "",
+                  status: undefined,
+                  dueDateFrom,
+                  dueDateTo,
+                });
               }
             }}
             placeholder={t("myTasksPage.searchPlaceholder")}
@@ -85,14 +95,20 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
             }}
             value={status}
             onChange={(e) =>
-              setStatus(e.target.value === "" ? "" : Number(e.target.value) as StatusTaska)
+              setStatus(
+                e.target.value === ""
+                  ? undefined
+                  : (Number(e.target.value) as StatusTaska)
+              )
             }
           >
             <option value="">{t("myTasksPage.all")}</option>
             <option value={StatusTaska.Completed}>
               {t("myTasksPage.summary.completed")}
             </option>
-            <option value={StatusTaska.Pending}>{t("myTasksPage.summary.pending")}</option>
+            <option value={StatusTaska.Pending}>
+              {t("myTasksPage.summary.pending")}
+            </option>
             <option value={StatusTaska.Overdue}>
               {t("myTasksPage.summary.notCompleted")}
             </option>
@@ -130,7 +146,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
             onChange={(e) => setDueDateTo(e.target.value)}
           />
         </div>
-        {isFilterSet && (
+        {/*{isFilterSet && (*/}
           <div className="col-12 text-center">
             <button
               className="btn btn-primary"
@@ -160,7 +176,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
               {t("myTasksPage.clearFilters")}
             </button>
           </div>
-        )}
+        {/*)}*/}
       </div>
     </div>
   );

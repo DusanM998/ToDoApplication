@@ -196,3 +196,5 @@ D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\Microsoft.Extensions.File
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\obj\Debug\net9.0\ToDoApp.sourcelink.json
+D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\Microsoft.Extensions.Hosting.Abstractions.dll
