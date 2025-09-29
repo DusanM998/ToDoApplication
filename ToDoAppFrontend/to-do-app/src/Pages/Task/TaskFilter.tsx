@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { StatusTaska } from "../../Interfaces/StatusTaska";
 
 interface TaskFilterProps {
   onFilterChange: (filters: {
     search?: string;
-    status?: "completed" | "pending" | "";
+    status?: StatusTaska;
     dueDateFrom?: string;
     dueDateTo?: string;
   }) => void;
@@ -14,7 +15,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
   const { t } = useTranslation();
 
   const [search, setSearch] = useState("");
-  const [status, setStatus] = useState<"" | "completed" | "pending">("");
+  const [status, setStatus] = useState<StatusTaska | "">("");
   const [dueDateFrom, setDueDateFrom] = useState("");
   const [dueDateTo, setDueDateTo] = useState("");
 
@@ -31,7 +32,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
 
     onFilterChange({
       search,
-      status,
+      status: status === "" ? undefined : status,
       dueDateFrom: from,
       dueDateTo: to,
     });
@@ -42,7 +43,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
     setStatus("");
     setDueDateFrom("");
     setDueDateTo("");
-    onFilterChange({ search: "", status: "", dueDateFrom: "", dueDateTo: "" });
+    onFilterChange({ search: "", status: undefined, dueDateFrom: "", dueDateTo: "" });
   };
 
   return (
@@ -65,7 +66,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
               const newSearch = e.target.value;
               setSearch(newSearch);
               if (newSearch === "") {
-                onFilterChange({ search: "", status, dueDateFrom, dueDateTo });
+                onFilterChange({ search: "", status: undefined, dueDateFrom, dueDateTo });
               }
             }}
             placeholder={t("myTasksPage.searchPlaceholder")}
@@ -84,12 +85,17 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
             }}
             value={status}
             onChange={(e) =>
-              setStatus(e.target.value as "" | "completed" | "pending")
+              setStatus(e.target.value === "" ? "" : Number(e.target.value) as StatusTaska)
             }
           >
             <option value="">{t("myTasksPage.all")}</option>
-            <option value="completed">{t("myTasksPage.completed")}</option>
-            <option value="pending">{t("myTasksPage.pending")}</option>
+            <option value={StatusTaska.Completed}>
+              {t("myTasksPage.summary.completed")}
+            </option>
+            <option value={StatusTaska.Pending}>{t("myTasksPage.summary.pending")}</option>
+            <option value={StatusTaska.Overdue}>
+              {t("myTasksPage.summary.notCompleted")}
+            </option>
           </select>
         </div>
         <div className="col-md-3">

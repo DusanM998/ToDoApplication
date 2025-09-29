@@ -17,8 +17,10 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
+  const [adminMenuOpen, setAdminMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLLIElement>(null);
   const languageRef = useRef<HTMLLIElement>(null);
+  const adminMenuRef = useRef<HTMLLIElement>(null);
 
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -30,6 +32,7 @@ const Header = () => {
   );
 
   const isLoggedIn = !!userData?.id; // ili userData?.token
+  const isAdmin = userData?.role === "admin"; // Provera da li je korisnik admin
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +55,12 @@ const Header = () => {
         !languageRef.current.contains(event.target as Node)
       ) {
         setLanguageOpen(false);
+      }
+      if (
+        adminMenuRef.current &&
+        !adminMenuRef.current.contains(event.target as Node)
+      ) {
+        setAdminMenuOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -118,15 +127,66 @@ const Header = () => {
                 </NavLink>
               </li>
               {isLoggedIn && (
-                <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    to="/tasks/myTasks"
-                    style={{ color: isScrolled ? "#000" : "#fff" }}
-                  >
-                    {t("header.myTasks")}
-                  </NavLink>
-                </li>
+                <>
+                  <li className="nav-item">
+                    <NavLink
+                      className="nav-link"
+                      to="/tasks/myTasks"
+                      style={{ color: isScrolled ? "#000" : "#fff" }}
+                    >
+                      {t("header.myTasks")}
+                    </NavLink>
+                  </li>
+                  {isAdmin && (
+                    <li className="nav-item dropdown" ref={adminMenuRef}>
+                      <a
+                        className="nav-link"
+                        href="#"
+                        role="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setAdminMenuOpen((prev) => !prev);
+                        }}
+                        style={{ color: isScrolled ? "#000" : "#fff" }}
+                      >
+                        {t("header.adminPanel")}
+                        <i
+                          className={`bi ms-2 ${
+                            adminMenuOpen ? "bi-chevron-up" : "bi-chevron-down"
+                          }`}
+                          style={{ transition: "transform 0.3s" }}
+                        ></i>
+                      </a>
+                      <ul
+                        className={`dropdown-menu custom-dropdown ${
+                          adminMenuOpen ? "show" : ""
+                        }`}
+                        style={{
+                          minWidth: "180px",
+                        }}
+                      >
+                        <li>
+                          <NavLink
+                            className="dropdown-item"
+                            to="/admin/viewAllTasks"
+                            onClick={() => setAdminMenuOpen(false)}
+                          >
+                            {t("header.viewAllTasks")}
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink
+                            className="dropdown-item"
+                            to="/admin/users"
+                            onClick={() => setAdminMenuOpen(false)}
+                          >
+                            {t("header.viewUsers")}
+                          </NavLink>
+                        </li>
+                      </ul>
+                    </li>
+                  )}
+                </>
               )}
               {/* Language Dropdown */}
               <li className="nav-item dropdown" ref={languageRef}>

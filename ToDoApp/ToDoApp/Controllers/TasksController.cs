@@ -2,6 +2,7 @@
 using BLL.Services.Interfaces;
 using El.DTOs.ToDoTaskDTO;
 using EL.DTOs.ToDoTaskDTO;
+using EL.Models.Task;
 using EL.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,11 +25,21 @@ namespace ToDoApp.Controllers
         }
 
         // Dohvatanje svih taskova za trenutnog korisnika
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<ActionResult<ApiResponse>> GetTasks()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var response = await _taskService.GetTasksAsync(userId);
+            ApiResponse response;
+
+            if (User.IsInRole("admin"))
+            {
+                response = await _taskService.GetAllTasks(); // admin vidi sve
+            }
+            else
+            {
+                response = await _taskService.GetTasksAsync(userId); // obican korisnik vidi svoje
+            }
+
             return StatusCode((int)response.StatusCode, response);
         }
 
@@ -50,7 +61,7 @@ namespace ToDoApp.Controllers
             return StatusCode((int)response.StatusCode, response);
         }
 
-        // Ažuriranje taska
+        // Azuriranje taska
         [HttpPut("{id:int}")]
         public async Task<ActionResult<ApiResponse>> UpdateTask(int id, [FromBody] ToDoTaskUpdateDTO taskDto)
         {
@@ -71,7 +82,7 @@ namespace ToDoApp.Controllers
         [HttpGet("filter")]
         public async Task<IActionResult> GetFilteredTasks(
             string? search,
-            bool? isCompleted,
+            StatusTaska? status,
             DateTime? dueDateFrom,
             DateTime? dueDateTo,
             int pageNumber = 1,
@@ -81,7 +92,7 @@ namespace ToDoApp.Controllers
             var response = await _taskService.GetFilteredTasksAsync(
                 userId,
                 search,
-                isCompleted,
+                status,
                 dueDateFrom,
                 dueDateTo,
                 pageNumber,

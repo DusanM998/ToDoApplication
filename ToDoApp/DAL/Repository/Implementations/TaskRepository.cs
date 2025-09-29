@@ -1,5 +1,6 @@
 ﻿using DAL.DbContexts;
 using DAL.Repository.Interfaces;
+using EL.DTOs.ToDoTaskDTO;
 using EL.Models.Task;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,6 +20,25 @@ namespace DAL.Repository.Implementations
             return await _context.ToDoTasks
                 .Where(t => t.ApplicationUserId == userId)
                 .OrderByDescending(t => t.CreatedAt)
+                .ToListAsync();
+        }
+
+        public async Task<List<TaskWithUserDTO>> GetAllWithUsersAsync()
+        {
+            return await _context.ToDoTasks
+                .Include(t => t.User) // ili Include(t => t.ApplicationUser)
+                .Select(t => new TaskWithUserDTO
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Description = t.Description,
+                    Status = t.Status,
+                    CreatedAt = t.CreatedAt,
+                    DueDate = t.DueDate,
+                    ApplicationUserId = t.ApplicationUserId,
+                    Name = t.User != null ? t.User.Name : "",
+                    Email = t.User != null ? t.User.Email : ""
+                })
                 .ToListAsync();
         }
     }

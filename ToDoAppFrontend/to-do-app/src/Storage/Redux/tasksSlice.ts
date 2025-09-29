@@ -8,7 +8,7 @@ interface TaskState {
 }
 
 const initialState: TaskState = {
-  tasks: [],
+  tasks: [] as toDoTaskModel[],
   isLoading: false,
   error: null,
 };

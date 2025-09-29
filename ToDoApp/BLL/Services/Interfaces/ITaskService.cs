@@ -6,6 +6,7 @@ namespace BLL.Services.Interfaces
 {
     public interface ITaskService
     {
+        Task<ApiResponse> GetAllTasks();
         Task<ApiResponse> GetTasksAsync(string userId);
         Task<ApiResponse> GetTaskByIdAsync(int id, string userId);
         Task<ApiResponse> CreateTaskAsync(ToDoTaskCreateDTO taskDto, string userId);
@@ -14,7 +15,7 @@ namespace BLL.Services.Interfaces
         Task<ApiResponse> GetFilteredTasksAsync(
             string userId,
             string? search,
-            bool? isCompleted,
+            StatusTaska? status,
             DateTime? dueDateFrom,
             DateTime? dueDateTo,
             int pageNumber = 1,

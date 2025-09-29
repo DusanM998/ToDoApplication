@@ -19,7 +19,7 @@ const MyTaskPagination: React.FC<MyTaskPaginationProps> = ({
   const isFirstPage = pageNumber === 1;
   const isLastPage = pageNumber === totalPages || totalRecords <= pageSize;
 
-  // Dinamički brojevi stranica
+  // Dinamicki brojevi stranica
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
 

@@ -12,7 +12,7 @@ namespace EL.Models.Task
         [Required] 
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; }
-        public bool IsCompleted { get; set; } = false;
+        public StatusTaska Status { get; set; } = StatusTaska.Pending;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? DueDate { get; set; }
         [Required]

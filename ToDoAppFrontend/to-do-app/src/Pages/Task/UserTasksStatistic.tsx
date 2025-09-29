@@ -3,6 +3,8 @@ import { useState, useMemo } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useGetCurrentUserQuery } from "../../apis/authApi";
 import { MainLoader } from "../../Components/Layout/Common";
+import { StatusTaska } from "../../Interfaces/StatusTaska";
+import type { toDoTaskModel } from "../../Interfaces";
 
 const UserTasksStatistic: React.FC = () => {
   const { t } = useTranslation();
@@ -10,13 +12,32 @@ const UserTasksStatistic: React.FC = () => {
 
   const { data, isLoading, isError } = useGetCurrentUserQuery(undefined);
 
-  const completedTasksCount = data?.result?.completedTasksCount ?? 0;
-  const pendingTasksCount = data?.result?.pendingTasksCount ?? 0;
-  const overdueTasksCount = data?.result?.overdueTasksCount ?? 0;
+  // Preuzmi taskove trenutnog korisnika
+  const tasks: toDoTaskModel[] = data?.result?.tasks ?? [];
+
+  // Prebroj taskove po statusu i da li su overdue
+  const completedTasksCount = useMemo(
+    () => tasks.filter((t) => t.status === StatusTaska.Completed).length,
+    [tasks]
+  );
+  const pendingTasksCount = useMemo(
+    () => tasks.filter((t) => t.status === StatusTaska.Pending).length,
+    [tasks]
+  );
+  const overdueTasksCount = useMemo(
+    () =>
+      tasks.filter((t) => {
+        if (!t.dueDate) return false;
+        const due = new Date(t.dueDate);
+        const now = new Date();
+        return t.status !== StatusTaska.Completed && due < now;
+      }).length,
+    [tasks]
+  );
 
   const totalTasks = useMemo(
-    () => completedTasksCount + pendingTasksCount + overdueTasksCount,
-    [completedTasksCount, pendingTasksCount, overdueTasksCount]
+    () => tasks.length,
+    [tasks]
   );
 
   if (isLoading) return <MainLoader />;

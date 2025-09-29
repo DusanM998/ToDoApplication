@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EL.Models.Task;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace EL.DTOs.ToDoTaskDTO
         public DateTime? DueDate { get; set; }
         public string? Category { get; set; }
         public int Priority { get; set; }
-        public bool IsCompleted { get; set; }
+        public StatusTaska Status { get; set; }
         public DateTime CreatedAt { get; set; }
         public string ApplicationUserId { get; set; } = string.Empty;
     }

@@ -4,6 +4,9 @@
     "myTasks": "Moji Taskovi",
     "welcome": "Dobrodošli",
     "profile": "Profil",
+    "adminPanel": "Admin Panel",
+    "viewAllTasks": "Pregled Taskova",
+    "viewUsers": "Pregled Korisnika",
     "logout": "Odjavi se",
     "login": "Prijavi se",
     "register": "Registruj se",
@@ -92,8 +95,6 @@
     "searchPlaceholder": "Pretraži zadatke...",
     "status": "Status",
     "all": "Svi",
-    "completed": "Završeni",
-    "pending": "U toku",
     "dueDateFrom": "Rok od",
     "dueDateTo": "Rok do",
     "previous": "Prethodna",
@@ -140,6 +141,12 @@
     "save": "Sačuvaj izmene",
     "saving": "Čuvanje...",
     "back": "Nazad"
+  },
+  "adminTasksPage": {
+    "title": "Svi Zadaci",
+    "noTasks": "Nema zadataka za prikaz.",
+    "owner": "Vlasnik",
+    "actions": "Akcije"
   },
   "toastNotify": {
     "uploadImageError": "Molimo vas da otpremite sliku.",

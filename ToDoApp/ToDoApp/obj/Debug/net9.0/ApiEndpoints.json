@@ -195,26 +195,6 @@
   },
   {
     "ContainingType": "ToDoApp.Controllers.TasksController",
-    "Method": "GetTasks",
-    "RelativePath": "api/tasks",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "EL.Shared.ApiResponse",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ToDoApp.Controllers.TasksController",
     "Method": "CreateTask",
     "RelativePath": "api/tasks",
     "HttpMethod": "POST",
@@ -324,6 +304,26 @@
   },
   {
     "ContainingType": "ToDoApp.Controllers.TasksController",
+    "Method": "GetTasks",
+    "RelativePath": "api/tasks/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "EL.Shared.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ToDoApp.Controllers.TasksController",
     "Method": "GetFilteredTasks",
     "RelativePath": "api/tasks/filter",
     "HttpMethod": "GET",
@@ -336,8 +336,8 @@
         "IsRequired": false
       },
       {
-        "Name": "isCompleted",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Name": "status",
+        "Type": "System.String",
         "IsRequired": false
       },
       {

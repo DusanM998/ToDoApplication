@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,18 @@ namespace BLL.Services.Implementations
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
+        }
+
+        // Dohvata sve taskove za sve korisnike
+        public async Task<ApiResponse> GetAllTasks()
+        {
+            var response = new ApiResponse();
+
+            var tasks = await _unitOfWork.Tasks.GetAllWithUsersAsync();
+
+            response.Result = tasks;
+            response.StatusCode = HttpStatusCode.OK;
+            return response;
         }
 
         //Dohvata sve taskove za datog korisnika
@@ -91,7 +104,7 @@ namespace BLL.Services.Implementations
                 Category = taskDto.Category,
                 Priority = taskDto.Priority,
                 ApplicationUserId = userId,
-                IsCompleted = false,
+                Status = EL.Models.Task.StatusTaska.Pending,
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -116,7 +129,7 @@ namespace BLL.Services.Implementations
                 DueDate = task.DueDate,
                 Category = task.Category,
                 Priority = (int)task.Priority,
-                IsCompleted = task.IsCompleted,
+                Status = task.Status,
                 CreatedAt = task.CreatedAt,
                 ApplicationUserId = task.ApplicationUserId
             };
@@ -149,32 +162,37 @@ namespace BLL.Services.Implementations
 
             var user = await _userManager.FindByIdAsync(userId);
 
-            bool wasCompleted = task.IsCompleted;
-            bool willBeCompleted = taskDto.IsCompleted;
+            var oldStatus = task.Status;
+            var newStatus = taskDto.Status ?? StatusTaska.Pending;
 
-            // update polja
-            task.Title = taskDto.Title;
-            task.Description = taskDto.Description;
-            task.DueDate = taskDto.DueDate;
-            task.IsCompleted = taskDto.IsCompleted;
-            task.Category = taskDto.Category;
-            task.Priority = taskDto.Priority;
+            // update polja samo ako su vrednosti prosledjene
+            if (taskDto.Title != null) task.Title = taskDto.Title;
+            if (taskDto.Description != null) task.Description = taskDto.Description;
+            if (taskDto.DueDate.HasValue) task.DueDate = taskDto.DueDate;
+            if (taskDto.Category != null) task.Category = taskDto.Category;
+            if (taskDto.Priority.HasValue) task.Priority = taskDto.Priority.Value;
+            task.Status = newStatus;
 
             _unitOfWork.Tasks.Update(task);
 
             // update brojaca za korisnika
-            if (user != null && wasCompleted != willBeCompleted)
+            if (user != null && oldStatus != newStatus)
             {
-                if (willBeCompleted)
-                {
-                    user.CompletedTasksCount += 1;
-                    user.PendingTasksCount -= 1;
-                }
-                else
-                {
+                // Skidam staro stanje
+                if (oldStatus == StatusTaska.Completed)
                     user.CompletedTasksCount -= 1;
+                else if (oldStatus == StatusTaska.Pending)
+                    user.PendingTasksCount -= 1;
+                else if (oldStatus == StatusTaska.Overdue)
+                    user.OverdueTasksCount -= 1;
+
+                // dodaj novo stanje
+                if (newStatus == StatusTaska.Completed)
+                    user.CompletedTasksCount += 1;
+                else if (newStatus == StatusTaska.Pending)
                     user.PendingTasksCount += 1;
-                }
+                else if (newStatus == StatusTaska.Overdue)
+                    user.OverdueTasksCount += 1;
 
                 await _userManager.UpdateAsync(user);
             }
@@ -189,7 +207,7 @@ namespace BLL.Services.Implementations
                 DueDate = task.DueDate,
                 Category = task.Category,
                 Priority = (int)task.Priority,
-                IsCompleted = task.IsCompleted,
+                Status = task.Status,
                 CreatedAt = task.CreatedAt,
                 ApplicationUserId = task.ApplicationUserId
             };
@@ -222,17 +240,15 @@ namespace BLL.Services.Implementations
 
             var user = await _userManager.FindByIdAsync(userId);
 
-            // azuriraj broj Completed/Pending taskova pri brisanju
+            // azuriraj broj Completed/Pending/Overdue taskova pri brisanju
             if (user != null)
             {
-                if (task.IsCompleted)
-                {
+                if (task.Status == StatusTaska.Completed)
                     user.CompletedTasksCount -= 1;
-                }
-                else
-                {
+                else if (task.Status == StatusTaska.Pending)
                     user.PendingTasksCount -= 1;
-                }
+                else if (task.Status == StatusTaska.Overdue)
+                    user.OverdueTasksCount -= 1;
 
                 await _userManager.UpdateAsync(user);
             }
@@ -248,7 +264,7 @@ namespace BLL.Services.Implementations
         public async Task<ApiResponse> GetFilteredTasksAsync(
             string userId,
             string? search,
-            bool? isCompleted,
+            StatusTaska? status,
             DateTime? dueDateFrom,
             DateTime? dueDateTo,
             int pageNumber = 1,
@@ -271,9 +287,9 @@ namespace BLL.Services.Implementations
                         (t.Description != null && t.Description.Contains(search)));
                 }
 
-                if (isCompleted.HasValue)
+                if (status.HasValue)
                 {
-                    query = query.Where(t => t.IsCompleted == isCompleted.Value);
+                    query = query.Where(t => t.Status == status.Value);
                 }
 
                 if (dueDateFrom.HasValue)
@@ -308,7 +324,7 @@ namespace BLL.Services.Implementations
                     DueDate = t.DueDate,
                     Category = t.Category,
                     Priority = (int)t.Priority,
-                    IsCompleted = t.IsCompleted,
+                    Status = t.Status,
                     CreatedAt = t.CreatedAt,
                     ApplicationUserId = t.ApplicationUserId
                 }).ToList();

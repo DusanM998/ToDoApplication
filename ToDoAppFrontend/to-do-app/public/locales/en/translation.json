@@ -4,6 +4,9 @@
     "myTasks": "My Tasks",
     "welcome": "Welcome",
     "profile": "Profile",
+    "adminPanel": "Admin Panel",
+    "viewAllTasks": "View All Tasks",
+    "viewUsers": "View Users",
     "logout": "Logout",
     "login": "Login",
     "register": "Register",
@@ -92,8 +95,6 @@
     "searchPlaceholder": "Search tasks...",
     "status": "Status",
     "all": "All",
-    "completed": "Completed",
-    "pending": "Pending",
     "dueDateFrom": "Due Date From",
     "dueDateTo": "Due Date To",
     "previous": "Previous",
@@ -140,6 +141,12 @@
     "save": "Save Changes",
     "saving": "Saving...",
     "back": "Back"
+  },
+  "adminTasksPage": {
+    "title": "All Tasks",
+    "noTasks": "No tasks to display.",
+    "owner": "Owner",
+    "actions": "Actions"
   },
   "toastNotify": {
     "uploadImageError": "Please upload an image.",

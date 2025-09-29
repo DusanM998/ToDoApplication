@@ -9,6 +9,7 @@ import {
   Circle,
   Trash2,
 } from "lucide-react";
+import { StatusTaska } from "../../Interfaces/StatusTaska";
 
 interface TaskItemProps {
   task: toDoTaskModel;
@@ -50,7 +51,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
     <div className="col-12 col-md-6">
       <div
         className={`card shadow-sm ${
-          task.isCompleted ? "border-success bg-light" : ""
+          task.status === StatusTaska.Completed ? "border-success bg-light" : ""
         }`}
       >
         <div className="card-body">
@@ -59,7 +60,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
             onClick={() => onToggleComplete(task)}
           >
             <div className="me-3 d-flex align-items-start">
-              {task.isCompleted ? (
+              {task.status === StatusTaska.Completed ? (
                 <CheckCircle className="text-success" size={24} />
               ) : (
                 <Circle className="text-secondary" size={24} />
@@ -69,7 +70,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
               <div className="d-flex align-items-center">
                 <h5
                   className={`card-title mb-1 me-2 ${
-                    task.isCompleted
+                    task.status === StatusTaska.Completed
                       ? "text-decoration-line-through text-muted"
                       : ""
                   }`}
@@ -125,7 +126,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
             >
               <Trash2 size={16} />
             </button>
-            {!task.isCompleted && (
+            {task.status !== StatusTaska.Completed && (
               <button
                 className="btn btn-warning btn-sm"
                 onClick={(e) => {

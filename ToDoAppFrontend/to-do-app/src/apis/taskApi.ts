@@ -13,9 +13,21 @@ export const taskApi = createApi({
   }),
   tagTypes: ["Tasks"],
   endpoints: (builder) => ({
+    getAllTasks: builder.query<toDoTaskModel[], void>({
+      query: () => ({ url: "/all", method: "GET" }), // poziva backend GET /api/tasks/all
+      transformResponse: (response: { result: toDoTaskModel[] }) =>
+        response.result,
+      providesTags: ["Tasks"],
+    }),
     getTasks: builder.query<toDoTaskModel[], void>({
       query: () => "",
       transformResponse: (response: { result: toDoTaskModel[] }) =>
+        response.result,
+      providesTags: ["Tasks"],
+    }),
+    getTaskById: builder.query<toDoTaskModel, number>({
+      query: (id) => `/${id}`,
+      transformResponse: (response: { result: toDoTaskModel }) =>
         response.result,
       providesTags: ["Tasks"],
     }),
@@ -54,7 +66,7 @@ export const taskApi = createApi({
       },
       {
         search?: string;
-        isCompleted?: boolean;
+        status?: number;
         dueDateFrom?: string;
         dueDateTo?: string;
         pageNumber?: number;
@@ -63,7 +75,7 @@ export const taskApi = createApi({
     >({
       query: ({
         search,
-        isCompleted,
+        status,
         dueDateFrom,
         dueDateTo,
         pageNumber = 1,
@@ -72,8 +84,7 @@ export const taskApi = createApi({
         const params = new URLSearchParams();
 
         if (search) params.append("search", search);
-        if (isCompleted !== undefined)
-          params.append("isCompleted", String(isCompleted));
+        if (status !== undefined) params.append("status", String(status));
         if (dueDateFrom) params.append("dueDateFrom", dueDateFrom);
         if (dueDateTo) params.append("dueDateTo", dueDateTo);
         params.append("pageNumber", String(pageNumber));
@@ -101,7 +112,9 @@ export const taskApi = createApi({
 });
 
 export const {
+  useGetAllTasksQuery,
   useGetTasksQuery,
+  useGetTaskByIdQuery,
   useCreateTaskMutation,
   useUpdateTaskMutation,
   useDeleteTaskMutation,

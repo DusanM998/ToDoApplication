@@ -46,10 +46,10 @@ namespace DAL.Migrations
                     b.Property<DateTime?>("DueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Priority")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -71,7 +71,7 @@ namespace DAL.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("CompletedTasksCount")
+                    b.Property<int?>("CompletedTasksCount")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -107,13 +107,13 @@ namespace DAL.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("OverdueTasksCount")
+                    b.Property<int?>("OverdueTasksCount")
                         .HasColumnType("int");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PendingTasksCount")
+                    b.Property<int?>("PendingTasksCount")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")

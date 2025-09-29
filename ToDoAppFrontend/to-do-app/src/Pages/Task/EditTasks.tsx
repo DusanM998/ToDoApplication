@@ -2,8 +2,7 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetTasksQuery, useUpdateTaskMutation } from "../../apis/taskApi";
-import { type toDoTaskModel } from "../../Interfaces";
+import { useGetTaskByIdQuery, useUpdateTaskMutation } from "../../apis/taskApi";
 import { MainLoader } from "../../Components/Layout/Common";
 import { toastNotify } from "../../Helper";
 import { MenuItem, TextField } from "@mui/material";
@@ -15,30 +14,25 @@ const EditTask: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const { data: tasks, isLoading } = useGetTasksQuery();
+  // Dohvatanje taska po ID-u
+  const { data: task, isLoading } = useGetTaskByIdQuery(Number(id));
   const [updateTask, { isLoading: isUpdating }] = useUpdateTaskMutation();
 
-  const [task, setTask] = useState<toDoTaskModel | null>(null);
+  // Lokalni state za formu
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
-  const [priority, setPriority] = useState<TaskPriority>(
-    TaskPriorityConst.Normal
-  );
+  const [priority, setPriority] = useState<TaskPriority>(TaskPriorityConst.Normal);
 
-  // Pronađi task na osnovu id
+  // Inicijalizacija forme kada task stigne
   useEffect(() => {
-    if (tasks && id) {
-      const foundTask = tasks.find((t) => t.id === Number(id));
-      if (foundTask) {
-        setTask(foundTask);
-        setTitle(foundTask.title);
-        setDescription(foundTask.description || "");
-        setDueDate(foundTask.dueDate || "");
-        setPriority(foundTask.priority as TaskPriority);
-      }
+    if (task) {
+      setTitle(task.title);
+      setDescription(task.description || "");
+      setDueDate(task.dueDate ? task.dueDate.split("T")[0] : "");
+      setPriority(task.priority as TaskPriority);
     }
-  }, [tasks, id]);
+  }, [task]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,14 +45,15 @@ const EditTask: React.FC = () => {
         description,
         dueDate,
         priority,
-        isCompleted: task.isCompleted,
+        status: task.status,
         applicationUserId: task.applicationUserId,
       }).unwrap();
 
-      navigate("/tasks/myTasks"); // posle uspesne izmene vodi nazad na listu
       toastNotify(t("toastNotify.taskUpdateSuccess"), "success");
+      navigate("/tasks/myTasks"); // posle uspešne izmene vodi nazad na listu
     } catch (err) {
       console.error("Greška pri ažuriranju taska:", err);
+      toastNotify(t("toastNotify.taskUpdateError"), "error");
     }
   };
 
@@ -86,9 +81,7 @@ const EditTask: React.FC = () => {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">
-            {t("editTaskPage.descriptionLabel")}
-          </label>
+          <label className="form-label">{t("editTaskPage.descriptionLabel")}</label>
           <textarea
             className="form-control"
             rows={3}
@@ -102,10 +95,11 @@ const EditTask: React.FC = () => {
           <input
             type="date"
             className="form-control"
-            value={dueDate ? dueDate.split("T")[0] : ""}
+            value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
           />
         </div>
+
         <div className="mb-3">
           <TextField
             select
@@ -118,17 +112,12 @@ const EditTask: React.FC = () => {
             fullWidth
             className="mb-3"
           >
-            <MenuItem value={TaskPriorityConst.Low}>
-              {t("createTaskPage.low")}
-            </MenuItem>
-            <MenuItem value={TaskPriorityConst.Normal}>
-              {t("createTaskPage.medium")}
-            </MenuItem>
-            <MenuItem value={TaskPriorityConst.High}>
-              {t("createTaskPage.high")}
-            </MenuItem>
+            <MenuItem value={TaskPriorityConst.Low}>{t("createTaskPage.low")}</MenuItem>
+            <MenuItem value={TaskPriorityConst.Normal}>{t("createTaskPage.medium")}</MenuItem>
+            <MenuItem value={TaskPriorityConst.High}>{t("createTaskPage.high")}</MenuItem>
           </TextField>
         </div>
+
         <button
           type="submit"
           className="btn btn-primary"
@@ -137,6 +126,7 @@ const EditTask: React.FC = () => {
         >
           {isUpdating ? t("editTaskPage.saving") : t("editTaskPage.save")}
         </button>
+
         <button
           type="button"
           className="btn btn-secondary"

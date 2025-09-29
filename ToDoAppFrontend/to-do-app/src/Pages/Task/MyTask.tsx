@@ -15,12 +15,16 @@ import MyTaskPagination from "./MyTaskPagination";
 import { setTasks } from "../../Storage/Redux/tasksSlice";
 import TaskItem from "./TaskItem";
 import UserTasksStatistic from "./UserTasksStatistic";
+import { StatusTaska } from "../../Interfaces/StatusTaska";
 
 const MyTasks: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector((state: RootState) => state.userAuthStore);
-  const tasks = useSelector((state: RootState) => state.taskStore.tasks);
+  const tasksFromStore = useSelector(
+    (state: RootState) => state.taskStore.tasks
+  );
+  const tasks: toDoTaskModel[] = Array.isArray(tasksFromStore) ? tasksFromStore : [];
 
   const [updateTask] = useUpdateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
@@ -28,7 +32,7 @@ const MyTasks: React.FC = () => {
 
   const [filters, setFilters] = useState<{
     search?: string;
-    status?: "completed" | "pending" | "";
+    status?: StatusTaska;
     dueDateFrom?: string;
     dueDateTo?: string;
   }>({});
@@ -36,21 +40,9 @@ const MyTasks: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 6;
 
-  console.log("UserData:", userData);
-
-  const {
-    data: tasksResponse,
-    isLoading,
-    isError,
-    refetch,
-  } = useGetFilteredTasksQuery({
+  const { data: tasksResponse, isLoading, isError, refetch } = useGetFilteredTasksQuery({
     search: filters.search,
-    isCompleted:
-      filters.status === "completed"
-        ? true
-        : filters.status === "pending"
-        ? false
-        : undefined,
+    status: filters.status,
     dueDateFrom: filters.dueDateFrom,
     dueDateTo: filters.dueDateTo,
     pageNumber,
@@ -58,55 +50,73 @@ const MyTasks: React.FC = () => {
   });
 
   useEffect(() => {
-    const handleVisibility = () => {
-      if (document.visibilityState === "visible") {
-        refetch();
-      }
-    };
-    document.addEventListener("visibilitychange", handleVisibility);
-    return () =>
-      document.removeEventListener("visibilitychange", handleVisibility);
-  }, [refetch]);
-
-  const pagination = tasksResponse?.pagination;
-
-  useEffect(() => {
     if (tasksResponse?.data) {
       dispatch(setTasks(tasksResponse.data));
     }
   }, [tasksResponse, dispatch]);
 
-  console.log("Taskovi:", tasks, "Paginacija:", pagination);
+  // Refetch kada aplikacija postane vidljiva
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") refetch();
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, [refetch]);
 
   useEffect(() => {
-    if (userData?.id) {
-      refetch();
-    }
-  }, [userData?.id, refetch]); // Povlaci najnovije taskove cim se aplikacija otvori sa perzistovanim korisnikom
+    if (userData?.id) refetch();
+  }, [userData?.id, refetch]);
 
   const handleToggleComplete = useCallback(
     async (task: toDoTaskModel) => {
       try {
+        const newStatus =
+          task.status === StatusTaska.Completed
+            ? StatusTaska.Pending
+            : StatusTaska.Completed;
+
+        // Optimistički update u store-u
+        dispatch(
+          setTasks(
+            tasks.map((t) => (t.id === task.id ? { ...t, status: newStatus } : t))
+          )
+        );
+
         await updateTask({
-          ...task,
-          isCompleted: !task.isCompleted,
+          id: task.id,
+          title: task.title,
+          description: task.description,
+          dueDate: task.dueDate,
+          priority: task.priority,
+          status: newStatus,
+          applicationUserId: task.applicationUserId,
         }).unwrap();
+
+        // refetch za sigurnost (može i bez njega, store već ažuriran)
+        refetch();
       } catch (err) {
         console.error("Greška pri ažuriranju taska:", err);
+        // rollback u slučaju greške
+        refetch();
       }
     },
-    [updateTask]
+    [updateTask, dispatch, tasks, refetch]
   );
 
   const handleDelete = useCallback(
     async (id: number) => {
       try {
+        // optimistički ukloni iz store-a
+        dispatch(setTasks(tasks.filter((t) => t.id !== id)));
         await deleteTask(id).unwrap();
+        refetch();
       } catch (err) {
         console.error("Greška pri brisanju taska:", err);
+        refetch();
       }
     },
-    [deleteTask]
+    [deleteTask, dispatch, tasks, refetch]
   );
 
   const handleClearFilters = useCallback(() => {
@@ -114,11 +124,25 @@ const MyTasks: React.FC = () => {
     setPageNumber(1);
   }, []);
 
-  const userTasks = useMemo(() => {
-    return (
-      tasks?.filter((task) => task.applicationUserId === userData?.id) || []
-    );
-  }, [tasks, userData?.id]);
+  const filteredTasks = useMemo(() => {
+    if (!tasks || !userData?.id) return [];
+    return tasks.filter((task) => {
+      if (task.applicationUserId !== userData.id) return false;
+      if (filters.status && task.status !== filters.status) return false;
+      if (filters.search) {
+        const searchLower = filters.search.toLowerCase();
+        if (
+          !task.title.toLowerCase().includes(searchLower) &&
+          !task.description?.toLowerCase().includes(searchLower)
+        ) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }, [tasks, userData?.id, filters]);
+
+  const hasActiveFilters = Boolean(filters.search || filters.status || filters.dueDateFrom || filters.dueDateTo);
 
   return (
     <div className="container py-5" style={{ marginTop: "50px" }}>
@@ -134,17 +158,14 @@ const MyTasks: React.FC = () => {
         </button>
       </div>
 
-      {userTasks.length > 0 && (
-        <>
-          <UserTasksStatistic />
-          <TaskFilter
-            onFilterChange={(newFilters) => {
-              setFilters(newFilters);
-              setPageNumber(1);
-            }}
-          />
-        </>
-      )}
+      <UserTasksStatistic />
+
+      <TaskFilter
+        onFilterChange={(newFilters) => {
+          setFilters(newFilters);
+          setPageNumber(1);
+        }}
+      />
 
       {isLoading ? (
         <div className="d-flex justify-content-center align-items-center h-64">
@@ -152,14 +173,12 @@ const MyTasks: React.FC = () => {
         </div>
       ) : isError ? (
         <div className="d-flex justify-content-center align-items-center h-64">
-          <p className="text-red-500 text-lg font-medium">
-            {t("myTasksPage.error")}
-          </p>
+          <p className="text-red-500 text-lg font-medium">{t("myTasksPage.error")}</p>
         </div>
-      ) : userTasks.length > 0 ? (
+      ) : filteredTasks.length > 0 ? (
         <>
           <div className="row g-4">
-            {userTasks.map((task) => (
+            {filteredTasks.map((task) => (
               <TaskItem
                 key={task.id}
                 task={task}
@@ -169,20 +188,17 @@ const MyTasks: React.FC = () => {
               />
             ))}
           </div>
-
           <MyTaskPagination
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
-            totalRecords={pagination?.TotalRecords || 0}
-            totalPages={pagination?.TotalPages || 1}
-            pageSize={pagination?.PageSize || pageSize}
+            totalRecords={tasksResponse?.pagination?.TotalRecords || 0}
+            totalPages={tasksResponse?.pagination?.TotalPages || 1}
+            pageSize={tasksResponse?.pagination?.PageSize || pageSize}
           />
         </>
-      ) : filters.search ? (
+      ) : hasActiveFilters ? (
         <div className="text-center py-5 bg-light rounded shadow-sm">
-          <p className="text-secondary fw-medium">
-            {t("myTasksPage.noTasksFound")}
-          </p>
+          <p className="text-secondary fw-medium">{t("myTasksPage.noTasksFound")}</p>
           <button
             className="btn btn-outline-primary mt-3"
             style={{ color: "#51285f", borderColor: "#51285f" }}
@@ -193,9 +209,7 @@ const MyTasks: React.FC = () => {
         </div>
       ) : (
         <div className="text-center py-5 bg-light rounded shadow-sm">
-          <p className="text-secondary fw-medium">
-            {t("myTasksPage.noTasksFound")}
-          </p>
+          <p className="text-secondary fw-medium">{t("myTasksPage.noTasksFound")}</p>
           <button
             className="btn btn-primary mt-3"
             style={{ backgroundColor: "#51285f", borderColor: "#51285f" }}
