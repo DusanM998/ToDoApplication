@@ -8,6 +8,7 @@ interface MyTaskPaginationProps {
   pageSize: number;
 }
 
+// Paginacija (iskoristio sam je i za taskove i za korisnike)
 const MyTaskPagination: React.FC<MyTaskPaginationProps> = ({
   pageNumber,
   setPageNumber,

@@ -12,6 +12,7 @@ import type { toDoTaskModel } from "../../Interfaces";
 import TasksTable from "../Task/TaskTable";
 import { MyTaskPagination } from "../Task";
 
+// Komponenta gde admin moze samo da vrsi pregled svih taskova za sve korisnike
 const ViewAllTasks: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();

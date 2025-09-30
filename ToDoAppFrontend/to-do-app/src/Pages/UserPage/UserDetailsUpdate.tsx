@@ -34,6 +34,7 @@ type FormState = {
   phoneNumber: string;
 };
 
+// Komponenta gde korisnik moze da azurira svoje podatke
 export default function UserDetailsUpdate() {
   const { t } = useTranslation();
   const navigate = useNavigate();

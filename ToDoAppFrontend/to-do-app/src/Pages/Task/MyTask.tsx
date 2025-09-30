@@ -17,6 +17,7 @@ import TaskItem from "./TaskItem";
 import UserTasksStatistic from "./UserTasksStatistic";
 import { StatusTaska } from "../../Interfaces/StatusTaska";
 
+// Komponenta koja prikazuje svakom korisniku individualne taskove
 const MyTasks: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

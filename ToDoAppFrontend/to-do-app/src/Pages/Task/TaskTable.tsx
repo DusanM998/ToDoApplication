@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { StatusTaska } from "../../Interfaces/StatusTaska";
-import { Pencil, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import type { toDoTaskModel } from "../../Interfaces";
 
 interface TasksTableProps {
@@ -10,11 +10,11 @@ interface TasksTableProps {
   navigate: (path: string) => void;
 }
 
+// Tabela koja prikazuje sve taskove (samo ih admin vidi)
 const TasksTable: React.FC<TasksTableProps> = ({
   tasks,
   onToggleComplete,
   onDelete,
-  navigate,
 }) => {
   const { t } = useTranslation();
 
@@ -25,7 +25,7 @@ const TasksTable: React.FC<TasksTableProps> = ({
       case StatusTaska.Completed:
         return <span className="badge bg-success">{t("myTasksPage.summary.completed")}</span>;
       default:
-        return <span className="badge bg-secondary">{t("myTasksPage.summary.Expired")}</span>;
+        return <span className="badge bg-danger">{t("myTasksPage.summary.notCompleted")}</span>;
     }
   };
 
@@ -68,7 +68,7 @@ const TasksTable: React.FC<TasksTableProps> = ({
               <td>{task?.name || "Unknown"}</td>
               <td>
                 <div className="d-flex gap-2">
-                  {task.status !== StatusTaska.Completed && (
+                  {/*{task.status !== StatusTaska.Completed && (
                     <button
                       className="btn btn-sm btn-outline-warning"
                       onClick={(e) => {
@@ -79,7 +79,7 @@ const TasksTable: React.FC<TasksTableProps> = ({
                     >
                       <Pencil size={16} />
                     </button>
-                  )}
+                  )}*/}
                   <button
                     className="btn btn-sm btn-outline-danger"
                     onClick={(e) => {

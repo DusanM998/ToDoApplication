@@ -9,6 +9,7 @@ import { MenuItem, TextField } from "@mui/material";
 import type { TaskPriority } from "../../Interfaces/TaskPriority";
 import { TaskPriority as TaskPriorityConst } from "../../Interfaces/TaskPriority";
 
+// Komponenta za edit taskova
 const EditTask: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();

@@ -19,6 +19,7 @@ interface TaskItemProps {
   navigate: (path: string) => void;
 }
 
+// Komponenta za prikaz kartice taska
 const TaskItem: React.FC<TaskItemProps> = ({
   task,
   onToggleComplete,

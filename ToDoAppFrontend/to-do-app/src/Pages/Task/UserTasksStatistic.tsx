@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useGetCurrentUserQuery } from "../../apis/authApi";
 import { MainLoader } from "../../Components/Layout/Common";
 
+// Statistika za taskove (koliko ih je korisnik uspesno zavrsio, koliko su mu na cekanju, koliko ih je isteklo)
 const UserTasksStatistic: React.FC = () => {
   const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);

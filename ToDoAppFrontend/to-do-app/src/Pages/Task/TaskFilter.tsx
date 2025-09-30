@@ -11,6 +11,7 @@ interface TaskFilterProps {
   }) => void;
 }
 
+// Komponenta za filtriranje taskova
 const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
   const { t } = useTranslation();
 

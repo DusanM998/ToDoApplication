@@ -38,6 +38,7 @@ const userDetailsData = {
   role: "",
 };
 
+// Komponenta gde korisnik moze da pregleda svoje podatke (kao i statistiku za taskove)
 function UserPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

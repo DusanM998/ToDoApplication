@@ -12,6 +12,7 @@ import type { RootState } from "../../Storage/Redux/store";
 import { useTranslation } from "react-i18next";
 import type { TaskPriority } from "../../Interfaces/TaskPriority";
 
+// Komponenta za kreiranje taskova
 function CreateTask() {
   const navigate = useNavigate();
   const [createTask] = useCreateTaskMutation();
