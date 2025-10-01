@@ -11,6 +11,11 @@ namespace DAL.Repository.Interfaces
     public interface ITaskRepository : IRepository<ToDoTask>
     {
         Task<List<ToDoTask>> GetTasksByUserIdAsync(string userId);
+        IQueryable<ToDoTask> GetAllAsQueryable(string userId, string? search, StatusTaska? status,
+            DateTime? dueDateFrom,
+            DateTime? dueDateTo,
+            string? category,
+            TaskPriority? priority);
         Task<List<TaskWithUserDTO>> GetAllWithUsersAsync();
     }
 }

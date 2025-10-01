@@ -41,16 +41,13 @@ builder.Services.AddIdentitySetup();
 
 //Konfiguracija Data Access Layera (Repository Pattern)
 builder.Services.AddDataAccess(builder.Configuration);
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); //Scoped - jedna instanca servisa po HTTP requestu
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 // Konfiguracija Business Logic
 builder.Services.AddBusinessLogic();
-builder.Services.AddScoped<ITaskService, TaskService>(); 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Registracija background servisa za automatsko azuriranje statusa taska
-builder.Services.AddHostedService<OverdueTaskBackgroundService>();
+//builder.Services.AddHostedService<OverdueTaskBackgroundService>();
 
 // Eksterni servisi Cloudinary
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));

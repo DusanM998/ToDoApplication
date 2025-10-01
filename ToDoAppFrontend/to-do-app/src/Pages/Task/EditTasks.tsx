@@ -16,6 +16,8 @@ const EditTask: React.FC = () => {
   const { t } = useTranslation();
 
   // Dohvatanje taska po ID-u
+  /*const taskkk = useSelector((state:RootState) => getTaskById(state, id));
+  console.log(taskkk);*/
   const { data: task, isLoading } = useGetTaskByIdQuery(Number(id));
   const [updateTask, { isLoading: isUpdating }] = useUpdateTaskMutation();
 

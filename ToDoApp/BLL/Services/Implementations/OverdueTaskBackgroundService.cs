@@ -22,8 +22,18 @@ namespace BLL.Services.Implementations
             _logger = logger;
         }
 
+        public Task CheckAndUpdateOverdueTasksAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            throw new NotImplementedException();
+        }
+
         // Metoda se pokrece automatski kada se aplikacija startuje
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        /*protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while(!stoppingToken.IsCancellationRequested) //...i ceka 24h pre sledeceg izvrsavanja
             {
@@ -46,6 +56,6 @@ namespace BLL.Services.Implementations
             {
                 _logger.LogError(ex, "Error while updating overdue tasks.");
             }
-        }
+        }*/
     }
 }

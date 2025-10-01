@@ -40,8 +40,4 @@
     <ProjectReference Include="..\EL\EL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

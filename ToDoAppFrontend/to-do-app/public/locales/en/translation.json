@@ -163,6 +163,7 @@
     "fileSizeError": "File size exceeds limit (5MB).",
     "fileTypeError": "Invalid file type. Only JPEG, JPG, PNG allowed.",
     "taskUpdateSuccess": "Task updated successfully!",
-    "taskUpdateError": "Error while update a task! Try again."
+    "taskUpdateError": "Error while update a task! Try again.",
+    "taskDeleteSuccess": "Task deleted successfully!"
   }
 }

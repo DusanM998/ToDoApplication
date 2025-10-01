@@ -661,7 +661,7 @@ namespace BLL.Services.Implementations
                 return _response;
             }
 
-            // token stiže već URL-encoded → dekodiraj
+            // token stize, dekodira se
             var decodedToken = Uri.UnescapeDataString(resetPasswordDTO.Token);
 
             var result = await _userManager.ResetPasswordAsync(user, decodedToken, resetPasswordDTO.NewPassword);

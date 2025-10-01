@@ -163,6 +163,7 @@
     "fileSizeError": "Veličina fajla prelazi limit (5MB).",
     "fileTypeError": "Neispravan tip fajla. Dozvoljeni su samo JPEG, JPG i PNG.",
     "taskUpdateSuccess": "Uspešna izmena taska!",
-    "taskUpdateError": "Greška prilikom ažuriranja taska! Pokušajte ponovo."
+    "taskUpdateError": "Greška prilikom ažuriranja taska! Pokušajte ponovo.",
+    "taskDeleteSuccess": "Task je uspešno obrisan!"
   }
 }

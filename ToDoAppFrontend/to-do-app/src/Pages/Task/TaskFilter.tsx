@@ -56,12 +56,14 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
     setDueDateFrom("");
     setDueDateTo("");
     setCategory("");
+    setPriority(undefined);
     onFilterChange({
       search: "",
       status: undefined,
       dueDateFrom: "",
       dueDateTo: "",
       category: undefined,
+      priority: undefined,
     });
   };
 
@@ -107,7 +109,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
               borderRadius: "8px",
               padding: "10px",
             }}
-            value={status}
+            value={status !== undefined ? String(status) : ""}
             onChange={(e) =>
               setStatus(
                 e.target.value === ""

@@ -16,6 +16,7 @@ import { setTasks } from "../../Storage/Redux/tasksSlice";
 import TaskItem from "./TaskItem";
 import UserTasksStatistic from "./UserTasksStatistic";
 import { StatusTaska } from "../../Interfaces/StatusTaska";
+import { toastNotify } from "../../Helper";
 
 // Komponenta koja prikazuje svakom korisniku individualne taskove
 const MyTasks: React.FC = () => {
@@ -59,6 +60,8 @@ const MyTasks: React.FC = () => {
     pageNumber,
     pageSize,
   });
+
+  console.log("Taskovi sa backa", tasksResponse);
 
   useEffect(() => {
     if (tasksResponse?.data) {
@@ -121,9 +124,10 @@ const MyTasks: React.FC = () => {
   const handleDelete = useCallback(
     async (id: number) => {
       try {
-        // optimistički ukloni iz store-a
+        // ukloni iz store-a
         dispatch(setTasks(tasks.filter((t) => t.id !== id)));
         await deleteTask(id).unwrap();
+        toastNotify(t("toastNotify.taskDeleteSuccess"), "success");
         refetch();
       } catch (err) {
         console.error("Greška pri brisanju taska:", err);
