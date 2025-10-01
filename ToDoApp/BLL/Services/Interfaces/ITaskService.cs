@@ -18,6 +18,8 @@ namespace BLL.Services.Interfaces
             StatusTaska? status,
             DateTime? dueDateFrom,
             DateTime? dueDateTo,
+            string? category,
+            TaskPriority? priority,
             int pageNumber = 1,
             int pageSize = 10);
 

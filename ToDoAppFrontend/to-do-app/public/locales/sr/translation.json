@@ -104,6 +104,7 @@
     "applyFilters": "Primeni Filtere",
     "clearFilters": "Poništi Filtere",
     "category": "Kategorija",
+    "allCategories": "Sve Kategorije",
     "summary": {
       "title": "Statistika zadataka",
       "total": "Ukupno zadataka",
@@ -115,6 +116,7 @@
     "priorityNormal": "Srednji prioritet",
     "priorityLow": "Nizak prioritet",
     "priorityNone": "Nema prioriteta",
+    "allPriorities": "Svi Prioriteti",
     "noSearchResults": "Nema rezultata za datu pretragu."
   },
   "createTaskPage": {
@@ -148,7 +150,8 @@
     "title": "Svi Zadaci",
     "noTasks": "Nema zadataka za prikaz.",
     "owner": "Vlasnik",
-    "actions": "Akcije"
+    "actions": "Akcije",
+    "notYourTask": "Nije Vaš task"
   },
   "toastNotify": {
     "uploadImageError": "Molimo vas da otpremite sliku.",

@@ -11,6 +11,8 @@ import { MainLoader } from "../../Components/Layout/Common";
 import type { toDoTaskModel } from "../../Interfaces";
 import TasksTable from "../Task/TaskTable";
 import { MyTaskPagination } from "../Task";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../Storage/Redux/store";
 
 // Komponenta gde admin moze samo da vrsi pregled svih taskova za sve korisnike
 const ViewAllTasks: React.FC = () => {
@@ -22,6 +24,7 @@ const ViewAllTasks: React.FC = () => {
   const [updateTask] = useUpdateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
   const [paginatedTasks, setPaginatedTasks] = useState<toDoTaskModel[]>([]);
+  const currentUser = useSelector((state: RootState) => state.userAuthStore);
 
   // useEffect za paginaciju na klijentskoj strani
   useEffect(() => {
@@ -99,6 +102,7 @@ const ViewAllTasks: React.FC = () => {
             onToggleComplete={handleToggleComplete}
             onDelete={handleDelete}
             navigate={navigate}
+            currentUser={currentUser}
           />
           <MyTaskPagination
             pageNumber={pageNumber}

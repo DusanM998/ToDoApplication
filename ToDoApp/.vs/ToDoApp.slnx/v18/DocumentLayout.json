@@ -3,24 +3,48 @@
   "WorkspaceRootPath": "D:\\Projects 1\\ToDoApp\\ToDoApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\setup\\serviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\setup\\serviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\interfaces\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\interfaces\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\overduetaskbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\overduetaskbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\interfaces\\ioverduetaskbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\interfaces\\ioverduetaskbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,44 +66,124 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\appsettings.json",
-              "RelativeDocumentMoniker": "ToDoApp\\appsettings.json",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\appsettings.json",
-              "RelativeToolTip": "ToDoApp\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-29T18:32:51.24Z"
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Program.cs",
+              "RelativeDocumentMoniker": "ToDoApp\\Program.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Program.cs",
+              "RelativeToolTip": "ToDoApp\\Program.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAAADgAAACJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T08:49:39.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServiceRegistration.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Setup\\ServiceRegistration.cs",
+              "RelativeDocumentMoniker": "BLL\\Setup\\ServiceRegistration.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Setup\\ServiceRegistration.cs",
+              "RelativeToolTip": "BLL\\Setup\\ServiceRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T08:41:17.352Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "OverdueTaskBackgroundService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\OverdueTaskBackgroundService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\OverdueTaskBackgroundService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\OverdueTaskBackgroundService.cs",
+              "RelativeToolTip": "BLL\\Services\\Implementations\\OverdueTaskBackgroundService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwCkAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T08:16:17.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IOverdueTaskBackgroundService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IOverdueTaskBackgroundService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Interfaces\\IOverdueTaskBackgroundService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IOverdueTaskBackgroundService.cs",
+              "RelativeToolTip": "BLL\\Services\\Interfaces\\IOverdueTaskBackgroundService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T08:16:12.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "EmailService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\EmailService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\EmailService.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\EmailService.cs",
               "RelativeToolTip": "BLL\\Services\\Implementations\\EmailService.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAAAE4AAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAABcAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T18:31:23.445Z"
+              "WhenOpened": "2025-10-01T08:14:59.918Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IEmailService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Interfaces\\IEmailService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IEmailService.cs",
+              "RelativeToolTip": "BLL\\Services\\Interfaces\\IEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T08:14:54.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TasksController.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\TasksController.cs",
+              "RelativeDocumentMoniker": "ToDoApp\\Controllers\\TasksController.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\TasksController.cs",
+              "RelativeToolTip": "ToDoApp\\Controllers\\TasksController.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAowGQAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T07:25:04.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ITaskService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\ITaskService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Interfaces\\ITaskService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\ITaskService.cs",
+              "RelativeToolTip": "BLL\\Services\\Interfaces\\ITaskService.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAIA3wBkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T07:24:46.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "TaskService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\TaskService.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
               "RelativeToolTip": "BLL\\Services\\Implementations\\TaskService.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAAAuwK0AAABPAAAAAAAAAA==",
+              "ViewState": "AgIAAJIBAAAAAAAAAAAAAKwBAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-29T18:19:12.372Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "ToDoApp\\Controllers\\AuthController.cs",
@@ -91,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IAuthService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Interfaces\\IAuthService.cs",
@@ -103,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\AuthService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\AuthService.cs",
@@ -111,8 +215,7 @@
               "RelativeToolTip": "BLL\\Services\\Implementations\\AuthService.cs",
               "ViewState": "AgIAAGgCAAAAAAAAAAAswGgCAAB7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T08:43:43.31Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-28T08:43:43.31Z"
             }
           ]
         }

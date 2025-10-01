@@ -85,6 +85,8 @@ namespace ToDoApp.Controllers
             StatusTaska? status,
             DateTime? dueDateFrom,
             DateTime? dueDateTo,
+            string? category,
+            TaskPriority? priority,
             int pageNumber = 1,
             int pageSize = 10)
         {
@@ -95,6 +97,8 @@ namespace ToDoApp.Controllers
                 status,
                 dueDateFrom,
                 dueDateTo,
+                category,
+                priority,
                 pageNumber,
                 pageSize);
 

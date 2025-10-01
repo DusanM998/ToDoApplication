@@ -21,6 +21,7 @@ namespace BLL.Services.Implementations
             try
             {
                 // Ucitavanje SMTP konfiguracije iz appsettings.json
+                // SMTP - protokol za slanje emailova
                 var smtpHost = _configuration["Smtp:Host"];
                 var smtpPortStr = _configuration["Smtp:Port"];
                 var smtpUsername = _configuration["Smtp:Username"];

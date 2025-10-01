@@ -286,6 +286,8 @@ namespace BLL.Services.Implementations
             StatusTaska? status,
             DateTime? dueDateFrom,
             DateTime? dueDateTo,
+            string? category,
+            TaskPriority? priority,
             int pageNumber = 1,
             int pageSize = 10)
         {
@@ -295,10 +297,11 @@ namespace BLL.Services.Implementations
             {
                 IQueryable<ToDoTask> query = (await _unitOfWork.Tasks.GetAllAsync())
                     .AsQueryable()
-                    .Where(t => t.ApplicationUserId == userId)
+                    .Where(t => t.ApplicationUserId == userId) // Filter taskova tako da se uzmu samo oni koji pripadaju trenutno ulogovanom korisniku
                     .OrderByDescending(t => t.Priority)
                     .ThenByDescending(t => t.DueDate);
 
+                // Filter po nazivu taska
                 if (!string.IsNullOrEmpty(search))
                 {
                     query = query.Where(t =>
@@ -306,24 +309,39 @@ namespace BLL.Services.Implementations
                         (t.Description != null && t.Description.Contains(search)));
                 }
 
+                // Filter po statusu 
                 if (status.HasValue)
                 {
                     query = query.Where(t => t.Status == status.Value);
                 }
 
+                //...po datumu (od)
                 if (dueDateFrom.HasValue)
                 {
                     query = query.Where(t => t.DueDate >= dueDateFrom.Value);
                 }
+                //..do
                 if (dueDateTo.HasValue)
                 {
                     query = query.Where(t => t.DueDate <= dueDateTo.Value);
                 }
 
-                var totalRecords = query.Count();
+                // Filter po kategoriji
+                if (!string.IsNullOrEmpty(category))
+                {
+                    query = query.Where(t => t.Category == category);
+                }
+
+                // Filter po prioritetu
+                if(priority.HasValue)
+                {
+                    query = query.Where(t => t.Priority == priority.Value);
+                }
+
+                var totalRecords = query.Count(); // Vraca ukupan broj taskova nakon primene svih filtera
                 var tasks = query
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
+                    .Skip((pageNumber - 1) * pageSize) // Preskace prvih 10 elemenata (pocev od prvog)
+                    .Take(pageSize) // uzima odredjeni broj elemenata nakon sto su neki preskoceni
                     .ToList();
 
                 var pagination = new
@@ -373,40 +391,42 @@ namespace BLL.Services.Implementations
             var response = new ApiResponse();
 
             // uzmi sve taskove
-            var tasks = await _unitOfWork.Tasks.GetAllAsync();
+            var tasks = await _unitOfWork.Tasks.GetAllAsync(); // prvo pribavljam sve taskove
 
             var now = DateTime.UtcNow;
             var updatedCount = 0;
 
             foreach (var task in tasks)
             {
-                // samo oni koji imaju due date u proslosti i nisu Completed
+                // filtriram
+                // samo one koji imaju due date u proslosti i nisu Completed
                 if (task.DueDate.HasValue &&
                     task.DueDate.Value < now &&
                     task.Status != StatusTaska.Completed &&
                     task.Status != StatusTaska.Overdue)
                 {
-                    var user = await _userManager.FindByIdAsync(task.ApplicationUserId);
+                    var user = await _userManager.FindByIdAsync(task.ApplicationUserId); // uzimam taskove za konkretnog korisnika 
                     if (user != null)
                     {
-                        // Skini jedan sa Pending count-a
+                        // Azuriram im status od Pending(U toku) na Overdue(isteko)
                         if (task.Status == StatusTaska.Pending)
                         {
                             user.PendingTasksCount -= 1;
                             user.OverdueTasksCount += 1;
                         }
 
-                        await _userManager.UpdateAsync(user);
+                        await _userManager.UpdateAsync(user); // Azuriram korisnikove informacije
                     }
 
                     task.Status = StatusTaska.Overdue;
-                    _unitOfWork.Tasks.Update(task);
-                    updatedCount++;
+                    _unitOfWork.Tasks.Update(task); // Azuriram taskove
+                    updatedCount++; //broj azuriranih taskova
                 }
             }
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync(); // Snimam promene u bazi
 
+            // Vracam rezultat
             response.IsSuccess = true;
             response.StatusCode = HttpStatusCode.OK;
             response.Result = $"{updatedCount} taskova je automatski označeno kao Overdue.";

@@ -4,7 +4,7 @@ import {
   useGetFilteredTasksQuery,
   useUpdateTaskMutation,
 } from "../../apis/taskApi";
-import type { toDoTaskModel } from "../../Interfaces";
+import type { TaskPriority, toDoTaskModel } from "../../Interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../Storage/Redux/store";
 import { useTranslation } from "react-i18next";
@@ -25,7 +25,9 @@ const MyTasks: React.FC = () => {
   const tasksFromStore = useSelector(
     (state: RootState) => state.taskStore.tasks
   );
-  const tasks: toDoTaskModel[] = Array.isArray(tasksFromStore) ? tasksFromStore : [];
+  const tasks: toDoTaskModel[] = Array.isArray(tasksFromStore)
+    ? tasksFromStore
+    : [];
 
   const [updateTask] = useUpdateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
@@ -36,16 +38,24 @@ const MyTasks: React.FC = () => {
     status?: StatusTaska;
     dueDateFrom?: string;
     dueDateTo?: string;
+    category?: string;
+    priority?: TaskPriority;
   }>({});
 
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 6;
 
-  const { data: tasksResponse, isLoading, isError, refetch } = useGetFilteredTasksQuery({
+  const {
+    data: tasksResponse,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetFilteredTasksQuery({
     search: filters.search,
     status: filters.status,
     dueDateFrom: filters.dueDateFrom,
     dueDateTo: filters.dueDateTo,
+    priority: filters.priority,
     pageNumber,
     pageSize,
   });
@@ -62,7 +72,8 @@ const MyTasks: React.FC = () => {
       if (document.visibilityState === "visible") refetch();
     };
     document.addEventListener("visibilitychange", handleVisibility);
-    return () => document.removeEventListener("visibilitychange", handleVisibility);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibility);
   }, [refetch]);
 
   useEffect(() => {
@@ -77,10 +88,12 @@ const MyTasks: React.FC = () => {
             ? StatusTaska.Pending
             : StatusTaska.Completed;
 
-        // Optimistički update u store-u
+        // update u store-u
         dispatch(
           setTasks(
-            tasks.map((t) => (t.id === task.id ? { ...t, status: newStatus } : t))
+            tasks.map((t) =>
+              t.id === task.id ? { ...t, status: newStatus } : t
+            )
           )
         );
 
@@ -125,11 +138,15 @@ const MyTasks: React.FC = () => {
     setPageNumber(1);
   }, []);
 
+  // da bi se filtrirani taskovi koji su stigli sa backa prikazali na frontu
+  // useMemo pamti rezultat f-je dok se zavisnosti ne promene (ne filtrira se pri svakom renderu)
   const filteredTasks = useMemo(() => {
     if (!tasks || !userData?.id) return [];
     return tasks.filter((task) => {
       if (task.applicationUserId !== userData.id) return false;
       if (filters.status && task.status !== filters.status) return false;
+      if (filters.category && task.category !== filters.category) return false;
+      if (filters.priority && task.priority !== filters.priority) return false;
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
         if (
@@ -143,7 +160,21 @@ const MyTasks: React.FC = () => {
     });
   }, [tasks, userData?.id, filters]);
 
-  const hasActiveFilters = Boolean(filters.search || filters.status || filters.dueDateFrom || filters.dueDateTo);
+  const categories = useMemo(() => {
+    const allCategories = tasks
+      .map((task) => task.category) // uzima sve kategorije iz taskova
+      .filter((cat): cat is string => Boolean(cat)); // ukloni null/undefined
+    return Array.from(new Set(allCategories)); // da se izbace duplikati ako postoje eventualno
+  }, [tasks]);
+
+  const hasActiveFilters = Boolean(
+    filters.search ||
+      filters.status ||
+      filters.dueDateFrom ||
+      filters.dueDateTo ||
+      filters.category ||
+      filters.priority
+  );
 
   return (
     <div className="container py-5" style={{ marginTop: "50px" }}>
@@ -166,6 +197,7 @@ const MyTasks: React.FC = () => {
           setFilters(newFilters);
           setPageNumber(1);
         }}
+        categories={categories}
       />
 
       {isLoading ? (
@@ -174,7 +206,9 @@ const MyTasks: React.FC = () => {
         </div>
       ) : isError ? (
         <div className="d-flex justify-content-center align-items-center h-64">
-          <p className="text-red-500 text-lg font-medium">{t("myTasksPage.error")}</p>
+          <p className="text-red-500 text-lg font-medium">
+            {t("myTasksPage.error")}
+          </p>
         </div>
       ) : filteredTasks.length > 0 ? (
         <>
@@ -199,7 +233,9 @@ const MyTasks: React.FC = () => {
         </>
       ) : hasActiveFilters ? (
         <div className="text-center py-5 bg-light rounded shadow-sm">
-          <p className="text-secondary fw-medium">{t("myTasksPage.noTasksFound")}</p>
+          <p className="text-secondary fw-medium">
+            {t("myTasksPage.noTasksFound")}
+          </p>
           <button
             className="btn btn-outline-primary mt-3"
             style={{ color: "#51285f", borderColor: "#51285f" }}
@@ -210,7 +246,9 @@ const MyTasks: React.FC = () => {
         </div>
       ) : (
         <div className="text-center py-5 bg-light rounded shadow-sm">
-          <p className="text-secondary fw-medium">{t("myTasksPage.noTasksFound")}</p>
+          <p className="text-secondary fw-medium">
+            {t("myTasksPage.noTasksFound")}
+          </p>
           <button
             className="btn btn-primary mt-3"
             style={{ backgroundColor: "#51285f", borderColor: "#51285f" }}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StatusTaska } from "../../Interfaces/StatusTaska";
+import type { TaskPriority } from "../../Interfaces";
 
 interface TaskFilterProps {
   onFilterChange: (filters: {
@@ -8,17 +9,25 @@ interface TaskFilterProps {
     status?: StatusTaska;
     dueDateFrom?: string;
     dueDateTo?: string;
+    category?: string;
+    priority?: TaskPriority;
   }) => void;
+  categories: string[];
 }
 
 // Komponenta za filtriranje taskova
-const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
+const TaskFilter: React.FC<TaskFilterProps> = ({
+  onFilterChange,
+  categories,
+}) => {
   const { t } = useTranslation();
 
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<StatusTaska | undefined>(undefined);
   const [dueDateFrom, setDueDateFrom] = useState("");
   const [dueDateTo, setDueDateTo] = useState("");
+  const [category, setCategory] = useState<string>("");
+  const [priority, setPriority] = useState<TaskPriority | undefined>(undefined);
 
   //const isFilterSet = search !== "" || status !== undefined || dueDateFrom !== "" || dueDateTo !== "";
 
@@ -36,6 +45,8 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
       status: status,
       dueDateFrom: from,
       dueDateTo: to,
+      category: category || undefined,
+      priority: priority,
     });
   };
 
@@ -44,11 +55,13 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
     setStatus(undefined);
     setDueDateFrom("");
     setDueDateTo("");
+    setCategory("");
     onFilterChange({
       search: "",
       status: undefined,
       dueDateFrom: "",
       dueDateTo: "",
+      category: undefined,
     });
   };
 
@@ -117,6 +130,55 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
         </div>
         <div className="col-md-3">
           <label className="form-label fw-medium text-muted">
+            {t("myTasksPage.category")}
+          </label>
+          <select
+            className="form-select"
+            style={{
+              borderColor: "#51285f",
+              borderRadius: "8px",
+              padding: "10px",
+            }}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">{t("myTasksPage.allCategories")}</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="col-md-3">
+          <label className="form-label fw-medium text-muted">
+            {t("createTaskPage.priorityLabel")}
+          </label>
+          <select
+            className="form-select"
+            style={{
+              borderColor: "#51285f",
+              borderRadius: "8px",
+              padding: "10px",
+            }}
+            value={priority ?? ""}
+            onChange={(e) =>
+              setPriority(
+                e.target.value === ""
+                  ? undefined
+                  : (Number(e.target.value) as TaskPriority)
+              )
+            }
+          >
+            <option value="">{t("myTasksPage.allPriorities")}</option>
+            <option value={1}>{t("myTasksPage.priorityLow")}</option>
+            <option value={2}>{t("myTasksPage.priorityNormal")}</option>
+            <option value={3}>{t("myTasksPage.priorityHigh")}</option>
+          </select>
+        </div>
+
+        <div className="col-md-3">
+          <label className="form-label fw-medium text-muted">
             {t("myTasksPage.dueDateFrom")}
           </label>
           <input
@@ -148,35 +210,35 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilterChange }) => {
           />
         </div>
         {/*{isFilterSet && (*/}
-          <div className="col-12 text-center">
-            <button
-              className="btn btn-primary"
-              style={{
-                backgroundColor: "#51285f",
-                borderColor: "#51285f",
-                borderRadius: "8px",
-                padding: "10px 20px",
-                transition: "all 0.3s",
-              }}
-              onClick={handleApplyFilters}
-            >
-              {t("myTasksPage.applyFilters")}
-            </button>
-            <button
-              className="btn btn-outline-secondary"
-              style={{
-                borderColor: "#51285f",
-                color: "#51285f",
-                borderRadius: "8px",
-                padding: "10px 20px",
-                transition: "all 0.3s",
-                marginLeft: "10px",
-              }}
-              onClick={handleClearFilters}
-            >
-              {t("myTasksPage.clearFilters")}
-            </button>
-          </div>
+        <div className="col-12 text-center">
+          <button
+            className="btn btn-primary"
+            style={{
+              backgroundColor: "#51285f",
+              borderColor: "#51285f",
+              borderRadius: "8px",
+              padding: "10px 20px",
+              transition: "all 0.3s",
+            }}
+            onClick={handleApplyFilters}
+          >
+            {t("myTasksPage.applyFilters")}
+          </button>
+          <button
+            className="btn btn-outline-secondary"
+            style={{
+              borderColor: "#51285f",
+              color: "#51285f",
+              borderRadius: "8px",
+              padding: "10px 20px",
+              transition: "all 0.3s",
+              marginLeft: "10px",
+            }}
+            onClick={handleClearFilters}
+          >
+            {t("myTasksPage.clearFilters")}
+          </button>
+        </div>
         {/*)}*/}
       </div>
     </div>

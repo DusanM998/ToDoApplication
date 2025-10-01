@@ -29,6 +29,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+// Registruje EF DbContext
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -38,14 +39,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Konfiguracija Identity sistema
 builder.Services.AddIdentitySetup();
 
-//Konfiguracija Data Access Layera
+//Konfiguracija Data Access Layera (Repository Pattern)
 builder.Services.AddDataAccess(builder.Configuration);
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); //Scoped - jedna instanca servisa po HTTP requestu
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 // Konfiguracija Business Logic
 builder.Services.AddBusinessLogic();
-builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<ITaskService, TaskService>(); 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Registracija background servisa za automatsko azuriranje statusa taska
@@ -53,7 +54,7 @@ builder.Services.AddHostedService<OverdueTaskBackgroundService>();
 
 // Eksterni servisi Cloudinary
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
-builder.Services.AddSingleton<ICloudinaryService, CloudinaryService>();
+builder.Services.AddSingleton<ICloudinaryService, CloudinaryService>(); // Singleton - jedna instanca servisa za ceo lifecycle aplikacije
 builder.Services.AddSingleton<IEmailService, EmailService>();
 
 // JWT konfiguracija

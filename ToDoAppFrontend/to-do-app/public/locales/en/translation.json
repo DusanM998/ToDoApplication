@@ -104,6 +104,7 @@
     "applyFilters": "Apply Filters",
     "clearFilters": "Clear Filters",
     "category": "Category",
+    "allCategories": "All Categories",
     "summary": {
       "title": "Task Summary",
       "total": "Total tasks",
@@ -115,6 +116,7 @@
     "priorityNormal": "Medium priority",
     "priorityLow": "Low priority",
     "priorityNone": "No priority",
+    "allPriorities": "All Priorities",
     "noSearchResults": "Nema rezultata za datu pretragu."
   },
   "createTaskPage": {
@@ -148,7 +150,8 @@
     "title": "All Tasks",
     "noTasks": "No tasks to display.",
     "owner": "Owner",
-    "actions": "Actions"
+    "actions": "Actions",
+    "notYourTask": "Not Your task"
   },
   "toastNotify": {
     "uploadImageError": "Please upload an image.",

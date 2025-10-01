@@ -132,7 +132,7 @@ const EditTask: React.FC = () => {
           type="button"
           className="btn btn-secondary"
           style={{ marginTop: "10px" }}
-          onClick={() => navigate("/tasks/myTasks")}
+          onClick={() => navigate(-1)}
         >
           {t("editTaskPage.back")}
         </button>

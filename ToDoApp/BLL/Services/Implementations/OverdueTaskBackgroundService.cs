@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.Implementations
 {
+    // Background servis koji sluzi za azuriranje statusa taska ako je isteko
     public class OverdueTaskBackgroundService : BackgroundService, IOverdueTaskBackgroundService
     {
-        private readonly IServiceProvider _serviceProvider;
-        private readonly ILogger<OverdueTaskBackgroundService> _logger;
+        private readonly IServiceProvider _serviceProvider; // Omogucava kreiranje scopa za DI
+        private readonly ILogger<OverdueTaskBackgroundService> _logger; // Za logovanje gresaka
 
         public OverdueTaskBackgroundService(IServiceProvider serviceProvider, ILogger<OverdueTaskBackgroundService> logger)
         {
@@ -21,9 +22,10 @@ namespace BLL.Services.Implementations
             _logger = logger;
         }
 
+        // Metoda se pokrece automatski kada se aplikacija startuje
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while(!stoppingToken.IsCancellationRequested)
+            while(!stoppingToken.IsCancellationRequested) //...i ceka 24h pre sledeceg izvrsavanja
             {
                 await CheckAndUpdateOverdueTasksAsync(stoppingToken);
                 await Task.Delay(TimeSpan.FromHours(24), stoppingToken); // Na svaka 24h se izvrsava
@@ -35,9 +37,9 @@ namespace BLL.Services.Implementations
             try
             {
                 using var scope = _serviceProvider.CreateScope();
-                var taskService = scope.ServiceProvider.GetRequiredService<ITaskService>();
+                var taskService = scope.ServiceProvider.GetRequiredService<ITaskService>(); // Preuzima se ITaskService iz DI container
 
-                var response = await taskService.UpdateOverdueTasksAsync();
+                var response = await taskService.UpdateOverdueTasksAsync(); // metoda u ITaskService azurira status taskova (ako su istekli)
                 _logger.LogInformation("Overdue tasks updated at {time}: {result}", DateTime.UtcNow, response.Result);
             }
             catch (Exception ex)

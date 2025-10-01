@@ -26,7 +26,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Čitam podatke o korisniku iz Redux store-a
+  // Citam podatke o korisniku iz Redux store-a
   const userData: userModel = useSelector(
     (state: RootState) => state.userAuthStore
   );
