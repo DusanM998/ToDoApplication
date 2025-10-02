@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\Projects 1\\ToDoApp\\ToDoApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\extensions\\seeddataextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\extensions\\seeddataextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,10 +31,6 @@
       "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\dbcontexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\uof\\implementations\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\uof\\implementations\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -41,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\implementations\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,20 +78,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\User\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "EL\\Models\\User\\ApplicationUser.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\User\\ApplicationUser.cs",
-              "RelativeToolTip": "EL\\Models\\User\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T08:41:01.829Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\DbContexts\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "DAL\\DbContexts\\ApplicationDbContext.cs",
@@ -115,19 +102,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "TaskService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\TaskService.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
               "RelativeToolTip": "BLL\\Services\\Implementations\\TaskService.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAAAKAAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACkBAAAAAAAAAAAAwDQBAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T20:59:52.661Z"
+              "WhenOpened": "2025-10-01T20:59:52.661Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\AuthService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\AuthService.cs",
@@ -139,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Program.cs",
               "RelativeDocumentMoniker": "ToDoApp\\Program.cs",
@@ -151,20 +139,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "SeedDataExtensions.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Extensions\\SeedDataExtensions.cs",
               "RelativeDocumentMoniker": "DAL\\Extensions\\SeedDataExtensions.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Extensions\\SeedDataExtensions.cs",
               "RelativeToolTip": "DAL\\Extensions\\SeedDataExtensions.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAmwFoAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwFoAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T09:09:37.125Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ToDoTask.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Task\\ToDoTask.cs",
               "RelativeDocumentMoniker": "EL\\Models\\Task\\ToDoTask.cs",
@@ -177,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\UoF\\Implementations\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "DAL\\Repository\\UoF\\Implementations\\UnitOfWork.cs",
@@ -189,7 +177,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
+              "Title": "TaskRepository.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\Repository\\Implementations\\TaskRepository.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
+              "RelativeToolTip": "DAL\\Repository\\Implementations\\TaskRepository.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAADwvzgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T20:42:21.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\User\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "EL\\Models\\User\\ApplicationUser.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\User\\ApplicationUser.cs",
+              "RelativeToolTip": "EL\\Models\\User\\ApplicationUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T08:41:01.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "20251002091724_SeedDataForUsersAndTasks.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Migrations\\20251002091724_SeedDataForUsersAndTasks.cs",
               "RelativeDocumentMoniker": "DAL\\Migrations\\20251002091724_SeedDataForUsersAndTasks.cs",
@@ -201,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "TasksController.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\TasksController.cs",
               "RelativeDocumentMoniker": "ToDoApp\\Controllers\\TasksController.cs",
@@ -234,18 +248,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T06:38:48.974Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "TaskRepository.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "RelativeToolTip": "DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwCAAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T20:42:21.816Z"
             },
             {
               "$type": "Document",
