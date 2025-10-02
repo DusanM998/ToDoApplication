@@ -40,7 +40,10 @@ namespace DAL.Extensions
                     Email = adminEmail,
                     EmailConfirmed = true,
                     Name = "Admin User",
-                    Image = string.Empty
+                    Image = string.Empty,
+                    PendingTasksCount = 8,
+                    CompletedTasksCount = 0,
+                    OverdueTasksCount = 0
                 };
 
                 var result = await userManager.CreateAsync(admin, "Admin123!");
@@ -61,7 +64,10 @@ namespace DAL.Extensions
                     Email = customerEmail,
                     EmailConfirmed = true,
                     Name = "Customer User",
-                    Image = string.Empty
+                    Image = string.Empty,
+                    PendingTasksCount = 8, 
+                    CompletedTasksCount = 0,
+                    OverdueTasksCount = 0
                 };
 
                 var result = await userManager.CreateAsync(customer, "Customer123!");
@@ -70,6 +76,19 @@ namespace DAL.Extensions
                     await userManager.AddToRoleAsync(customer, SD.Role_Customer);
                 }
             }
+
+            admin.PendingTasksCount = 8;
+            admin.CompletedTasksCount = 0;
+            admin.OverdueTasksCount = 0;
+
+            customer.PendingTasksCount = 8;
+            customer.CompletedTasksCount = 0;
+            customer.OverdueTasksCount = 0;
+
+            // Save changes
+            db.ApplicationUsers.Update(admin);
+            db.ApplicationUsers.Update(customer);
+            await db.SaveChangesAsync();
 
             // Ponovo cita korisnike iz baze
             admin = await userManager.FindByEmailAsync(adminEmail);
