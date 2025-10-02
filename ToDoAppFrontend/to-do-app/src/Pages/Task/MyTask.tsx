@@ -61,7 +61,7 @@ const MyTasks: React.FC = () => {
     pageSize,
   });
 
-  console.log("Taskovi sa backa", tasksResponse);
+  //console.log("Taskovi sa backa", tasksResponse);
 
   useEffect(() => {
     if (tasksResponse?.data) {
@@ -82,6 +82,11 @@ const MyTasks: React.FC = () => {
   useEffect(() => {
     if (userData?.id) refetch();
   }, [userData?.id, refetch]);
+
+  const handleFilterChange = useCallback((newFilters: typeof filters) => {
+    setFilters(newFilters);
+    setPageNumber(1);
+  }, []);
 
   const handleToggleComplete = useCallback(
     async (task: toDoTaskModel) => {
@@ -196,13 +201,7 @@ const MyTasks: React.FC = () => {
 
       <UserTasksStatistic />
 
-      <TaskFilter
-        onFilterChange={(newFilters) => {
-          setFilters(newFilters);
-          setPageNumber(1);
-        }}
-        categories={categories}
-      />
+      <TaskFilter onFilterChange={handleFilterChange} categories={categories} />
 
       {isLoading ? (
         <div className="d-flex justify-content-center align-items-center h-64">

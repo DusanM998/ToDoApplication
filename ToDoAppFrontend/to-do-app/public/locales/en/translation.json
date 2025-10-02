@@ -164,6 +164,7 @@
     "fileTypeError": "Invalid file type. Only JPEG, JPG, PNG allowed.",
     "taskUpdateSuccess": "Task updated successfully!",
     "taskUpdateError": "Error while update a task! Try again.",
-    "taskDeleteSuccess": "Task deleted successfully!"
+    "taskDeleteSuccess": "Task deleted successfully!",
+    "invalidDateRange": "The 'Due Date From' cannot be later than 'Due Date To'."
   }
 }
