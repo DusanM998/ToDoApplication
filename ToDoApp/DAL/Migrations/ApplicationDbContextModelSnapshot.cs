@@ -60,33 +60,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("ToDoTasks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 48,
-                            ApplicationUserId = "b86af68e-2acd-4907-8017-9589d9ebefa8",
-                            Category = "Work",
-                            CreatedAt = new DateTime(2025, 10, 1, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Implement authentication and task CRUD",
-                            DueDate = new DateTime(2025, 10, 15, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Priority = 3,
-                            Status = 1,
-                            Title = "Finish backend API"
-                        },
-                        new
-                        {
-                            Id = 49,
-                            ApplicationUserId = "2b525ece-53a7-4446-bfab-d538f5724788",
-                            Category = "Personal",
-                            CreatedAt = new DateTime(2025, 10, 1, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Milk, Bread, Eggs",
-                            DueDate = new DateTime(2025, 10, 14, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Priority = 2,
-                            Status = 1,
-                            Title = "Buy groceries"
-                        });
+                    b.ToTable("ToDoTasks", (string)null);
                 });
 
             modelBuilder.Entity("EL.Models.User.ApplicationUser", b =>

@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "D:\\Projects 1\\ToDoApp\\ToDoApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Migrations\\20251002103432_SeedDataForUsersAndTasks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DAL\\Migrations\\20251002103432_SeedDataForUsersAndTasks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\extensions\\seeddataextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\extensions\\seeddataextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\dataseeding\\applicationdbcontextseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\dataseeding\\applicationdbcontextseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\extensions\\seeddataextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\extensions\\seeddataextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\dbcontexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\dbcontexts\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\user\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\user\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\task\\todotask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\task\\todotask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Migrations\\20251002111150_SeedDataForUsersAndTasks1.1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DAL\\Migrations\\20251002111150_SeedDataForUsersAndTasks1.1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,24 +39,12 @@
       "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\uof\\implementations\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\task\\todotask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\task\\todotask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Migrations\\20251002091724_SeedDataForUsersAndTasks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DAL\\Migrations\\20251002091724_SeedDataForUsersAndTasks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\user\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\user\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,7 +78,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -86,39 +86,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20251002103432_SeedDataForUsersAndTasks.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Migrations\\20251002103432_SeedDataForUsersAndTasks.cs",
-              "RelativeDocumentMoniker": "DAL\\Migrations\\20251002103432_SeedDataForUsersAndTasks.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Migrations\\20251002103432_SeedDataForUsersAndTasks.cs",
-              "RelativeToolTip": "DAL\\Migrations\\20251002103432_SeedDataForUsersAndTasks.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T10:34:32.832Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\User\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "EL\\Models\\User\\ApplicationUser.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\User\\ApplicationUser.cs",
               "RelativeToolTip": "EL\\Models\\User\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T08:41:01.829Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\DbContexts\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "DAL\\DbContexts\\ApplicationDbContext.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\DbContexts\\ApplicationDbContext.cs",
               "RelativeToolTip": "DAL\\DbContexts\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T08:40:09.638Z",
               "EditorCaption": ""
@@ -138,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "TaskService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\TaskService.cs",
@@ -151,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\AuthService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\AuthService.cs",
@@ -164,33 +151,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Program.cs",
               "RelativeDocumentMoniker": "ToDoApp\\Program.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Program.cs",
               "RelativeToolTip": "ToDoApp\\Program.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAACoAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAACUAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T09:00:03.873Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "SeedDataExtensions.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Extensions\\SeedDataExtensions.cs",
               "RelativeDocumentMoniker": "DAL\\Extensions\\SeedDataExtensions.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Extensions\\SeedDataExtensions.cs",
               "RelativeToolTip": "DAL\\Extensions\\SeedDataExtensions.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAmwFAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAAAPwAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T09:09:37.125Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "ToDoTask.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Task\\ToDoTask.cs",
               "RelativeDocumentMoniker": "EL\\Models\\Task\\ToDoTask.cs",
@@ -209,14 +196,27 @@
               "RelativeDocumentMoniker": "DAL\\DataSeeding\\ApplicationDbContextSeed.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\DataSeeding\\ApplicationDbContextSeed.cs",
               "RelativeToolTip": "DAL\\DataSeeding\\ApplicationDbContextSeed.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAACwAAABtAAAAAAAAAA==",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAAANoAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T08:43:47.252Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
+              "Title": "20251002111150_SeedDataForUsersAndTasks1.1.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Migrations\\20251002111150_SeedDataForUsersAndTasks1.1.cs",
+              "RelativeDocumentMoniker": "DAL\\Migrations\\20251002111150_SeedDataForUsersAndTasks1.1.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Migrations\\20251002111150_SeedDataForUsersAndTasks1.1.cs",
+              "RelativeToolTip": "DAL\\Migrations\\20251002111150_SeedDataForUsersAndTasks1.1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T11:11:50.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\UoF\\Implementations\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "DAL\\Repository\\UoF\\Implementations\\UnitOfWork.cs",
@@ -229,7 +229,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "20251002091724_SeedDataForUsersAndTasks.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Migrations\\20251002091724_SeedDataForUsersAndTasks.cs",
               "RelativeDocumentMoniker": "DAL\\Migrations\\20251002091724_SeedDataForUsersAndTasks.cs",
