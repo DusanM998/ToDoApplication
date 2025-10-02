@@ -77,19 +77,6 @@ namespace DAL.Extensions
                 }
             }
 
-            admin.PendingTasksCount = 8;
-            admin.CompletedTasksCount = 0;
-            admin.OverdueTasksCount = 0;
-
-            customer.PendingTasksCount = 8;
-            customer.CompletedTasksCount = 0;
-            customer.OverdueTasksCount = 0;
-
-            // Save changes
-            db.ApplicationUsers.Update(admin);
-            db.ApplicationUsers.Update(customer);
-            await db.SaveChangesAsync();
-
             // Ponovo cita korisnike iz baze
             admin = await userManager.FindByEmailAsync(adminEmail);
             customer = await userManager.FindByEmailAsync(customerEmail);
