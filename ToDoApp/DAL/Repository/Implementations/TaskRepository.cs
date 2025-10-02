@@ -29,10 +29,11 @@ namespace DAL.Repository.Implementations
                 .ToListAsync();
         }
 
-        public async Task<List<TaskWithUserDTO>> GetAllWithUsersAsync()
+        // Dohvata sve taskove sa svim korisnicima (za admina)
+        public IQueryable<TaskWithUserDTO> GetAllWithUsersAsQueryable()
         {
-            return await _context.ToDoTasks
-                .Include(t => t.User) // ili Include(t => t.ApplicationUser)
+            return _context.ToDoTasks
+                .Include(t => t.User)
                 .Select(t => new TaskWithUserDTO
                 {
                     Id = t.Id,
@@ -44,10 +45,10 @@ namespace DAL.Repository.Implementations
                     ApplicationUserId = t.ApplicationUserId,
                     Name = t.User != null ? t.User.Name : "",
                     Email = t.User != null ? t.User.Email : ""
-                })
-                .ToListAsync();
+                });
         }
 
+        // Metoda koja dohvata taskove za specificnog korisnika i vrsi filtriranje opciono
         public IQueryable<ToDoTask> GetAllAsQueryable(string userId, string? search, StatusTaska? status,
             DateTime? dueDateFrom,
             DateTime? dueDateTo,
@@ -55,13 +56,15 @@ namespace DAL.Repository.Implementations
             TaskPriority? priority)
         {
             IQueryable<ToDoTask> query = _context.ToDoTasks
-                    .Where(t => t.ApplicationUserId == userId).AsQueryable(); // Filter taskova tako da se uzmu samo oni koji pripadaju trenutno ulogovanom korisniku
+                    .Where(t => t.ApplicationUserId == userId)
+                    .OrderByDescending(t => t.Priority)
+                    .ThenByDescending(t => t.DueDate); // Filter taskova tako da se uzmu samo oni koji pripadaju trenutno ulogovanom korisniku
                     
 
-            //query = query.ApplySearch(search);
+            query = query.ApplySearch(search);
 
             // Filter po statusu 
-            /*if (status.HasValue)
+            if (status.HasValue)
             {
                 query = query.Where(t => t.Status == status.Value);
             }
@@ -87,7 +90,7 @@ namespace DAL.Repository.Implementations
             if (priority.HasValue)
             {
                 query = query.Where(t => t.Priority == priority.Value);
-            }*/
+            }
 
             return query;
         }

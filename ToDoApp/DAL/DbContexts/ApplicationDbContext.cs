@@ -1,4 +1,5 @@
-﻿using EL.Models.Task;
+﻿using DAL.DataSeeding;
+using EL.Models.Task;
 using EL.Models.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -20,5 +21,12 @@ namespace DAL.DbContexts
         public DbSet<ApplicationUser> ApplicationUsers { get; set; } // Odgovara tabeli ApplicationUsers u bazi
         public DbSet<ToDoTask> ToDoTasks { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            ApplicationDbContextSeed.Seed(builder);
+        }
     }
 }

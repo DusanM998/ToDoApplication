@@ -7,6 +7,7 @@ using EL.Models.Task;
 using EL.Models.User;
 using EL.Shared;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,12 +29,13 @@ namespace BLL.Services.Implementations
             _userManager = userManager;
         }
 
-        // Dohvata sve taskove za sve korisnike
+        // Dohvata sve taskove za sve korisnike (za admina)
         public async Task<ApiResponse> GetAllTasks()
         {
             var response = new ApiResponse();
 
-            var tasks = await _unitOfWork.Tasks.GetAllWithUsersAsync();
+            var tasks = await _unitOfWork.Tasks.GetAllWithUsersAsQueryable()
+                .ToListAsync();
 
             response.Result = tasks;
             response.StatusCode = HttpStatusCode.OK;
@@ -45,11 +47,20 @@ namespace BLL.Services.Implementations
         {
             var response = new ApiResponse();
 
-            var tasks = await _unitOfWork.Tasks.GetAllAsync();
-            var userTasks = tasks
-                .Where(t => t.ApplicationUserId == userId)
-                .OrderByDescending(t => t.DueDate)
-                .ToList();
+            var userTasks = await _unitOfWork.Tasks.GetAllAsQueryable(userId, null, null, null, null, null, null)
+                .Select(t => new ToDoTaskResponseDTO
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Description = t.Description,
+                    DueDate = t.DueDate,
+                    Category = t.Category,
+                    Priority = (int)t.Priority,
+                    Status = t.Status,
+                    CreatedAt = t.CreatedAt,
+                    ApplicationUserId = t.ApplicationUserId,
+                })
+                .ToListAsync();
 
             response.Result = userTasks;
             response.StatusCode = HttpStatusCode.OK;
@@ -295,54 +306,25 @@ namespace BLL.Services.Implementations
 
             try
             {
-                IQueryable<ToDoTask> query = (await _unitOfWork.Tasks.GetAllAsync())
-                    .AsQueryable()
-                    .Where(t => t.ApplicationUserId == userId) // Filter taskova tako da se uzmu samo oni koji pripadaju trenutno ulogovanom korisniku
-                    .OrderByDescending(t => t.Priority)
-                    .ThenByDescending(t => t.DueDate);
+                var query = _unitOfWork.Tasks.GetAllAsQueryable(userId, search, status, dueDateFrom, dueDateTo, category, priority);
 
-                // Filter po nazivu taska
-                if (!string.IsNullOrEmpty(search))
-                {
-                    query = query.Where(t =>
-                        t.Title.Contains(search) ||
-                        (t.Description != null && t.Description.Contains(search)));
-                }
-
-                // Filter po statusu 
-                if (status.HasValue)
-                {
-                    query = query.Where(t => t.Status == status.Value);
-                }
-
-                //...po datumu (od)
-                if (dueDateFrom.HasValue)
-                {
-                    query = query.Where(t => t.DueDate >= dueDateFrom.Value);
-                }
-                //..do
-                if (dueDateTo.HasValue)
-                {
-                    query = query.Where(t => t.DueDate <= dueDateTo.Value);
-                }
-
-                // Filter po kategoriji
-                if (!string.IsNullOrEmpty(category))
-                {
-                    query = query.Where(t => t.Category == category);
-                }
-
-                // Filter po prioritetu
-                if(priority.HasValue)
-                {
-                    query = query.Where(t => t.Priority == priority.Value);
-                }
-
-                var totalRecords = query.Count(); // Vraca ukupan broj taskova nakon primene svih filtera
-                var tasks = query
+                var totalRecords = await query.CountAsync(); // Vraca ukupan broj taskova nakon primene svih filtera
+                var tasks = await query
+                    .Select(t => new ToDoTaskResponseDTO
+                    {
+                        Id = t.Id,
+                        Title = t.Title,
+                        Description = t.Description,
+                        DueDate = t.DueDate,
+                        Category = t.Category,
+                        Priority = (int)t.Priority,
+                        Status = t.Status,
+                        CreatedAt = t.CreatedAt,
+                        ApplicationUserId = t.ApplicationUserId
+                    })
                     .Skip((pageNumber - 1) * pageSize) // Preskace prvih 10 elemenata (pocev od prvog)
                     .Take(pageSize) // uzima odredjeni broj elemenata nakon sto su neki preskoceni
-                    .ToList();
+                    .ToListAsync();
 
                 var pagination = new
                 {
@@ -353,22 +335,11 @@ namespace BLL.Services.Implementations
                 };
 
                 // Mapiranje u DTO
-                var dtoTasks = tasks.Select(t => new ToDoTaskResponseDTO
-                {
-                    Id = t.Id,
-                    Title = t.Title,
-                    Description = t.Description,
-                    DueDate = t.DueDate,
-                    Category = t.Category,
-                    Priority = (int)t.Priority,
-                    Status = t.Status,
-                    CreatedAt = t.CreatedAt,
-                    ApplicationUserId = t.ApplicationUserId
-                }).ToList();
+                //var dtoTasks = tasks.ToList();
 
                 response.Result = new FilteredTasksResult
                 {
-                    ToDoTasks = dtoTasks,
+                    ToDoTasks = tasks,
                     Pagination = pagination
                 };
 
@@ -376,6 +347,7 @@ namespace BLL.Services.Implementations
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"ERROR: {ex}");
                 response.IsSuccess = false;
                 response.ErrorMessages = new List<string> { ex.Message };
                 response.StatusCode = HttpStatusCode.InternalServerError;

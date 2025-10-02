@@ -180,14 +180,6 @@ D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\EL.dll
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\BLL.pdb
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\EL.pdb
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\DAL.pdb
-D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\EntityFramework.SqlServer.dll
-D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\EntityFramework.dll
-D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\System.Data.SqlClient.dll
-D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\runtimes\win-arm64\native\sni.dll
-D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\runtimes\win-x64\native\sni.dll
-D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\runtimes\win-x86\native\sni.dll
-D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Binder.dll
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll

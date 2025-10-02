@@ -1,8 +1,8 @@
 ﻿using BLL.Services.Implementations;
 using BLL.Services.Interfaces;
-using BLL.Services.Interfaces;
 using BLL.Setup;
 using DAL.DbContexts;
+using DAL.Extensions;
 using DAL.Repository.Implementations;
 using DAL.Repository.Interfaces;
 using DAL.Repository.Setup;
@@ -47,7 +47,7 @@ builder.Services.AddBusinessLogic();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Registracija background servisa za automatsko azuriranje statusa taska
-//builder.Services.AddHostedService<OverdueTaskBackgroundService>();
+builder.Services.AddHostedService<OverdueTaskBackgroundService>();
 
 // Eksterni servisi Cloudinary
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
@@ -68,6 +68,26 @@ builder.Services.AddOpenApi();
 builder.Services.AddSwaggerSetup();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        // Opcionalno: primeni sve migracije automatski
+        var db = services.GetRequiredService<ApplicationDbContext>();
+        await db.Database.MigrateAsync();
+
+        // Pozovi runtime seeder (kreira role, korisnike i pocetne taskove)
+        await services.EnsureSeedDataAsync();
+    }
+    catch (Exception ex)
+    {
+        
+        Console.WriteLine("Greska pri pokretanju seed-a: " + ex.Message);
+        throw;
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
