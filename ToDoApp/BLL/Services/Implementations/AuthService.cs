@@ -23,6 +23,9 @@ using ToDoApp.Models.Dto.PasswordAuthDTO;
 
 namespace BLL.Services.Implementations
 {
+    // Nisam kreirao AuthRepository jer koristim vec ovde Identity framework
+    // i AuthService ima specificnu logiku: register/login,
+    // refresh tokena, reset lozinke... (ne samo klasicne CRUD operacije)
     public class AuthService : IAuthService
     {
         private readonly ApplicationDbContext _db;

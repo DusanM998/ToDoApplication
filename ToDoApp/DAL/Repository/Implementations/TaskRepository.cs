@@ -42,6 +42,8 @@ namespace DAL.Repository.Implementations
                     Status = t.Status,
                     CreatedAt = t.CreatedAt,
                     DueDate = t.DueDate,
+                    Priority = t.Priority,
+                    Category = t.Category,
                     ApplicationUserId = t.ApplicationUserId,
                     Name = t.User != null ? t.User.Name : "",
                     Email = t.User != null ? t.User.Email : ""
@@ -55,10 +57,12 @@ namespace DAL.Repository.Implementations
             string? category,
             TaskPriority? priority)
         {
+            // Ne izvrsavam odmah query vec samo kreiram upit koji se kasnije izvrsava nad bazom
+            // znaci tek kad dodjem do operacije ToListAsync npr, rezultati se pretvaraju u objekte i vracaju
             IQueryable<ToDoTask> query = _context.ToDoTasks
                     .Where(t => t.ApplicationUserId == userId)
-                    .OrderByDescending(t => t.Priority)
-                    .ThenByDescending(t => t.DueDate); // Filter taskova tako da se uzmu samo oni koji pripadaju trenutno ulogovanom korisniku
+                    .OrderBy(t => t.DueDate)
+                    .ThenByDescending(t => t.Priority); // Filter taskova tako da se uzmu samo oni koji pripadaju trenutno ulogovanom korisniku
                     
 
             query = query.ApplySearch(search);
@@ -94,5 +98,17 @@ namespace DAL.Repository.Implementations
 
             return query;
         }
+
+
+        public IQueryable<string> GetCategoriesAsQueryable(string userId)
+        {
+            // Pravim query koji ce vratiti samo kategorije za datog korisnika
+            return _context.ToDoTasks
+                .Where(t => t.ApplicationUserId == userId && !string.IsNullOrEmpty(t.Category))
+                .Select(t => t.Category.Trim())
+                .Distinct()
+                .OrderBy(c => c);
+        }
+
     }
 }

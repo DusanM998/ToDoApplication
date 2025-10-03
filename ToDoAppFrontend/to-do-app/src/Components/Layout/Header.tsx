@@ -31,7 +31,7 @@ const Header = () => {
     (state: RootState) => state.userAuthStore
   );
 
-  const isLoggedIn = !!userData?.id; // ili userData?.token
+  const isLoggedIn = !!userData?.id; 
   const isAdmin = userData?.role === "admin"; // Provera da li je korisnik admin
 
   useEffect(() => {

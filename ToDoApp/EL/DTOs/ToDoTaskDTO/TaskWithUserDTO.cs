@@ -16,6 +16,8 @@ namespace EL.DTOs.ToDoTaskDTO
         public DateTime CreatedAt { get; set; }
         public DateTime? DueDate { get; set; }
         public string ApplicationUserId { get; set; } = string.Empty;
+        public TaskPriority Priority { get; set; }
+        public string Category { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty; // ime korisnika
         public string Email { get; set; } = string.Empty; // email korisnika
     }

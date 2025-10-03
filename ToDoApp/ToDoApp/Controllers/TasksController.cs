@@ -112,5 +112,16 @@ namespace ToDoApp.Controllers
 
             return Ok(result.ToDoTasks);
         }
+
+        [HttpGet("categories")]
+        public async Task<IActionResult> GetCategories([FromQuery] string userId)
+        {
+            var response = await _taskService.GetCategoriesAsync(userId);
+            if (!response.IsSuccess)
+                return StatusCode((int)response.StatusCode, response);
+
+            return Ok(response.Result);
+        }
+
     }
 }

@@ -17,6 +17,8 @@ namespace DAL.Repository.Interfaces
             DateTime? dueDateTo,
             string? category,
             TaskPriority? priority);
-        
+        IQueryable<string> GetCategoriesAsQueryable(string userId);
+
+
     }
 }

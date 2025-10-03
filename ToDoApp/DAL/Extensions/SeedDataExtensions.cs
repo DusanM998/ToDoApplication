@@ -16,6 +16,8 @@ namespace DAL.Extensions
         // ali proverava da li podaci koje unosi postoje tako da se oni kreiraju samo ako ne postoje
         public static async Task EnsureSeedDataAsync(this IServiceProvider serviceProvider)
         {
+            // using sluzi da kada se zavrsi blok koda, resurs nad kojim je using automatski poziva Dispose()
+            // bez obzira da li se greska desila unutar bloka ili ne (odlaze oslobadjanje resursa dok se ne zavrsi scope bloka)
             using var scope = serviceProvider.CreateScope();
             var services = scope.ServiceProvider;
 

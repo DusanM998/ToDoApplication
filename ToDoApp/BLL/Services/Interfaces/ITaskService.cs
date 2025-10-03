@@ -23,6 +23,8 @@ namespace BLL.Services.Interfaces
             int pageNumber = 1,
             int pageSize = 10);
 
+        Task<ApiResponse> GetCategoriesAsync(string userId);
+
         Task<ApiResponse> UpdateOverdueTasksAsync();
     }
 }

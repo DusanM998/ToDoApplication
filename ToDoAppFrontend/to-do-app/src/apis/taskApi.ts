@@ -69,8 +69,8 @@ export const taskApi = createApi({
         status?: number;
         dueDateFrom?: string;
         dueDateTo?: string;
-        category?: string,
-        priority?: number,
+        category?: string;
+        priority?: number;
         pageNumber?: number;
         pageSize?: number;
       }
@@ -91,8 +91,8 @@ export const taskApi = createApi({
         if (status !== undefined) params.append("status", String(status));
         if (dueDateFrom) params.append("dueDateFrom", dueDateFrom);
         if (dueDateTo) params.append("dueDateTo", dueDateTo);
-        if(category) params.append("category", category);
-        if(priority !== undefined) params.append("priority", String(priority));
+        if (category) params.append("category", category);
+        if (priority !== undefined) params.append("priority", String(priority));
         params.append("pageNumber", String(pageNumber));
         params.append("pageSize", String(pageSize));
 
@@ -114,6 +114,13 @@ export const taskApi = createApi({
       },
       providesTags: ["Tasks"],
     }),
+    getCategories: builder.query<string[], string>({
+      query: (userId) => ({
+        url: `/categories?userId=${userId}`,
+        method: "GET",
+      }),
+      providesTags: ["Tasks"],
+    }),
   }),
 });
 
@@ -125,4 +132,5 @@ export const {
   useUpdateTaskMutation,
   useDeleteTaskMutation,
   useGetFilteredTasksQuery,
+  useGetCategoriesQuery,
 } = taskApi;

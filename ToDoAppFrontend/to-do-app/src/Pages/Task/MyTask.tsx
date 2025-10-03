@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import {
   useDeleteTaskMutation,
+  useGetCategoriesQuery,
   useGetFilteredTasksQuery,
   useUpdateTaskMutation,
 } from "../../apis/taskApi";
@@ -68,9 +69,16 @@ const MyTasks: React.FC = () => {
     dueDateFrom: filters.dueDateFrom,
     dueDateTo: filters.dueDateTo,
     priority: filters.priority,
+    category: filters.category,
     pageNumber,
     pageSize,
   });
+
+  const { data: categoriesResponse } = useGetCategoriesQuery(userData?.id, {
+    skip: !userData?.id, // da ne poziva dok se userId ne učita
+  });
+
+  console.log(categoriesResponse);
 
   // Resetuje taskove i ucitava nove kada se korisnik promeni
   useEffect(() => {
@@ -179,7 +187,6 @@ const MyTasks: React.FC = () => {
     return tasks.filter((task) => {
       if (task.applicationUserId !== userData.id) return false;
       if (filters.status && task.status !== filters.status) return false;
-      if (filters.category && task.category !== filters.category) return false;
       if (filters.priority && task.priority !== filters.priority) return false;
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
@@ -195,11 +202,11 @@ const MyTasks: React.FC = () => {
   }, [tasks, userData?.id, filters]);
 
   const categories = useMemo(() => {
-    const allCategories = tasks
-      .map((task) => task.category)
-      .filter((cat): cat is string => Boolean(cat));
-    return Array.from(new Set(allCategories));
-  }, [tasks]);
+    if (!categoriesResponse) return [];
+    return categoriesResponse;
+  }, [categoriesResponse]);
+
+  console.log(categories);
 
   const hasActiveFilters = Boolean(
     filters.search ||

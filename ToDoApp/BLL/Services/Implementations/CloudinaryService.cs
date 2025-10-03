@@ -37,6 +37,8 @@ namespace BLL.Services.Implementations
                 throw new ArgumentException("Fajl nije validan!");
             }
 
+            // Kreiram stream prom. i kada izadjem iz trenutnog scope-a, automatski poziva Dispose() nad njom
+            // da bi oslobodio resurse
             using var stream = file.OpenReadStream();
             var uploadParams = new ImageUploadParams
             {

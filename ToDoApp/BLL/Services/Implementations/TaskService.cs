@@ -291,6 +291,8 @@ namespace BLL.Services.Implementations
             return response;
         }
 
+        // Metoda za pribavljanje taskova i filter ujedno
+        // Celo filtriranje se radi nad bazom, a u memoriju se smesta samo trenutna stranica taskova
         public async Task<ApiResponse> GetFilteredTasksAsync(
             string userId,
             string? search,
@@ -308,7 +310,7 @@ namespace BLL.Services.Implementations
             {
                 var query = _unitOfWork.Tasks.GetAllAsQueryable(userId, search, status, dueDateFrom, dueDateTo, category, priority);
 
-                var totalRecords = await query.CountAsync(); // Vraca ukupan broj taskova nakon primene svih filtera
+                var totalRecords = await query.CountAsync(); // Vraca ukupan broj taskova nakon primene svih filtera (racunaju se direktno u bazi)
                 var tasks = await query
                     .Select(t => new ToDoTaskResponseDTO
                     {
@@ -326,6 +328,7 @@ namespace BLL.Services.Implementations
                     .Take(pageSize) // uzima odredjeni broj elemenata nakon sto su neki preskoceni
                     .ToListAsync();
 
+                // Paginaciju samo radim u memoriji
                 var pagination = new
                 {
                     CurrentPage = pageNumber,
@@ -355,6 +358,29 @@ namespace BLL.Services.Implementations
 
             return response;
         }
+
+        public async Task<ApiResponse> GetCategoriesAsync(string userId)
+        {
+            var response = new ApiResponse();
+
+            try
+            {
+                var categories = await _unitOfWork.Tasks.GetCategoriesAsQueryable(userId).ToListAsync();
+
+                response.Result = categories;
+                response.StatusCode = HttpStatusCode.OK;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex}");
+                response.IsSuccess = false;
+                response.ErrorMessages = new List<string> { ex.Message };
+                response.StatusCode = HttpStatusCode.InternalServerError;
+            }
+
+            return response;
+        }
+
 
         // Metoda koja prolazi kroz sve taskove i azurira im status na "Overdue"
         // Ako ih korisnik nije oznacio kao zavrsene

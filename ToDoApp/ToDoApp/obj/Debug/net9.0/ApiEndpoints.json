@@ -334,6 +334,22 @@
   },
   {
     "ContainingType": "ToDoApp.Controllers.TasksController",
+    "Method": "GetCategories",
+    "RelativePath": "api/tasks/categories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToDoApp.Controllers.TasksController",
     "Method": "GetFilteredTasks",
     "RelativePath": "api/tasks/filter",
     "HttpMethod": "GET",

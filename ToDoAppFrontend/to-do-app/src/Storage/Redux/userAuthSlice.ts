@@ -11,7 +11,8 @@ export const emptyUserState: userModel = {
     phoneNumber: ""
 };
 
-// Slice - komponenta Redux-a koja sadrzi reducer i akcije
+// Slice - komponenta Redux-a koja sadrzi reducer i akcije, 
+// posto RTK Query kesira rez. API poziva, koristim slice da dugorocno cuvam podatke o prijavljenom korisniku
 // userAuthSlice - slice za autentifikaciju korisnika (cuva pod. o tren. ulogovanom korisniku u Redux store-u)
 export const userAuthSlice = createSlice({
     name: "userAuth",

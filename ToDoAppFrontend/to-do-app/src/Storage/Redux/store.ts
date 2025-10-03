@@ -26,13 +26,15 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // Store - mesto za cuvanje stanja cele aplikacije (kombinacija svih slice-ova)
 const store = configureStore({
   reducer: persistedReducer,
-   // Dodaje middleware (funkcije koje se izvrsavaju izmedju akcije i reducer-a) za RTK Query (omogucava keširanje, invalidaciju i osvezavanje podataka)
+   // Dodaje middleware (funkcije koje se izvrsavaju izmedju akcije i reducer-a) 
+   // za RTK Query (omogucava kesiranje, invalidaciju i osvezavanje podataka)
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
         .concat(authApi.middleware)
         .concat(taskApi.middleware),
 });
 
+//RootState - tip celog redux storea
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 

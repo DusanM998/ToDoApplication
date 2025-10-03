@@ -36,6 +36,8 @@ namespace BLL.Services.Implementations
         {
             try
             {
+                // using sluzi da kada se zavrsi blok koda, resurs nad kojim je using automatski poziva Dispose()
+                // bez obzira da li se greska desila unutar bloka ili ne (odlaze oslobadjanje resursa dok se ne zavrsi scope bloka)
                 using var scope = _serviceProvider.CreateScope();
                 var taskService = scope.ServiceProvider.GetRequiredService<ITaskService>(); // Preuzima se ITaskService iz DI container
 
