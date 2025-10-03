@@ -1,3 +1,9 @@
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface MyTaskPaginationProps {
@@ -48,6 +54,15 @@ const MyTaskPagination: React.FC<MyTaskPaginationProps> = ({
 
   const pageNumbers = getPageNumbers();
 
+  const buttonStyle = (isActive: boolean, isDisabled: boolean) => ({
+    backgroundColor: isActive ? "#51285f" : isDisabled ? "#e9ecef" : "#fff",
+    color: isActive ? "#fff" : isDisabled ? "#6c757d" : "#51285f",
+    borderColor: "#51285f",
+    padding: "8px 16px",
+    transition: "all 0.3s",
+    fontWeight: isActive ? 500 : "normal",
+  });
+
   return (
     <div className="d-flex justify-content-center mt-4">
       <nav>
@@ -56,16 +71,25 @@ const MyTaskPagination: React.FC<MyTaskPaginationProps> = ({
             <button
               className="page-link"
               style={{
-                backgroundColor: isFirstPage ? "#e9ecef" : "#fff",
-                color: isFirstPage ? "#6c757d" : "#51285f",
-                borderColor: "#51285f",
+                ...buttonStyle(false, isFirstPage),
                 borderRadius: "8px 0 0 8px",
-                padding: "8px 16px",
-                transition: "all 0.3s",
               }}
+              onClick={() => setPageNumber(1)}
+              disabled={isFirstPage}
+              title={t("myTasksPage.firstPage") || "First Page"}
+            >
+              <ChevronsLeft size={18} />
+            </button>
+          </li>
+
+          <li className={`page-item ${isFirstPage ? "disabled" : ""}`}>
+            <button
+              className="page-link"
+              style={buttonStyle(false, isFirstPage)}
               onClick={() => setPageNumber(pageNumber - 1)}
               disabled={isFirstPage}
             >
+              <ChevronLeft size={18} className="me-1" />
               {t("myTasksPage.previous")}
             </button>
           </li>
@@ -77,13 +101,7 @@ const MyTaskPagination: React.FC<MyTaskPaginationProps> = ({
             >
               <button
                 className="page-link"
-                style={{
-                  backgroundColor: pageNumber === page ? "#51285f" : "#fff",
-                  color: pageNumber === page ? "#fff" : "#51285f",
-                  borderColor: "#51285f",
-                  padding: "8px 16px",
-                  fontWeight: pageNumber === page ? 500 : "normal",
-                }}
+                style={buttonStyle(pageNumber === page, false)}
                 onClick={() => setPageNumber(page)}
               >
                 {page}
@@ -94,18 +112,27 @@ const MyTaskPagination: React.FC<MyTaskPaginationProps> = ({
           <li className={`page-item ${isLastPage ? "disabled" : ""}`}>
             <button
               className="page-link"
-              style={{
-                backgroundColor: isLastPage ? "#e9ecef" : "#fff",
-                color: isLastPage ? "#6c757d" : "#51285f",
-                borderColor: "#51285f",
-                borderRadius: "0 8px 8px 0",
-                padding: "8px 16px",
-                transition: "all 0.3s",
-              }}
+              style={buttonStyle(false, isLastPage)}
               onClick={() => setPageNumber(pageNumber + 1)}
               disabled={isLastPage}
             >
               {t("myTasksPage.next")}
+              <ChevronRight size={18} className="ms-1" />
+            </button>
+          </li>
+
+          <li className={`page-item ${isLastPage ? "disabled" : ""}`}>
+            <button
+              className="page-link"
+              style={{
+                ...buttonStyle(false, isLastPage),
+                borderRadius: "0 8px 8px 0",
+              }}
+              onClick={() => setPageNumber(totalPages)}
+              disabled={isLastPage}
+              title={t("myTasksPage.lastPage") || "Last Page"}
+            >
+              <ChevronsRight size={18} />
             </button>
           </li>
         </ul>

@@ -9,3 +9,5 @@ export default interface apiResponse {
     };
     error?: any;
 }
+
+// Interface koristim kada definisem objekat ili klasu 

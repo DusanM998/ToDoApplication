@@ -24,13 +24,13 @@ function ResetPassword() {
     e.preventDefault();
     setError("");
 
-    // Validate email and token presence
+    // Validira da li email i token postoje
     if (!emailFromQuery || !tokenFromQuery) {
       setError(t("loginPage.resetPasswordInvalidLink"));
       return;
     }
 
-    // Validate password match
+    // Validacija da li se passwordi matchuju
     if (newPassword !== confirmPassword) {
       setError(t("loginPage.resetPasswordMismatch"));
       return;

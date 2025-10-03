@@ -7,8 +7,8 @@ export default interface toDoTaskModel {
     title: string;
     description?: string;
     status: StatusTaska;
-    createdAt: string; // koristimo string jer API obicno vraca ISO date string
-    dueDate?: string;  // nullable
+    createdAt: string; 
+    dueDate?: string; 
     category?: string;
     priority?: TaskPriority;
     applicationUserId: string;
@@ -16,3 +16,5 @@ export default interface toDoTaskModel {
     name?: string;
     email?: string;
 }
+
+// Interface koristim kada definisem objekat ili klasu 

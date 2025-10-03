@@ -188,7 +188,7 @@ const Header = () => {
                   )}
                 </>
               )}
-              {/* Language Dropdown */}
+              {/* Dropdown za jezik */}
               <li className="nav-item dropdown" ref={languageRef}>
                 <a
                   className="nav-link language-toggle"
@@ -240,7 +240,7 @@ const Header = () => {
                 </ul>
               </li>
 
-              {/* User Menu */}
+              {/* Korisnicki meni (profil/odjava) */}
               <div
                 className="d-flex align-items-center"
                 style={{ marginLeft: "auto" }}

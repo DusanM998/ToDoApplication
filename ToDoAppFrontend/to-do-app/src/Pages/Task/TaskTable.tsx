@@ -90,7 +90,7 @@ const TasksTable: React.FC<TasksTableProps> = ({
               <td>{task?.name || "Unknown"}</td>
               <td>
                 <div className="d-flex gap-2">
-                  {/* Admin moze da edituje/brise samo svoje taskove, ne i tudje */}
+                  {/* Admin moze da edituje/brise samo svoje taskove, ne tudje */}
                   {task.applicationUserId === currentUser.id ? (
                     <>
                       {task.status !== StatusTaska.Completed && (

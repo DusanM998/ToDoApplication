@@ -4,7 +4,7 @@ const Footer = () => {
     <footer
       className="text-white py-4"
       style={{
-        backgroundColor: "#2a1a3a", // Dark theme, inspired by #51285f
+        backgroundColor: "#2a1a3a", 
         textAlign: "center",
       }}
     >

@@ -1,41 +1,55 @@
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useImperativeHandle, forwardRef } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useGetCurrentUserQuery } from "../../apis/authApi";
 import { MainLoader } from "../../Components/Layout/Common";
 
+// Interfejs za ref metode
+export interface UserTasksStatisticRef {
+  refetch: () => void;
+}
+
 // Statistika za taskove (koliko ih je korisnik uspesno zavrsio, koliko su mu na cekanju, koliko ih je isteklo)
-const UserTasksStatistic: React.FC = () => {
+const UserTasksStatistic = forwardRef<UserTasksStatisticRef>((props, ref) => {
   const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const { data, isLoading, isError } = useGetCurrentUserQuery(undefined);
+  const { data, isLoading, isError, refetch } =
+    useGetCurrentUserQuery(undefined);
+
+  // Izlaze refetch metodu roditelju (MyTask komponenti)
+  useImperativeHandle(ref, () => ({
+    refetch,
+  }));
 
   if (isLoading) return <MainLoader />;
   if (isError || !data?.result) return <div>{t("myTasksPage.error")}</div>;
 
-  // Prebroj taskove po statusu i da li su overdue
-  const {
-    completedTasksCount,
-    pendingTasksCount,
-    overdueTasksCount,
-  } = data.result;
+  // Prebrojava koliko je kojih taskova
+  const { completedTasksCount, pendingTasksCount, overdueTasksCount } =
+    data.result;
 
   const totalTasks =
     (completedTasksCount ?? 0) +
     (pendingTasksCount ?? 0) +
     (overdueTasksCount ?? 0);
 
-  
-
   return (
     <div className="card shadow-sm mb-4">
-      <div className="card-header d-flex justify-content-between align-items-center bg-light">
+      <div
+        className="card-header d-flex justify-content-between align-items-center bg-light"
+        onClick={() => setIsExpanded(!isExpanded)}
+        style={{ cursor: "pointer", userSelect: "none" }}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === "") {
+            e.preventDefault();
+            setIsExpanded(!isExpanded);
+          }
+        }}
+      >
         <h5 className="mb-0">{t("myTasksPage.summary.title")}</h5>
-        <button
-          className="btn btn-link p-0"
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
+        <button className="btn btn-link p-0">
           {isExpanded ? (
             <ChevronUp size={20} color="#51285f" />
           ) : (
@@ -68,6 +82,8 @@ const UserTasksStatistic: React.FC = () => {
       )}
     </div>
   );
-};
+});
+
+UserTasksStatistic.displayName = "UserTasksStatistic";
 
 export default UserTasksStatistic;

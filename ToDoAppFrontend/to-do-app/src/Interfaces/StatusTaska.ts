@@ -5,3 +5,5 @@ export const StatusTaska = {
 } as const;
 
 export type StatusTaska = (typeof StatusTaska)[keyof typeof StatusTaska];
+
+// type koristim kada radim sa primitive vrednostima

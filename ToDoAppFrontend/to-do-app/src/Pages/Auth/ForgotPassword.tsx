@@ -16,7 +16,6 @@ function ForgotPassword() {
     const response: any = await resetPasswordRequest({ email });
     if (response.data) {
       toastNotify(t("loginPage.forgotPasswordSuccess"), "success");
-      // Optionally navigate to login after success
       navigate("/login");
     } else {
       toastNotify(t("loginPage.forgotPasswordError"), "error");

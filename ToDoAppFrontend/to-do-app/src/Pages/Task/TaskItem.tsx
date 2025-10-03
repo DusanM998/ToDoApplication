@@ -32,15 +32,15 @@ const TaskItem: React.FC<TaskItemProps> = ({
   let priorityIconColor = "";
   let priorityIconTitle = "";
   switch (task.priority) {
-    case 3: // TaskPriority.High
+    case 3: // Visok prioritet
       priorityIconColor = "text-danger";
       priorityIconTitle = t("myTasksPage.priorityHigh");
       break;
-    case 2: // TaskPriority.Normal
+    case 2: // Medium prioritet
       priorityIconColor = "text-warning";
       priorityIconTitle = t("myTasksPage.priorityNormal");
       break;
-    case 1: // TaskPriority.Low
+    case 1: // Nizak prioritet
       priorityIconColor = "text-success";
       priorityIconTitle = t("myTasksPage.priorityLow");
       break;

@@ -48,7 +48,7 @@ function Login() {
       });
 
       if (response.data) {
-        // Dobijeni token se dešifruje
+        // Dobijeni token se dekodira
         const { token } = response.data.result;
         const { name, id, email, role }: userModel = jwtDecode(token);
 
@@ -58,10 +58,8 @@ function Login() {
         // Redux state - postavljanje ulogovanog korisnika globalno
         dispatch(setLoggedInUser({ name, id, email, role }));
 
-        // Notifikacija o uspešnom logovanju
         toastNotify(t("toastNotify.loginSuccess"), "success");
 
-        // Preusmeravam korisnika na početnu stranicu
         navigate("/");
       } else if (response.error) {
         const errMsg =
@@ -89,7 +87,6 @@ function Login() {
           {t("loginPage.title")}
         </h1>
         <form method="post" onSubmit={handleSubmit}>
-          {/* Username */}
           <TextField
             label={t("loginPage.usernamePlaceholder")}
             variant="outlined"
@@ -100,7 +97,6 @@ function Login() {
             required
             className="mb-3"
           />
-          {/* Password */}
           <TextField
             type={showPassword ? "text" : "password"}
             label={t("loginPage.passwordPlaceholder")}
@@ -125,7 +121,6 @@ function Login() {
             }}
             className="mb-3"
           />
-          {/* Forgot password link */}
           <div className="mb-3 text-end">
             <a
               href="/auth/forgot-password"
@@ -135,9 +130,7 @@ function Login() {
               {t("loginPage.forgotPassword")}
             </a>
           </div>
-          {/* Error message */}
           {error && <p className="text-danger text-center">{error}</p>}
-          {/* Buttons */}
           <div className="d-flex justify-content-center gap-3">
             <button
               type="submit"

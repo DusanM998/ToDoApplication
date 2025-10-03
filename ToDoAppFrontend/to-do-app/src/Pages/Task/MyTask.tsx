@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useRef,
+} from "react";
 import {
   useDeleteTaskMutation,
   useGetFilteredTasksQuery,
@@ -14,7 +20,9 @@ import TaskFilter from "./TaskFilter";
 import MyTaskPagination from "./MyTaskPagination";
 import { setTasks } from "../../Storage/Redux/tasksSlice";
 import TaskItem from "./TaskItem";
-import UserTasksStatistic from "./UserTasksStatistic";
+import UserTasksStatistic, {
+  type UserTasksStatisticRef,
+} from "./UserTasksStatistic";
 import { StatusTaska } from "../../Interfaces/StatusTaska";
 import { toastNotify } from "../../Helper";
 
@@ -33,6 +41,9 @@ const MyTasks: React.FC = () => {
   const [updateTask] = useUpdateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
   const { t } = useTranslation();
+
+  // Ref za statistiku
+  const statisticsRef = useRef<UserTasksStatisticRef>(null);
 
   const [filters, setFilters] = useState<{
     search?: string;
@@ -61,7 +72,16 @@ const MyTasks: React.FC = () => {
     pageSize,
   });
 
-  //console.log("Taskovi sa backa", tasksResponse);
+  // Resetuje taskove i ucitava nove kada se korisnik promeni
+  useEffect(() => {
+    if (userData?.id) {
+      dispatch(setTasks([]));
+      setFilters({});
+      setPageNumber(1);
+      refetch();
+      statisticsRef.current?.refetch(); // Refresh statistike
+    }
+  }, [userData?.id, dispatch, refetch]);
 
   useEffect(() => {
     if (tasksResponse?.data) {
@@ -72,16 +92,15 @@ const MyTasks: React.FC = () => {
   // Refetch kada aplikacija postane vidljiva
   useEffect(() => {
     const handleVisibility = () => {
-      if (document.visibilityState === "visible") refetch();
+      if (document.visibilityState === "visible") {
+        refetch();
+        statisticsRef.current?.refetch();
+      }
     };
     document.addEventListener("visibilitychange", handleVisibility);
     return () =>
       document.removeEventListener("visibilitychange", handleVisibility);
   }, [refetch]);
-
-  useEffect(() => {
-    if (userData?.id) refetch();
-  }, [userData?.id, refetch]);
 
   const handleFilterChange = useCallback((newFilters: typeof filters) => {
     setFilters(newFilters);
@@ -115,11 +134,13 @@ const MyTasks: React.FC = () => {
           applicationUserId: task.applicationUserId,
         }).unwrap();
 
-        // refetch za sigurnost (može i bez njega, store već ažuriran)
+        // Refresh statistike nakon uspesnog update-a
+        statisticsRef.current?.refetch();
+
         refetch();
       } catch (err) {
         console.error("Greška pri ažuriranju taska:", err);
-        // rollback u slučaju greške
+        // vraca se na prethodno stanje u slucaju greske
         refetch();
       }
     },
@@ -133,13 +154,17 @@ const MyTasks: React.FC = () => {
         dispatch(setTasks(tasks.filter((t) => t.id !== id)));
         await deleteTask(id).unwrap();
         toastNotify(t("toastNotify.taskDeleteSuccess"), "success");
+
+        // Refresh statistike nakon brisanja
+        statisticsRef.current?.refetch();
+
         refetch();
       } catch (err) {
         console.error("Greška pri brisanju taska:", err);
         refetch();
       }
     },
-    [deleteTask, dispatch, tasks, refetch]
+    [deleteTask, dispatch, tasks, refetch, t]
   );
 
   const handleClearFilters = useCallback(() => {
@@ -171,9 +196,9 @@ const MyTasks: React.FC = () => {
 
   const categories = useMemo(() => {
     const allCategories = tasks
-      .map((task) => task.category) // uzima sve kategorije iz taskova
-      .filter((cat): cat is string => Boolean(cat)); // ukloni null/undefined
-    return Array.from(new Set(allCategories)); // da se izbace duplikati ako postoje eventualno
+      .map((task) => task.category)
+      .filter((cat): cat is string => Boolean(cat));
+    return Array.from(new Set(allCategories));
   }, [tasks]);
 
   const hasActiveFilters = Boolean(
@@ -199,7 +224,7 @@ const MyTasks: React.FC = () => {
         </button>
       </div>
 
-      <UserTasksStatistic />
+      <UserTasksStatistic ref={statisticsRef} />
 
       <TaskFilter onFilterChange={handleFilterChange} categories={categories} />
 

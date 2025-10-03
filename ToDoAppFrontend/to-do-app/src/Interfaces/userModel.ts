@@ -9,3 +9,5 @@ export default interface userModel {
     phoneNumber?: string,
     tasks?: toDoTaskModel[]
 }
+
+// Interface koristim kada definisem objekat ili klasu 

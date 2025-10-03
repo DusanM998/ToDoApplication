@@ -11,7 +11,7 @@ const ViewAllUsers: React.FC = () => {
   const { t } = useTranslation();
   const { data, isLoading, isError } = useGetAllUsersQuery(undefined);
 
-  // Pagination state
+  // State za paginaciju
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 6; // koliko korisnika po stranici
 
@@ -42,7 +42,6 @@ const ViewAllUsers: React.FC = () => {
         ))}
       </div>
 
-      {/* Paginacija */}
       {totalPages > 1 && (
         <MyTaskPagination
           pageNumber={pageNumber}
