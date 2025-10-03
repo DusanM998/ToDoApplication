@@ -70,7 +70,6 @@ const TaskItem: React.FC<TaskItemProps> = ({
         >
           <div
             className="d-flex cursor-pointer"
-            onClick={() => onToggleComplete(task)}
             style={{
               pointerEvents:
                 task.status === StatusTaska.Overdue ? "none" : "auto",
@@ -78,11 +77,27 @@ const TaskItem: React.FC<TaskItemProps> = ({
           >
             <div className="me-3 d-flex align-items-start">
               {task.status === StatusTaska.Completed ? (
-                <CheckCircle className="text-success" size={24} />
+                <CheckCircle
+                  className="text-success"
+                  size={24}
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleComplete(task);
+                  }}
+                />
               ) : task.status === StatusTaska.Overdue ? (
                 <XCircle className="text-danger" size={24} />
               ) : (
-                <Circle className="text-secondary" size={24} />
+                <Circle
+                  className="text-secondary"
+                  size={24}
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleComplete(task);
+                  }}
+                />
               )}
             </div>
             <div className="flex-grow-1">
@@ -141,8 +156,8 @@ const TaskItem: React.FC<TaskItemProps> = ({
             <button
               className="btn btn-danger btn-sm me-2"
               style={{
-                pointerEvents: "auto", 
-                opacity: 4, 
+                pointerEvents: "auto",
+                opacity: 4,
               }}
               onClick={(e) => {
                 e.stopPropagation();
