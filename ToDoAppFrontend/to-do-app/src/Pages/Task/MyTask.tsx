@@ -75,7 +75,7 @@ const MyTasks: React.FC = () => {
   });
 
   const { data: categoriesResponse } = useGetCategoriesQuery(userData?.id, {
-    skip: !userData?.id, // da ne poziva dok se userId ne učita
+    skip: !userData?.id, // da ne poziva dok se userId ne ucita
   });
 
   console.log(categoriesResponse);
@@ -83,13 +83,13 @@ const MyTasks: React.FC = () => {
   // Resetuje taskove i ucitava nove kada se korisnik promeni
   useEffect(() => {
     if (userData?.id) {
-      dispatch(setTasks([]));
+      //dispatch(setTasks([]));
       setFilters({});
       setPageNumber(1);
       refetch();
       statisticsRef.current?.refetch(); // Refresh statistike
     }
-  }, [userData?.id, dispatch, refetch]);
+  }, [userData?.id, refetch]);
 
   useEffect(() => {
     if (tasksResponse?.data) {

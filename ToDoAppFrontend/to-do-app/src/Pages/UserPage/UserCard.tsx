@@ -16,12 +16,28 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
     <div className="card shadow-sm">
       <div className="card-body">
         <div className="d-flex align-items-center mb-3">
-          <img
-            src={user.image}
-            alt={user.name}
-            className="rounded-circle me-3"
-            style={{ width: "64px", height: "64px", objectFit: "cover" }}
-          />
+          {user.image ? (
+            <img
+              src={user.image}
+              alt={user.name}
+              className="rounded-circle me-3"
+              style={{ width: "64px", height: "64px", objectFit: "cover" }}
+            />
+          ) : (
+            <div
+              className="rounded-circle me-3 d-flex align-items-center justify-content-center shadow-sm"
+              style={{
+                width: "64px",
+                height: "64px",
+                backgroundColor: "#51285f",
+                color: "#fff",
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+              }}
+            >
+              {user.name?.[0] || "?"}
+            </div>
+          )}
           <div>
             <h5 className="card-title mb-1">{user.name}</h5>
             <p className="card-text text-muted small">{user.email}</p>

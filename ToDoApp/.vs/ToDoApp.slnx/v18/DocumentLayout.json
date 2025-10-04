@@ -110,8 +110,7 @@
               "RelativeToolTip": "BLL\\Services\\Interfaces\\ITaskService.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAA1wBkAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-03T13:50:50.983Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-03T13:50:50.983Z"
             },
             {
               "$type": "Document",
@@ -123,8 +122,7 @@
               "RelativeToolTip": "BLL\\Services\\Implementations\\TaskService.cs",
               "ViewState": "AgIAAGIBAAAAAAAAAAAswGkBAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T20:59:52.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-01T20:59:52.661Z"
             },
             {
               "$type": "Document",
@@ -136,8 +134,7 @@
               "RelativeToolTip": "BLL\\Services\\Implementations\\AuthService.cs",
               "ViewState": "AgIAAAgBAAAAAAAAAAAAwBsAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T08:43:43.31Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-28T08:43:43.31Z"
             },
             {
               "$type": "Document",
@@ -149,8 +146,7 @@
               "RelativeToolTip": "DAL\\Repository\\Interfaces\\ITaskRepository.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAiwBMAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T06:38:48.974Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T06:38:48.974Z"
             },
             {
               "$type": "Document",
@@ -162,8 +158,7 @@
               "RelativeToolTip": "DAL\\Repository\\Implementations\\TaskRepository.cs",
               "ViewState": "AgIAAGEAAAAAAAAAAAAswHAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T20:42:21.816Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-01T20:42:21.816Z"
             },
             {
               "$type": "Document",
@@ -173,7 +168,7 @@
               "RelativeDocumentMoniker": "ToDoApp\\Controllers\\TasksController.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\TasksController.cs",
               "RelativeToolTip": "ToDoApp\\Controllers\\TasksController.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAswHwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAAwHAAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T08:29:37.68Z",
               "EditorCaption": ""
@@ -188,8 +183,7 @@
               "RelativeToolTip": "DAL\\Extensions\\SeedDataExtensions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAB/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T09:09:37.125Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T09:09:37.125Z"
             },
             {
               "$type": "Document",
@@ -213,8 +207,7 @@
               "RelativeToolTip": "EL\\DTOs\\ToDoTaskDTO\\TaskWithUserDTO.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-03T13:09:27.096Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-03T13:09:27.096Z"
             },
             {
               "$type": "Document",
@@ -226,8 +219,7 @@
               "RelativeToolTip": "BLL\\Services\\Implementations\\CloudinaryService.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAD4vygAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-03T08:37:57.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-03T08:37:57.04Z"
             },
             {
               "$type": "Document",
@@ -251,8 +243,7 @@
               "RelativeToolTip": "BLL\\Services\\Implementations\\OverdueTaskBackgroundService.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAtwCcAAACDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T06:33:58.924Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-02T06:33:58.924Z"
             },
             {
               "$type": "Document",

@@ -88,12 +88,15 @@ function CreateTask() {
           <DatePicker
             label={t("createTaskPage.dueDateLabel")}
             value={taskInputs.dueDate ? new Date(taskInputs.dueDate) : null}
-            onChange={(newDate) =>
+            onChange={(newDate) => {
+              if (newDate) {
+                newDate.setHours(12, 0, 0, 0); // postavi na podne da ne ide u prethodni dan
+              }
               setTaskInputs((prev) => ({
                 ...prev,
                 dueDate: newDate ? newDate.toISOString() : undefined,
-              }))
-            }
+              }));
+            }}
             slotProps={{ textField: { fullWidth: true, className: "mb-3" } }}
           />
 
