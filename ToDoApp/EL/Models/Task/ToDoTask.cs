@@ -16,8 +16,13 @@ namespace EL.Models.Task
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? DueDate { get; set; }
         [Required]
+        // Polje koje cuva ID kor. kome task pripada
+        // Predst. FK prema tabeli ApplicationUser (svaki zadatak ima tacno jednog vlasnika)
         public string ApplicationUserId { get; set; } = string.Empty;
         [ForeignKey("ApplicationUserId")]
+        // FK atr. povezuje ApplicationUserId sa navigacionom vezom User i kaze EF coreu da je ApplicationUserId
+        // FK ka tabeli User
+        // virtual mi omogucava da se ucita User obj. iz baze samo kada se prvi put pristupi ovom polju
         public virtual ApplicationUser User { get; set; }
 
         public TaskPriority Priority { get; set; } = TaskPriority.Medium; // Prioriteti za task - Low, Medium, High

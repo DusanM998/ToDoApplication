@@ -71,6 +71,7 @@ export const taskApi = createApi({
         dueDateTo?: string;
         category?: string;
         priority?: number;
+        sortBy?: string;
         pageNumber?: number;
         pageSize?: number;
       }
@@ -82,6 +83,7 @@ export const taskApi = createApi({
         dueDateTo,
         category,
         priority,
+        sortBy,
         pageNumber = 1,
         pageSize = 10,
       }) => {
@@ -93,6 +95,7 @@ export const taskApi = createApi({
         if (dueDateTo) params.append("dueDateTo", dueDateTo);
         if (category) params.append("category", category);
         if (priority !== undefined) params.append("priority", String(priority));
+        if (sortBy) params.append("sortBy", sortBy);
         params.append("pageNumber", String(pageNumber));
         params.append("pageSize", String(pageSize));
 

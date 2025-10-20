@@ -16,7 +16,7 @@ const initialState: TaskState = {
 export const taskSlice = createSlice({
   name: "tasks",
   initialState,
-  reducers: {
+  reducers: { // Reducers - funkcije koje definisu kako se stanje menja
     setTasks: (state, action: PayloadAction<toDoTaskModel[]>) => {
       state.tasks = action.payload;
     },

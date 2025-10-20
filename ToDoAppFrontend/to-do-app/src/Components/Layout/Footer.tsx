@@ -10,7 +10,7 @@ const Footer = () => {
     >
       <div className="container">
         <p className="mb-0" style={{ fontSize: "1rem", fontWeight: "400" }}>
-          Developed by Dušan Milojković for Diligent
+          Developed by Dušan Milojković
         </p>
       </div>
     </footer>

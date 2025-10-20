@@ -20,6 +20,7 @@ namespace BLL.Services.Interfaces
             DateTime? dueDateTo,
             string? category,
             TaskPriority? priority,
+            string? sortBy,
             int pageNumber = 1,
             int pageSize = 10);
 

@@ -55,14 +55,13 @@ namespace DAL.Repository.Implementations
             DateTime? dueDateFrom,
             DateTime? dueDateTo,
             string? category,
-            TaskPriority? priority)
+            TaskPriority? priority,
+            string? sortBy)
         {
             // Ne izvrsavam odmah query vec samo kreiram upit koji se kasnije izvrsava nad bazom
             // znaci tek kad dodjem do operacije ToListAsync npr, rezultati se pretvaraju u objekte i vracaju
             IQueryable<ToDoTask> query = _context.ToDoTasks
-                    .Where(t => t.ApplicationUserId == userId)
-                    .OrderBy(t => t.DueDate)
-                    .ThenByDescending(t => t.Priority); // Filter taskova tako da se uzmu samo oni koji pripadaju trenutno ulogovanom korisniku
+                    .Where(t => t.ApplicationUserId == userId); // Filter taskova tako da se uzmu samo oni koji pripadaju trenutno ulogovanom korisniku
                     
 
             query = query.ApplySearch(search);
@@ -96,6 +95,18 @@ namespace DAL.Repository.Implementations
                 query = query.Where(t => t.Priority == priority.Value);
             }
 
+            // Sortiranje
+            query = sortBy switch
+            {
+                "dueDateAsc" => query.OrderBy(t => t.DueDate),
+                "dueDateDesc" => query.OrderByDescending(t => t.DueDate),
+                "titleAsc" => query.OrderBy(t => t.Title),
+                "titleDesc" => query.OrderByDescending(t => t.Title),
+                "priorityAsc" => query.OrderBy(t => t.Priority),
+                "priorityDesc" => query.OrderByDescending(t => t.Priority),
+                _ => query.OrderBy(t => t.DueDate).ThenByDescending(t => t.Priority) // default
+            };
+
             return query;
         }
 
@@ -105,8 +116,8 @@ namespace DAL.Repository.Implementations
             // Pravim query koji ce vratiti samo kategorije za datog korisnika
             return _context.ToDoTasks
                 .Where(t => t.ApplicationUserId == userId && !string.IsNullOrEmpty(t.Category))
-                .Select(t => t.Category.Trim())
-                .Distinct()
+                .Select(t => t.Category.Trim()) // Trim uklanja whitespace sa pocetka i kraja stringa
+                .Distinct() // Uklanja duplikate
                 .OrderBy(c => c);
         }
 

@@ -37,6 +37,7 @@ namespace ToDoApp.Controllers
         }
 
         [HttpGet("allUsers")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetAllUsers()
         {
             var response = await _authService.GetAllUsersAsync();

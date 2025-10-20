@@ -117,7 +117,15 @@
     "priorityLow": "Low priority",
     "priorityNone": "No priority",
     "allPriorities": "All Priorities",
-    "noSearchResults": "Nema rezultata za datu pretragu."
+    "noSearchResults": "Nema rezultata za datu pretragu.",
+    "sortBy": "Sort By",
+    "noSort": "Default",
+    "sortDueDateAsc": "Due Date (Ascending)",
+    "sortDueDateDesc": "Due Date (Descending)",
+    "sortTitleAsc": "Title (A–Z)",
+    "sortTitleDesc": "Title (Z–A)",
+    "sortPriorityAsc": "Priority (Low to High)",
+    "sortPriorityDesc": "Priority (High to Low)"
   },
   "createTaskPage": {
     "title": "Create New Task",

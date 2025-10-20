@@ -9,6 +9,7 @@ const authApi = createApi({
     credentials: "include", // salje cookies sa svakim zahtevom
     prepareHeaders: (headers) => {
       // Automatski dodaje token u header svakog zahteva ako je korisnik ulogovan
+      // tj. ako token postoji
       const token = localStorage.getItem("token");
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
@@ -26,7 +27,8 @@ const authApi = createApi({
         method: "POST",
         body: userData,
       }),
-      invalidatesTags: ["AuthApi"],
+      invalidatesTags: ["AuthApi"], // oznacava da mutacija menja podatke koji su povezani sa tagom 
+      // kada se ova mutacija izvrsi, brise iz kesa sve podatke oznacene sa AuthApi
     }),
     loginUser: builder.mutation({
       query: (userCredentials) => ({
@@ -49,13 +51,15 @@ const authApi = createApi({
       query: (id) => ({
         url: `auth/${id}`,
       }),
-      providesTags: ["AuthApi"],
+      providesTags: ["AuthApi"], // oznacava da query vraca podatke koji su povezani sa tagom 
+      // kada korisnik zatrazi podatke o korisniku, rezultat se cuva u kesu AuthApi
+      // ako neko kasnije zatrazi iste podatke, RTK query ne salje ponovo zahtev nego samo uzima te podatke iz kesa 
     }),
     updateUserDetails: builder.mutation({
       query: ({ data, id }) => ({
         url: "auth/" + id,
         method: "PUT",
-        body: data,
+        body: data, // podaci koje saljem u telu HTTP zahteva
       }),
       invalidatesTags: ["AuthApi"],
     }),

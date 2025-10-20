@@ -30,8 +30,13 @@ import { toastNotify } from "../../Helper";
 // Komponenta koja prikazuje svakom korisniku individualne taskove
 const MyTasks: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const userData = useSelector((state: RootState) => state.userAuthStore);
+  const dispatch = useDispatch(); // useDispatch je iz Redux bib. omogucava mi da iz komponente 
+  // posaljem (dispatchujem) akcije ka Redux store
+
+  // ovde uzimam trenutno ulogovanog korisnika iz redux store
+  const userData = useSelector((state: RootState) => state.userAuthStore); // useSelector koristim za citanje podataka iz redux store
+
+  // dohvatam listu taskova za trenutno ulogovanog korisnika
   const tasksFromStore = useSelector(
     (state: RootState) => state.taskStore.tasks
   );
@@ -53,6 +58,7 @@ const MyTasks: React.FC = () => {
     dueDateTo?: string;
     category?: string;
     priority?: TaskPriority;
+    sortBy?: string;
   }>({});
 
   const [pageNumber, setPageNumber] = useState(1);
@@ -70,6 +76,7 @@ const MyTasks: React.FC = () => {
     dueDateTo: filters.dueDateTo,
     priority: filters.priority,
     category: filters.category,
+    sortBy: filters.sortBy,
     pageNumber,
     pageSize,
   });
@@ -93,7 +100,7 @@ const MyTasks: React.FC = () => {
 
   useEffect(() => {
     if (tasksResponse?.data) {
-      dispatch(setTasks(tasksResponse.data));
+      dispatch(setTasks(tasksResponse.data)); // pozivam akciju setTasks koja azurira redux store
     }
   }, [tasksResponse, dispatch]);
 

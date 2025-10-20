@@ -13,6 +13,7 @@ interface TaskFilterProps {
     dueDateTo?: string;
     category?: string;
     priority?: TaskPriority;
+    sortBy?: string;
   }) => void;
   categories: string[];
 }
@@ -32,6 +33,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
       dueDateTo: "",
       category: "",
       priority: undefined as TaskPriority | undefined,
+      sortBy: "" as string,
     },
     onSubmit: (values) => {
       // Validacija datuma
@@ -59,11 +61,10 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
         dueDateTo: to,
         category: values.category || undefined,
         priority: values.priority,
+        sortBy: values.sortBy || undefined,
       });
     },
   });
-
-  //const isFilterSet = search !== "" || status !== undefined || dueDateFrom !== "" || dueDateTo !== "";
 
   const isFilterSet =
     formik.values.search !== "" ||
@@ -71,7 +72,8 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
     formik.values.dueDateFrom !== "" ||
     formik.values.dueDateTo !== "" ||
     formik.values.category !== "" ||
-    formik.values.priority !== undefined;
+    formik.values.priority !== undefined ||
+    formik.values.sortBy !== "";
 
   useEffect(() => {
     if (!isFilterSet) {
@@ -82,6 +84,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
         dueDateTo: undefined,
         category: undefined,
         priority: undefined,
+        sortBy: ""
       });
     }
   }, [isFilterSet]);
@@ -95,6 +98,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
       dueDateTo: undefined,
       category: undefined,
       priority: undefined,
+      sortBy: ""
     });
   };
 
@@ -213,7 +217,6 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
               <option value={3}>{t("myTasksPage.priorityHigh")}</option>
             </select>
           </div>
-
           <div className="col-md-3">
             <label className="form-label fw-medium text-muted">
               {t("myTasksPage.dueDateFrom")}
@@ -247,6 +250,40 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
               value={formik.values.dueDateTo}
               onChange={formik.handleChange}
             />
+          </div>
+          <div className="col-md-3">
+            <label className="form-label fw-medium text-muted">
+              {t("myTasksPage.sortBy")}
+            </label>
+            <select
+              className="form-select"
+              style={{
+                borderColor: "#51285f",
+                borderRadius: "8px",
+                padding: "10px",
+              }}
+              name="sortBy"
+              value={formik.values.sortBy}
+              onChange={formik.handleChange}
+            >
+              <option value="">{t("myTasksPage.noSort")}</option>
+              <option value="dueDateAsc">
+                {t("myTasksPage.sortDueDateAsc")}
+              </option>
+              <option value="dueDateDesc">
+                {t("myTasksPage.sortDueDateDesc")}
+              </option>
+              <option value="titleAsc">{t("myTasksPage.sortTitleAsc")}</option>
+              <option value="titleDesc">
+                {t("myTasksPage.sortTitleDesc")}
+              </option>
+              <option value="priorityAsc">
+                {t("myTasksPage.sortPriorityAsc")}
+              </option>
+              <option value="priorityDesc">
+                {t("myTasksPage.sortPriorityDesc")}
+              </option>
+            </select>
           </div>
           {isFilterSet && (
             <div className="col-12 text-center">

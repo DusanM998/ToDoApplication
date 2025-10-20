@@ -21,6 +21,8 @@ const rootReducer = combineReducers({
   [taskApi.reducerPath]: taskApi.reducer,
 });
 
+// persistedReducer - da se stanje (userAuthStore i taskStore) cuva u localStorage
+// pomocu redux-persist
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // Store - mesto za cuvanje stanja cele aplikacije (kombinacija svih slice-ova)

@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: todo-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MyPass123!
+    ports:
+      - "1433:1433"
+    networks:
+      - todo-network
+    healthcheck:
+        test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P MyPass123! -Q 'SELECT 1' || exit 1"]
+        interval: 15s
+        timeout: 10s
+        retries: 10
+        start_period: 40s
+
+
+  todoapp-backend:
+    build:
+      context: .
+      dockerfile: ToDoApp/Dockerfile
+    container_name: todoapp-backend
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      # Ovaj connection string se koristi samo unutar Docker kontejnera
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=ToDoApp_Database;User Id=sa;Password=MyPass123!;TrustServerCertificate=True;"
+    ports:
+        - "7070:8080"
+        - "7071:8081"
+    networks:
+      - todo-network
+
+networks:
+  todo-network:
+    driver: bridge

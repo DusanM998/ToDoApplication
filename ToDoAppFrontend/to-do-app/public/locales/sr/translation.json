@@ -117,7 +117,15 @@
     "priorityLow": "Nizak prioritet",
     "priorityNone": "Nema prioriteta",
     "allPriorities": "Svi Prioriteti",
-    "noSearchResults": "Nema rezultata za datu pretragu."
+    "noSearchResults": "Nema rezultata za datu pretragu.",
+    "sortBy": "Sortiraj po",
+    "noSort": "Podrazumevano",
+    "sortDueDateAsc": "Rok (rastuće)",
+    "sortDueDateDesc": "Rok (opadajuće)",
+    "sortTitleAsc": "Naziv (A–Š)",
+    "sortTitleDesc": "Naziv (Š–A)",
+    "sortPriorityAsc": "Prioritet (od niskog ka visokom)",
+    "sortPriorityDesc": "Prioritet (od visokog ka niskom)"
   },
   "createTaskPage": {
     "title": "Kreiraj Novi Task",

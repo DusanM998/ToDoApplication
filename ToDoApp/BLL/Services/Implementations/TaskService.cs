@@ -29,7 +29,8 @@ namespace BLL.Services.Implementations
             _userManager = userManager;
         }
 
-        // Dohvata sve taskove za sve korisnike (za admina)
+        // Dohvata sve taskove za sve korisnike (za admina vraca sve taskove koji su u bazi)
+        // Za customera vraca samo njegove taskove
         public async Task<ApiResponse> GetAllTasks()
         {
             var response = new ApiResponse();
@@ -47,7 +48,7 @@ namespace BLL.Services.Implementations
         {
             var response = new ApiResponse();
 
-            var userTasks = await _unitOfWork.Tasks.GetAllAsQueryable(userId, null, null, null, null, null, null)
+            var userTasks = await _unitOfWork.Tasks.GetAllAsQueryable(userId, null, null, null, null, null, null, null)
                 .Select(t => new ToDoTaskResponseDTO
                 {
                     Id = t.Id,
@@ -301,6 +302,7 @@ namespace BLL.Services.Implementations
             DateTime? dueDateTo,
             string? category,
             TaskPriority? priority,
+            string? sortBy,
             int pageNumber = 1,
             int pageSize = 10)
         {
@@ -308,7 +310,7 @@ namespace BLL.Services.Implementations
 
             try
             {
-                var query = _unitOfWork.Tasks.GetAllAsQueryable(userId, search, status, dueDateFrom, dueDateTo, category, priority);
+                var query = _unitOfWork.Tasks.GetAllAsQueryable(userId, search, status, dueDateFrom, dueDateTo, category, priority, sortBy);
 
                 var totalRecords = await query.CountAsync(); // Vraca ukupan broj taskova nakon primene svih filtera (racunaju se direktno u bazi)
                 var tasks = await query

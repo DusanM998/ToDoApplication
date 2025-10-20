@@ -7,6 +7,7 @@ using EL.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using System.Net;
 using System.Security.Claims;
 using ToDoApp.Models;
@@ -87,6 +88,7 @@ namespace ToDoApp.Controllers
             DateTime? dueDateTo,
             string? category,
             TaskPriority? priority,
+            string? sortBy,
             int pageNumber = 1,
             int pageSize = 10)
         {
@@ -99,6 +101,7 @@ namespace ToDoApp.Controllers
                 dueDateTo,
                 category,
                 priority,
+                sortBy,
                 pageNumber,
                 pageSize);
 

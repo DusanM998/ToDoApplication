@@ -23,7 +23,7 @@ using ToDoApp.Models.Dto.PasswordAuthDTO;
 
 namespace BLL.Services.Implementations
 {
-    // Nisam kreirao AuthRepository jer koristim vec ovde Identity framework
+    // Nisam kreirao AuthRepository jer koristim ovde Identity framework
     // i AuthService ima specificnu logiku: register/login,
     // refresh tokena, reset lozinke... (ne samo klasicne CRUD operacije)
     public class AuthService : IAuthService
@@ -197,7 +197,7 @@ namespace BLL.Services.Implementations
                 // Autorizacija korisnika (na osnovu role) i generisanje JWT tokena
                 var roles = await _userManager.GetRolesAsync(userFromDb);
 
-                //Ako je password tacan generise se JWT token
+                //Ako je password tacan generise se JWT token (Access token)
                 JwtSecurityTokenHandler tokenHandler = new(); // Kreira se handler koji sastavlja i serijalizuje JWT
                 byte[] key = Encoding.ASCII.GetBytes(_secretKey); // Pretvara secretKey (iz appsetting.json) u bajtove koji se koriste za potpis i verifikaciju
 
@@ -206,16 +206,18 @@ namespace BLL.Services.Implementations
                     // Sastavljam Claims koji ce biti u payloadu tokena
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                new Claim(ClaimTypes.NameIdentifier, userFromDb.Id.ToString()),
-                new Claim("name", userFromDb.Name),
-                new Claim("id", userFromDb.Id.ToString()),
-                new Claim(ClaimTypes.Email, userFromDb.UserName.ToString()),
-                new Claim(ClaimTypes.Role, roles.FirstOrDefault() ?? ""),
-                new Claim("phoneNumber", userFromDb.PhoneNumber ?? "")
+                        new Claim(ClaimTypes.NameIdentifier, userFromDb.Id.ToString()),
+                        new Claim("name", userFromDb.Name),
+                        new Claim("id", userFromDb.Id.ToString()),
+                        new Claim(ClaimTypes.Email, userFromDb.UserName.ToString()),
+                        new Claim(ClaimTypes.Role, roles.FirstOrDefault() ?? ""),
+                        new Claim("phoneNumber", userFromDb.PhoneNumber ?? "")
                     }),
-                    Expires = DateTime.UtcNow.AddHours(1),
+                    Expires = DateTime.UtcNow.AddHours(1), // token vazi 1h
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                         SecurityAlgorithms.HmacSha256Signature)
+
+                    //Nema potrebe da cuvam token u bazi jer se on verifikuje potpisom i istekom
                 };
 
                 SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
