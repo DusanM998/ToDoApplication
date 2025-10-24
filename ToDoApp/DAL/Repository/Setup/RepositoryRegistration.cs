@@ -19,6 +19,7 @@ namespace DAL.Repository.Setup
             
 
             services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

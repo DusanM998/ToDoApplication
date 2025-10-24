@@ -1,0 +1,16 @@
+﻿using EL.Models.Messages;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DAL.Repository.Interfaces
+{
+    public interface IMessageRepository : IRepository<Message>
+    {
+        Task<List<Message>> GetConversationAsync(string userId1, string userId2);
+        Task<List<Message>> GetUnreadMessagesAsync(string userId);
+        Task<List<Message>> GetAllMessagesForUserAsync(string userId);
+    }
+}

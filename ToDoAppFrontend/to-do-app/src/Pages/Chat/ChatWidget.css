@@ -1,0 +1,127 @@
+/* ChatWidget.css */
+.chat-icon {
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 9999 !important; /* Još viši z-index */
+}
+
+.chat-icon:hover {
+  transform: scale(1.1);
+  background-color: #6b3a7a !important;
+  box-shadow: 0 8px 25px rgba(81, 40, 95, 0.4) !important;
+}
+
+.chat-icon:active {
+  transform: scale(0.95);
+}
+
+/* Modal animacije */
+.chat-modal {
+  z-index: 10050 !important; /* Visok z-index za modal */
+}
+
+.chat-modal .modal-content {
+  border: none;
+  border-radius: 12px;
+  max-width: 90vw;
+}
+
+
+.chat-modal .modal.show .modal-content,
+.chat-modal .modal-dialog-centered .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+.chat-modal .modal-backdrop {
+  z-index: 10000 !important; /* Backdrop ispod modala, ali iznad ostalog */
+}
+
+/* Responsive dizajn */
+@media (max-width: 576px) {
+  .chat-icon {
+    width: 50px !important;
+    height: 50px !important;
+    margin: 1rem !important;
+  }
+
+  .chat-modal .modal-dialog {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100vh;
+  }
+
+  .chat-modal .modal-content {
+    border-radius: 0;
+    height: 100vh;
+    max-height: 100vh;
+  }
+
+  .chat-modal .modal-body {
+    height: calc(100vh - 120px);
+    padding: 1rem;
+  }
+
+  .chat-modal .modal-header {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .chat-icon {
+    width: 55px !important;
+    height: 55px !important;
+  }
+
+  .chat-modal .modal-content {
+    max-width: 80vw;
+  }
+}
+
+/* Tablet i desktop optimizacija */
+@media (min-width: 769px) {
+  .chat-modal .modal-body {
+    height: 500px;
+  }
+
+  .chat-modal .modal-content {
+    max-width: 2500px; /* Fiksna sirina za vece ekrane */
+  }
+}
+
+/* Animacija za poruke */
+.message-bubble {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar za chat oblast */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #51285f;
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #6b3a7a;
+}

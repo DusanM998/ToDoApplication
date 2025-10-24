@@ -1,11 +1,9 @@
-export default interface apiResponse {
+export default interface apiResponse<T = any> {
     data?: {
         statusCode?: number;
         isSuccess?: boolean;
         errorMessage?: Array<string>;
-        result: {
-            [key: string]: string
-        }
+        result: T
     };
     error?: any;
 }

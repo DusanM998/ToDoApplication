@@ -161,6 +161,28 @@
     "actions": "Akcije",
     "notYourTask": "Nije Vaš task"
   },
+  "chat": {
+    "title": "Pošalji poruku",
+    "receiverEmail": "Email primaoca",
+    "receiverPlaceholder": "Unesite email korisnika kome želite da pošaljete poruku",
+    "messageLabel": "Poruka",
+    "typeMessage": "Upišite poruku...",
+    "send": "Odaberi",
+    "sending": "Slanje...",
+    "close": "Zatvori",
+    "validationError": "Molimo unesite email i poruku.",
+    "sentSuccess": "Poruka uspešno poslata!",
+    "sendError": "Došlo je do greške prilikom slanja poruke.",
+    "newChat": "Novi chat",
+    "myChats": "Moji chatovi",
+    "systemUser": "Sistem",
+    "welcomeMessage": "Dobrodošli u chat!",
+    "selectChat": "Izaberite chat za prikaz poruka",
+    "newMessage": "Novo",
+    "read": "Pročitano",
+    "unread": "Nepročitano",
+    "you": "Vi"
+  },
   "toastNotify": {
     "uploadImageError": "Molimo vas da otpremite sliku.",
     "registrationSuccess": "Registracija uspešna!",

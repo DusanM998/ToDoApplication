@@ -1,4 +1,5 @@
 ﻿using DAL.DbContexts;
+using DAL.Repository.Implementations;
 using DAL.Repository.Interfaces;
 using DAL.Repository.UoF.Interfaces;
 using EL.Models.Task;
@@ -15,10 +16,12 @@ namespace DAL.Repository.UoF.Implementations
     {
         private readonly ApplicationDbContext _context;
         public ITaskRepository Tasks { get; private set; }
-        public UnitOfWork(ApplicationDbContext context, ITaskRepository tasks)
+        public IMessageRepository Messages { get; private set; }
+        public UnitOfWork(ApplicationDbContext context, ITaskRepository tasks, IMessageRepository messages)
         {
             _context = context;
             Tasks = tasks;
+            Messages = messages;
         }
         public async Task SaveChangesAsync()
         {

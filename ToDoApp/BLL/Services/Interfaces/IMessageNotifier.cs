@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EL.Models
+namespace BLL.Services.Interfaces
 {
-    internal class TaskSortOption
+    public interface IMessageNotifier
     {
+        Task NotifyUserAsync(string userId, object message);
     }
 }

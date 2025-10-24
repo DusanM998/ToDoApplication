@@ -13,12 +13,14 @@ using EL.Models.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
 using System.Text;
+using ToDoApp.Hubs;
 using ToDoApp.Infrastructure.Setup;
 
 // Middleware - komponenta kroz koju prolazi svaki HTTP zahtev (i odgovor)
@@ -40,6 +42,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Konfiguracija Identity sistema
 builder.Services.AddIdentitySetup();
 
+builder.Services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
+
+// Konfiguracija SignalR
+builder.Services.AddSignalR();
+
 //Konfiguracija Data Access Layera (Repository Pattern)
 builder.Services.AddDataAccess(builder.Configuration);
 
@@ -54,6 +61,7 @@ builder.Services.AddHostedService<OverdueTaskBackgroundService>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddSingleton<ICloudinaryService, CloudinaryService>(); // Singleton - jedna instanca servisa za ceo lifecycle aplikacije
 builder.Services.AddSingleton<IEmailService, EmailService>();
+builder.Services.AddSingleton<IMessageNotifier, SignalRMessageNotifier>();
 
 // JWT konfiguracija
 // Mora biti pre UseAuthorization jer je bitno znati ko je korisnik pre nego sto se provere prava pristupa
@@ -116,6 +124,8 @@ app.UseCors("AllowFrontend");
 app.UseAuthentication(); // Middleware koji proverava identitet korisnika (ko je korisnik)
 
 app.UseAuthorization();
+
+app.MapHub<MessageHub>("/hubs/message");
 
 app.MapControllers();
 

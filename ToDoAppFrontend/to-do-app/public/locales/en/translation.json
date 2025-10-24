@@ -161,6 +161,28 @@
     "actions": "Actions",
     "notYourTask": "Not Your task"
   },
+  "chat": {
+    "title": "Send Message",
+    "receiverEmail": "Recipient Email",
+    "receiverPlaceholder": "Enter the email of the user you want to message",
+    "messageLabel": "Message",
+    "typeMessage": "Type your message...",
+    "send": "Choose",
+    "sending": "Sending...",
+    "close": "Close",
+    "validationError": "Please enter both email and message.",
+    "sentSuccess": "Message sent successfully!",
+    "sendError": "An error occurred while sending the message.",
+    "newChat": "New Chat",
+    "myChats": "My Chats",
+    "systemUser": "System",
+    "welcomeMessage": "Welcome to the chat!",
+    "selectChat": "Select a chat to view messages",
+    "newMessage": "New",
+    "read": "Read",
+    "unread": "Unread",
+    "you": "You"
+  },
   "toastNotify": {
     "uploadImageError": "Please upload an image.",
     "registrationSuccess": "Registration successful!",

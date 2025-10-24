@@ -15,6 +15,7 @@ namespace BLL.Setup
         public static IServiceCollection AddBusinessLogic(this IServiceCollection services)
         {
             services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<IMessageService, MessageService>();
             return services;
         }
     }

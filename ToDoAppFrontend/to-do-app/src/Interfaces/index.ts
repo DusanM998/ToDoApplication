@@ -1,6 +1,9 @@
 import type userModel from "./userModel";
 import type apiResponse from "./apiResponse";
 import type toDoTaskModel from "./toDoTaskModel";
+import type Message from "./message";
+import type ConversationPartner from "./ConversationPartner";
 import { TaskPriority } from "./TaskPriority";
 
-export type { userModel, apiResponse, toDoTaskModel, TaskPriority };
+export type { userModel, apiResponse, toDoTaskModel,
+     Message, TaskPriority, ConversationPartner };

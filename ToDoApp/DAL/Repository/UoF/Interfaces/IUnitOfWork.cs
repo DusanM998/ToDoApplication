@@ -1,4 +1,5 @@
 ﻿using DAL.Repository.Interfaces;
+using EL.Models.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace DAL.Repository.UoF.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         ITaskRepository Tasks { get; }
+
+        IMessageRepository Messages { get; }
         
         Task SaveChangesAsync();
     }

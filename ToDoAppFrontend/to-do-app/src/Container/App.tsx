@@ -10,6 +10,7 @@ import { ForgotPassword, Login, Register, ResetPassword } from "../Pages/Auth";
 import { UserDetailsUpdate, UserPage } from "../Pages/UserPage";
 import { CreateTask, EditTask, MyTasks } from "../Pages/Task";
 import { ViewAllTasks, ViewAllUsers } from "../Pages/Admin";
+import ChatWidget from "../Pages/Chat/ChatWidget";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ function App() {
           <Route path="/admin/viewAllUsers" element={<ViewAllUsers />} ></Route>
         </Routes>
       </div>
+      <ChatWidget />
     </div>
   );
 }
