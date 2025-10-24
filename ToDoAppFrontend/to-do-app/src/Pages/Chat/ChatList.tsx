@@ -122,6 +122,10 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
     connection.on("ReceiveMessage", handleReceiveMessage);
 
+    connection.on("UsersOnline", (userIds: string[]) => {
+      setOnlineUsers(new Set(userIds));
+    });
+
     connection.on("UserOnline", (userId: string) => {
       setOnlineUsers((prev) => new Set([...prev, userId]));
     });
@@ -144,6 +148,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
     return () => {
       connection.off("ReceiveMessage", handleReceiveMessage);
+      connection.off("UsersOnline");
       connection.off("UserOnline");
       connection.off("UserOffline");
       connection.off("MessageRead");
@@ -172,7 +177,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
         (m.senderId === currentUserId && m.receiverId === selectedUserId)
     );
 
-    // Kombinuje poruke dajuci prioritet REST API porukama 
+    // Kombinuje poruke dajuci prioritet REST API porukama
     const all = [...restMessages];
 
     // Dodaje samo realtime poruke koje nisu vec u REST odgovoru
@@ -222,7 +227,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     if (!selectedUserId || !newMessage.trim() || !hubConnection.current) return;
 
     const messageContent = newMessage;
-    setNewMessage(""); 
+    setNewMessage("");
 
     try {
       const tempMsg: Message = {
@@ -347,16 +352,70 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
       {/* Chat Area */}
       <div className="flex-grow-1 d-flex flex-column">
-        {selectedUserId && (
-          <div className="p-3 border-bottom bg-white d-flex align-items-center">
-            <i className="bi bi-person-circle fs-3 me-3" style={{color:"#6b3a7a"}}></i>
-            <span>
-              {sortedConversationPartners.find(
-                (p) => p.userId === selectedUserId
-              )?.email || t("chat.unknownUser")}
-            </span>
-          </div>
-        )}
+        {selectedUserId &&
+          (() => {
+            const selectedPartner = sortedConversationPartners.find(
+              (p) => p.userId === selectedUserId
+            );
+
+            return (
+              <div className="p-3 border-bottom bg-white d-flex align-items-center">
+                {/* Profilna slika ili default ikonica */}
+                {selectedPartner?.profileImageUrl ? (
+                  <div className="position-relative me-3">
+                    <img
+                      src={selectedPartner.profileImageUrl}
+                      alt="User"
+                      className="rounded-circle"
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        objectFit: "cover",
+                        border: "2px solid #6b3a7a",
+                      }}
+                    />
+                    {onlineUsers.has(selectedPartner.userId) && (
+                      <span
+                        className="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-light rounded-circle"
+                        style={{ width: "12px", height: "12px" }}
+                      ></span>
+                    )}
+                  </div>
+                ) : (
+                  <div className="position-relative me-3">
+                    <i
+                      className="bi bi-person-circle fs-1"
+                      style={{ color: "#6b3a7a" }}
+                    ></i>
+                    {onlineUsers.has(selectedPartner?.userId || "") && (
+                      <span
+                        className="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-light rounded-circle"
+                        style={{ width: "12px", height: "12px" }}
+                      ></span>
+                    )}
+                  </div>
+                )}
+
+                {/* Ime i status korisnika */}
+                <div>
+                  <div className="fw-semibold">
+                    {selectedPartner?.email || t("chat.unknownUser")}
+                  </div>
+                  <div
+                    className={`small ${
+                      onlineUsers.has(selectedPartner?.userId || "")
+                        ? "text-success"
+                        : "text-muted"
+                    }`}
+                  >
+                    {onlineUsers.has(selectedPartner?.userId || "")
+                      ? t("chat.online") || "Online"
+                      : t("chat.offline") || "Offline"}
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
 
         <div
           ref={messagesContainerRef}
@@ -400,7 +459,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
                       <i
                         className="bi bi-check-all"
                         style={{ color: "#00c853" }}
-                      ></i> 
+                      ></i>
                     ) : (
                       <i className="bi bi-check" style={{ color: "#bbb" }}></i>
                     ))}

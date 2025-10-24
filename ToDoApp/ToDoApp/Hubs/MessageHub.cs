@@ -8,20 +8,24 @@ namespace ToDoApp.Hubs
         private static ConcurrentDictionary<string, string> OnlineUsers = new();
 
         // Real - time status korisnika
-        public override Task OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
             var userId = Context.UserIdentifier;
             if (!string.IsNullOrEmpty(userId))
             {
+                // Dodaje korisnika u listu online
                 OnlineUsers[userId] = Context.ConnectionId;
 
-                // Emituj svim klijentima da je korisnik online
-                Clients.All.SendAsync("UserOnline", userId);
+                // Posalje novom korisniku listu svih trenutno online korisnika
+                await Clients.Caller.SendAsync("UsersOnline", OnlineUsers.Keys);
+
+                // Obavesti sve ostale klijente da je ovaj korisnik sada online
+                await Clients.Others.SendAsync("UserOnline", userId);
             }
-            return base.OnConnectedAsync();
+            await base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnectedAsync(Exception? exception)
+        public override async Task OnDisconnectedAsync(Exception? exception)
         {
             var userId = Context.UserIdentifier;
             if (!string.IsNullOrEmpty(userId))
@@ -29,9 +33,9 @@ namespace ToDoApp.Hubs
                 OnlineUsers.TryRemove(userId, out _);
 
                 // Emituj svim klijentima da je korisnik offline
-                Clients.All.SendAsync("UserOffline", userId);
+                await Clients.All.SendAsync("UserOffline", userId);
             }
-            return base.OnDisconnectedAsync(exception);
+            await base.OnDisconnectedAsync(exception);
         }
 
         // Slanje poruka
