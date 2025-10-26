@@ -21,14 +21,15 @@ const ChatWidget: React.FC = () => {
     return null;
   }
 
-  const handleSendMessage = async (content: string, receiverEmail: string) => {
-    if (!receiverEmail || !content) {
+  const handleSendMessage = async (content: string, receiver: string | string[], groupName?: string) => {
+    if ((!receiver || (Array.isArray(receiver) && receiver.length === 0)) || !content) {
       alert(t("chat.validationError"));
       return;
     }
 
     try {
-      const response = await sendMessage({ receiverEmail, content }).unwrap();
+      const messageData = { receiverEmail: receiver, content, groupName };
+      const response = await sendMessage(messageData).unwrap();
       if (response.data?.isSuccess) {
         setMessageContent("");
         alert(t("chat.sentSuccess"));
@@ -134,23 +135,7 @@ const ChatWidget: React.FC = () => {
             <ChatList currentUserId={userData.id} />
           )}
         </Modal.Body>
-        <Modal.Footer style={{ borderColor: "#51285f" }}>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setShowModal(false);
-              setReceiverEmail("");
-              setMessageContent("");
-            }}
-            style={{
-              backgroundColor: "#6c757d",
-              borderColor: "#6c757d",
-              borderRadius: "25px",
-            }}
-          >
-            {t("chat.close")}
-          </Button>
-        </Modal.Footer>
+        
       </Modal>
     </>
   );

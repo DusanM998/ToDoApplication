@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Projects 1\\ToDoApp\\ToDoApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\hubs\\messagehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\hubs\\messagehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,8 +15,12 @@
       "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\hubs\\messagehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\hubs\\messagehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\interfaces\\imessagenotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\interfaces\\imessagenotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\hubs\\signalrmessagenotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\hubs\\signalrmessagenotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\hubs\\nameuseridprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,25 +50,52 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SignalRMessageNotifier.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\SignalRMessageNotifier.cs",
+              "RelativeDocumentMoniker": "ToDoApp\\Hubs\\SignalRMessageNotifier.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\SignalRMessageNotifier.cs",
+              "RelativeToolTip": "ToDoApp\\Hubs\\SignalRMessageNotifier.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T14:06:02.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "IMessageNotifier.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IMessageNotifier.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Interfaces\\IMessageNotifier.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IMessageNotifier.cs",
+              "RelativeToolTip": "BLL\\Services\\Interfaces\\IMessageNotifier.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T14:02:33.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "NameUserIdProvider.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\NameUserIdProvider.cs",
               "RelativeDocumentMoniker": "ToDoApp\\Hubs\\NameUserIdProvider.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\NameUserIdProvider.cs",
               "RelativeToolTip": "ToDoApp\\Hubs\\NameUserIdProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-23T08:02:52.03Z"
+              "WhenOpened": "2025-10-23T08:02:52.03Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MessageService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\MessageService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\MessageService.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\MessageService.cs",
               "RelativeToolTip": "BLL\\Services\\Implementations\\MessageService.cs",
-              "ViewState": "AgIAALkAAAAAAAAAAADwv90AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAUwOAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-23T06:43:12.236Z",
               "EditorCaption": ""
@@ -68,19 +103,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MessageHub.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\MessageHub.cs",
+              "RelativeDocumentMoniker": "ToDoApp\\Hubs\\MessageHub.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\MessageHub.cs",
+              "RelativeToolTip": "ToDoApp\\Hubs\\MessageHub.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAuwEMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T06:34:38.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MessagesController.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\MessagesController.cs",
               "RelativeDocumentMoniker": "ToDoApp\\Controllers\\MessagesController.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\MessagesController.cs",
               "RelativeToolTip": "ToDoApp\\Controllers\\MessagesController.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAF4AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAQwGAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-23T06:39:47.262Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "JwtSetup.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Infrastructure\\Setup\\JwtSetup.cs",
               "RelativeDocumentMoniker": "ToDoApp\\Infrastructure\\Setup\\JwtSetup.cs",
@@ -92,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CorsSetup.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Infrastructure\\Setup\\CorsSetup.cs",
               "RelativeDocumentMoniker": "ToDoApp\\Infrastructure\\Setup\\CorsSetup.cs",
@@ -101,19 +149,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-23T06:37:57.164Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MessageHub.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\MessageHub.cs",
-              "RelativeDocumentMoniker": "ToDoApp\\Hubs\\MessageHub.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\MessageHub.cs",
-              "RelativeToolTip": "ToDoApp\\Hubs\\MessageHub.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAwCcAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-23T06:34:38.156Z",
-              "EditorCaption": ""
             }
           ]
         }

@@ -3,11 +3,14 @@ using System.Collections.Concurrent;
 
 namespace ToDoApp.Hubs
 {
+    // SignalR Hub koji upravlja real-time funkcionalnoscu
     public class MessageHub : Hub
     {
+        // Kolekcija koja cuva trenutno online korisnike
         private static ConcurrentDictionary<string, string> OnlineUsers = new();
 
         // Real - time status korisnika
+        // Poziva se kada se korisnik poveze na Hub
         public override async Task OnConnectedAsync()
         {
             var userId = Context.UserIdentifier;
@@ -25,6 +28,7 @@ namespace ToDoApp.Hubs
             await base.OnConnectedAsync();
         }
 
+        // Poziva se kada se korisnik diskonektuje sa Huba
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
             var userId = Context.UserIdentifier;
@@ -39,6 +43,8 @@ namespace ToDoApp.Hubs
         }
 
         // Slanje poruka
+        // Metoda je prazna jer ne saljem poruke direktno preko Hub-a, vec kroz backend service MessageService
+        // Taj servis ima svu logiku slanja poruke
         public async Task SendMessage(string senderId, string receiverId, string content)
         {
             await Task.CompletedTask;
@@ -49,6 +55,17 @@ namespace ToDoApp.Hubs
         {
             // Obavestava posiljaoca da je poruka procitana
             await Clients.User(senderId).SendAsync("MessageRead", new { MessageId = messageId });
+        }
+
+        public async Task NotifyMessageRead(int messageId, string senderId, string receiverId)
+        {
+            // Pošalji pošiljaocu da je njegova poruka pročitana
+            if (!string.IsNullOrEmpty(senderId))
+            {
+                await Clients.User(senderId).SendAsync("MessageRead", new { MessageId = messageId });
+            }
+
+            Console.WriteLine($"Poruka {messageId} je procitana od strane {receiverId}, obavestio {senderId}");
         }
 
         // Grupni chatovi

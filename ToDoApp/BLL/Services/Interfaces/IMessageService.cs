@@ -14,7 +14,6 @@ namespace BLL.Services.Interfaces
         Task<ApiResponse> GetConversationAsync(string currentUserId, string otherUserId);
         Task<ApiResponse> GetUnreadMessagesAsync(string userId);
         Task<ApiResponse> MarkAsReadAsync(int messageId, string userId);
-
         Task<ApiResponse> GetAllConversationsAsync(string userId);
     }
 }

@@ -10,6 +10,8 @@ namespace EL.DTOs.MessagesDTO
     {
         public string? ReceiverId { get; set; }
         public string? ReceiverEmail { get; set; }
+        public string[]? ReceiverEmails { get; set; }  // Za grupu
+        public string? GroupName { get; set; }         // Za grupu
         public string Content { get; set; } = string.Empty;
     }
 }

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace ToDoApp.Hubs
 {
+    // Servis koji omogucava backendu da salje poruke korisniku
+    // preko SignalR Huba
     public class SignalRMessageNotifier : IMessageNotifier
     {
         private readonly IHubContext<MessageHub> _hubContext;

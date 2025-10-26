@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.Interfaces
 {
+    // Interfejs za notifikacije korisnika
     public interface IMessageNotifier
     {
         Task NotifyUserAsync(string userId, object message);

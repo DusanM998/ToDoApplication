@@ -3,6 +3,7 @@ using System.Security.Claims;
 
 namespace ToDoApp.Hubs
 {
+    // Da SignalR zna koji userId da poveze sa konekcijom
     public class NameUserIdProvider : IUserIdProvider
     {
         public string GetUserId(HubConnectionContext connection)

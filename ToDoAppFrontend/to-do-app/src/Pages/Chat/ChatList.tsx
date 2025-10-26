@@ -20,6 +20,9 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
   const [newMessage, setNewMessage] = useState("");
   const [realTimeMessages, setRealTimeMessages] = useState<Message[]>([]);
   const [onlineUsers, setOnlineUsers] = useState<Set<string>>(new Set());
+  const [conversationPartners, setConversationPartners] = useState<
+    ConversationPartner[]
+  >([]);
   const hubConnection = useRef<signalR.HubConnection | null>(null);
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -60,6 +63,15 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
       connection.stop();
     };
   }, []);
+
+  // Update conversation partners when conversations data changes
+  useEffect(() => {
+    if (conversations?.result) {
+      setConversationPartners([
+        ...(conversations.result as ConversationPartner[]),
+      ]);
+    }
+  }, [conversations]);
 
   // Register SignalR listeners
   useEffect(() => {
@@ -118,6 +130,46 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
         return [...prev, newMsg];
       });
+
+      // Update conversationPartners with the new message
+      setConversationPartners((prev) => {
+        const partnerId =
+          newMsg.senderId === currentUserId
+            ? newMsg.receiverId
+            : newMsg.senderId;
+        const updatedPartners = prev.map((partner) => {
+          if (partner.userId === partnerId) {
+            return {
+              ...partner,
+              lastMessage: newMsg.content,
+              lastMessageTime: newMsg.sendAt,
+              hasUnread: newMsg.receiverId === currentUserId && !newMsg.isRead,
+            };
+          }
+          return partner;
+        });
+
+        // If partner doesn't exist (new conversation), add it
+        if (!updatedPartners.some((p) => p.userId === partnerId)) {
+          updatedPartners.push({
+            userId: partnerId,
+            email:
+              newMsg.senderId === currentUserId
+                ? newMsg.receiver.email
+                : newMsg.sender.email,
+            profileImageUrl: "", // You may need to fetch this separately
+            lastMessage: newMsg.content,
+            lastMessageTime: newMsg.sendAt,
+            hasUnread: newMsg.receiverId === currentUserId && !newMsg.isRead,
+          });
+        }
+
+        return updatedPartners.sort(
+          (a, b) =>
+            new Date(b.lastMessageTime).getTime() -
+            new Date(a.lastMessageTime).getTime()
+        );
+      });
     };
 
     connection.on("ReceiveMessage", handleReceiveMessage);
@@ -144,6 +196,21 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
           msg.id === data.MessageId ? { ...msg, isRead: true } : msg
         )
       );
+      // Update hasUnread for the conversation partner
+      setConversationPartners((prev) =>
+        prev.map((partner) => {
+          if (
+            selectedUserId === partner.userId &&
+            realTimeMessages.some(
+              (msg) =>
+                msg.id === data.MessageId && msg.receiverId === currentUserId
+            )
+          ) {
+            return { ...partner, hasUnread: false };
+          }
+          return partner;
+        })
+      );
     });
 
     return () => {
@@ -153,22 +220,32 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
       connection.off("UserOffline");
       connection.off("MessageRead");
     };
-  }, [currentUserId]);
+  }, [currentUserId, selectedUserId, realTimeMessages]);
 
   // Automatski oznacava kao procitanu
   useEffect(() => {
-    if (selectedUserId && conversation?.result) {
-      (conversation.result as Message[])
-        .filter((msg) => !msg.isRead && msg.receiverId === currentUserId)
-        .forEach((msg) =>
-          markAsRead(msg.id).catch((err) =>
-            console.error("Error marking message as read:", err)
-          )
-        );
+    if (selectedUserId && conversation?.result && hubConnection.current) {
+      const unreadMessages = (conversation.result as Message[]).filter(
+        (msg) => !msg.isRead && msg.receiverId === currentUserId
+      );
+
+      unreadMessages.forEach(async (msg) => {
+        try {
+          await markAsRead(msg.id);
+          await hubConnection.current?.invoke(
+            "NotifyMessageRead",
+            msg.id,
+            msg.senderId,
+            msg.receiverId
+          );
+        } catch (err) {
+          console.error("Error marking message as read:", err);
+        }
+      });
     }
   }, [conversation, selectedUserId, markAsRead, currentUserId]);
 
-  // Kombnijuje REST + Real Time poruke
+  // Kombinuje REST + Real Time poruke
   const displayedMessages: Message[] = useMemo(() => {
     const restMessages = (conversation?.result as Message[]) || [];
     const relevantRealTime = realTimeMessages.filter(
@@ -177,10 +254,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
         (m.senderId === currentUserId && m.receiverId === selectedUserId)
     );
 
-    // Kombinuje poruke dajuci prioritet REST API porukama
     const all = [...restMessages];
-
-    // Dodaje samo realtime poruke koje nisu vec u REST odgovoru
     relevantRealTime.forEach((rtMsg) => {
       const existsInRest = restMessages.some(
         (restMsg) =>
@@ -243,7 +317,39 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
       setRealTimeMessages((prev) => [...prev, tempMsg]);
 
-      // Salje samo preko SignalR-a ne ceka API odgovor
+      // Update conversationPartners with the new sent message
+      setConversationPartners((prev) => {
+        const updatedPartners = prev.map((partner) => {
+          if (partner.userId === selectedUserId) {
+            return {
+              ...partner,
+              lastMessage: messageContent,
+              lastMessageTime: tempMsg.sendAt,
+              hasUnread: false,
+            };
+          }
+          return partner;
+        });
+
+        // If partner doesn't exist, add it
+        if (!updatedPartners.some((p) => p.userId === selectedUserId)) {
+          updatedPartners.push({
+            userId: selectedUserId,
+            email: tempMsg.receiver.email,
+            profileImageUrl: "",
+            lastMessage: messageContent,
+            lastMessageTime: tempMsg.sendAt,
+            hasUnread: false,
+          });
+        }
+
+        return updatedPartners.sort(
+          (a, b) =>
+            new Date(b.lastMessageTime).getTime() -
+            new Date(a.lastMessageTime).getTime()
+        );
+      });
+
       await hubConnection.current.invoke(
         "SendMessage",
         currentUserId,
@@ -251,7 +357,6 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
         messageContent
       );
 
-      // REST API poziv u pozadini (ne blokiraj UI)
       sendMessage({
         receiverId: selectedUserId,
         content: messageContent,
@@ -261,7 +366,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     } catch (error) {
       console.error("Error sending message:", error);
       alert(t("chat.sendError"));
-      setNewMessage(messageContent); // Vrati poruku u input ako je greska
+      setNewMessage(messageContent);
     }
   };
 
@@ -277,21 +382,19 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
   };
 
   const sortedConversationPartners = useMemo(() => {
-    return conversations?.result
-      ? [...(conversations.result as ConversationPartner[])].sort(
-          (a, b) =>
-            new Date(b.lastMessageTime).getTime() -
-            new Date(a.lastMessageTime).getTime()
-        )
-      : [];
-  }, [conversations]);
+    return conversationPartners.sort(
+      (a, b) =>
+        new Date(b.lastMessageTime).getTime() -
+        new Date(a.lastMessageTime).getTime()
+    );
+  }, [conversationPartners]);
 
   return (
     <div className="d-flex h-100" style={{ height: "100vh" }}>
       {/* Conversation List */}
       <div
         className="border-end bg-white"
-        style={{ width: "300px", overflowY: "auto" }}
+        style={{ width: "350px", overflowY: "auto" }}
       >
         {isLoading ? (
           <div className="p-3 text-center">{t("chat.loading")}</div>
@@ -360,7 +463,6 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
             return (
               <div className="p-3 border-bottom bg-white d-flex align-items-center">
-                {/* Profilna slika ili default ikonica */}
                 {selectedPartner?.profileImageUrl ? (
                   <div className="position-relative me-3">
                     <img
@@ -395,8 +497,6 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
                     )}
                   </div>
                 )}
-
-                {/* Ime i status korisnika */}
                 <div>
                   <div className="fw-semibold">
                     {selectedPartner?.email || t("chat.unknownUser")}
@@ -488,10 +588,17 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
               />
               <Button
                 onClick={handleSendMessage}
-                disabled={isSending}
+                disabled={isSending || newMessage.trim().length === 0}
                 style={{
                   borderRadius: "0 20px 20px 0",
                   backgroundColor: "#6b3a7a",
+                  border: "none",
+                  opacity:
+                    isSending || newMessage.trim().length === 0 ? 0.6 : 1,
+                  cursor:
+                    isSending || newMessage.trim().length === 0
+                      ? "not-allowed"
+                      : "pointer",
                 }}
               >
                 <i className="bi bi-send"></i>
