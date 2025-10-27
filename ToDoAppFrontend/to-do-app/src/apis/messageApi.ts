@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { apiResponse, ConversationPartner } from "../Interfaces";
+import type { ConversationPartner } from "../Interfaces";
 
 // API za poruke
 export const messageApi = createApi({

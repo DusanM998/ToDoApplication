@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { Button, Form, ListGroup } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { toastNotify } from "../../Helper";
 
 interface NewChatFormProps {
   receiverEmail: string;
   setReceiverEmail: (email: string) => void;
   messageContent: string;
   setMessageContent: (content: string) => void;
-  handleSendMessage: (content: string, receiver: string | string[], groupName?: string) => Promise<void>;
+  handleSendMessage: (
+    content: string,
+    receiver: string | string[],
+    groupName?: string
+  ) => Promise<void>;
   userEmail: string;
 }
 
@@ -20,7 +25,9 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
   userEmail,
 }) => {
   const { t } = useTranslation();
-  const [chatType, setChatType] = useState<"individual" | "group">("individual");
+  const [chatType, setChatType] = useState<"individual" | "group">(
+    "individual"
+  );
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
   const [groupName, setGroupName] = useState("");
   const [groupMembers, setGroupMembers] = useState<string[]>([]);
@@ -32,7 +39,10 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
       alert(t("chat.validationError"));
       return;
     }
-    if (chatType === "group" && (!groupName.trim() || groupMembers.length === 0)) {
+    if (
+      chatType === "group" &&
+      (!groupName.trim() || groupMembers.length === 0)
+    ) {
       alert(t("chat.groupValidationError"));
       return;
     }
@@ -66,17 +76,21 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
       } else {
         await handleSendMessage(messageContent, groupMembers, groupName);
       }
+
       setMessageContent("");
     } catch (error) {
       console.error("Error sending message:", error);
-      alert(t("chat.sendError"));
+      toastNotify(t("chat.sendError"), "error");
     }
   };
 
   return (
     <div className="d-flex flex-column h-100">
       {!isEmailConfirmed && (
-        <div className="p-3 border-bottom bg-white" style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}>
+        <div
+          className="p-3 border-bottom bg-white"
+          style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}
+        >
           {/* Chat Type Toggle */}
           <Form.Group controlId="chatType" className="mb-3">
             <Form.Label className="fw-semibold" style={{ color: "#51285f" }}>
@@ -84,10 +98,13 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
             </Form.Label>
             <div className="d-flex gap-2">
               <Button
-                variant={chatType === "individual" ? "primary" : "outline-primary"}
+                variant={
+                  chatType === "individual" ? "primary" : "outline-primary"
+                }
                 onClick={() => setChatType("individual")}
                 style={{
-                  backgroundColor: chatType === "individual" ? "#51285f" : "transparent",
+                  backgroundColor:
+                    chatType === "individual" ? "#51285f" : "transparent",
                   borderColor: "#51285f",
                   color: chatType === "individual" ? "#fff" : "#51285f",
                   borderRadius: "25px",
@@ -101,7 +118,8 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
                 variant={chatType === "group" ? "primary" : "outline-primary"}
                 onClick={() => setChatType("group")}
                 style={{
-                  backgroundColor: chatType === "group" ? "#51285f" : "transparent",
+                  backgroundColor:
+                    chatType === "group" ? "#51285f" : "transparent",
                   borderColor: "#51285f",
                   color: chatType === "group" ? "#fff" : "#51285f",
                   borderRadius: "25px",
@@ -152,7 +170,10 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
           ) : (
             <>
               <Form.Group controlId="groupName" className="mb-3">
-                <Form.Label className="fw-semibold" style={{ color: "#51285f" }}>
+                <Form.Label
+                  className="fw-semibold"
+                  style={{ color: "#51285f" }}
+                >
                   {t("chat.groupName")}
                 </Form.Label>
                 <Form.Control
@@ -170,7 +191,10 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
                 />
               </Form.Group>
               <Form.Group controlId="groupMembers">
-                <Form.Label className="fw-semibold" style={{ color: "#51285f" }}>
+                <Form.Label
+                  className="fw-semibold"
+                  style={{ color: "#51285f" }}
+                >
                   {t("chat.groupMembers")}
                 </Form.Label>
                 <div className="input-group mb-2">
@@ -197,18 +221,31 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
                       transition: "background-color 0.3s ease",
                     }}
                     className="hover-bg-dark-purple"
-                    disabled={!tempMemberEmail.includes("@") || tempMemberEmail === userEmail}
+                    disabled={
+                      !tempMemberEmail.includes("@") ||
+                      tempMemberEmail === userEmail
+                    }
                   >
                     {t("chat.addMember")}
                   </Button>
                 </div>
                 {groupMembers.length > 0 && (
-                  <ListGroup className="mb-3" style={{ maxHeight: "150px", overflowY: "auto", borderRadius: "10px" }}>
+                  <ListGroup
+                    className="mb-3"
+                    style={{
+                      maxHeight: "150px",
+                      overflowY: "auto",
+                      borderRadius: "10px",
+                    }}
+                  >
                     {groupMembers.map((member) => (
                       <ListGroup.Item
                         key={member}
                         className="d-flex justify-content-between align-items-center"
-                        style={{ borderColor: "#51285f", backgroundColor: "#f8f9fa" }}
+                        style={{
+                          borderColor: "#51285f",
+                          backgroundColor: "#f8f9fa",
+                        }}
                       >
                         {member}
                         <Button
@@ -256,8 +293,13 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
               backgroundColor: "#f8f9fa",
             }}
           >
-            <div className="bg-white p-3 rounded mb-2 shadow-sm" style={{ borderRadius: "15px" }}>
-              <small className="text-muted d-block mb-1">{t("chat.systemUser")}</small>
+            <div
+              className="bg-white p-3 rounded mb-2 shadow-sm"
+              style={{ borderRadius: "15px" }}
+            >
+              <small className="text-muted d-block mb-1">
+                {t("chat.systemUser")}
+              </small>
               <div>
                 {chatType === "individual"
                   ? t("chat.welcomeMessage", { email: receiverEmail })

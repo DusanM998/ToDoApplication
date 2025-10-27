@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../Storage/Redux/store";
-import { Modal, Button, Nav } from "react-bootstrap";
+import { Modal, Nav } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import "./ChatWidget.css";
 import NewChatForm from "./NewChatForm";
 import ChatList from "./ChatList";
 import { useSendMessageMutation } from "../../apis/messageApi";
+import { toastNotify } from "../../Helper";
 
 const ChatWidget: React.FC = () => {
   const { t } = useTranslation();
@@ -21,8 +22,16 @@ const ChatWidget: React.FC = () => {
     return null;
   }
 
-  const handleSendMessage = async (content: string, receiver: string | string[], groupName?: string) => {
-    if ((!receiver || (Array.isArray(receiver) && receiver.length === 0)) || !content) {
+  const handleSendMessage = async (
+    content: string,
+    receiver: string | string[],
+    groupName?: string
+  ) => {
+    if (
+      !receiver ||
+      (Array.isArray(receiver) && receiver.length === 0) ||
+      !content
+    ) {
       alert(t("chat.validationError"));
       return;
     }
@@ -30,14 +39,15 @@ const ChatWidget: React.FC = () => {
     try {
       const messageData = { receiverEmail: receiver, content, groupName };
       const response = await sendMessage(messageData).unwrap();
-      if (response.data?.isSuccess) {
+
+      if (response.isSuccess) {
         setMessageContent("");
-        alert(t("chat.sentSuccess"));
+        toastNotify(t("chat.sentSuccess"), "success");
       } else {
-        alert(response.data?.errorMessage?.join(", ") || t("chat.sendError"));
+        toastNotify(response.errorMessage?.join(", ") || t("chat.sendError"), "error");
       }
     } catch (error) {
-      alert(t("chat.sendError"));
+      toastNotify(t("chat.sendError"), "error");
     }
   };
 
@@ -135,7 +145,6 @@ const ChatWidget: React.FC = () => {
             <ChatList currentUserId={userData.id} />
           )}
         </Modal.Body>
-        
       </Modal>
     </>
   );
