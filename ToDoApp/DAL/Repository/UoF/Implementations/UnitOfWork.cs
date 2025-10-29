@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository.UoF.Implementations
 {
+    // Odgovoran za komunikaciju sa bazom i centralizovan pristup repozitorijimima
+    // Umesto da instanciram svaki repozitorijum posebno, UoW ima sve repozitorijume kao properties
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;

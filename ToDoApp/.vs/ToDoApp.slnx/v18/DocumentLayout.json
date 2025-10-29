@@ -50,8 +50,7 @@
               "RelativeToolTip": "ToDoApp\\Controllers\\TasksController.cs",
               "ViewState": "AgIAAEsAAAAAAAAAAAAowGEAAAB5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T09:38:20.076Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-29T09:38:20.076Z"
             },
             {
               "$type": "Document",
@@ -63,8 +62,7 @@
               "RelativeToolTip": "ToDoApp\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T09:32:57.88Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-29T09:32:57.88Z"
             },
             {
               "$type": "Document",
@@ -76,8 +74,7 @@
               "RelativeToolTip": "DAL\\Repository\\Implementations\\TaskRepository.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAowGEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T07:52:19.899Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-29T07:52:19.899Z"
             },
             {
               "$type": "Document",
@@ -87,7 +84,7 @@
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\TaskService.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
               "RelativeToolTip": "BLL\\Services\\Implementations\\TaskService.cs",
-              "ViewState": "AgIAACEBAAAAAAAAAAAwwD0BAABBAAAAAAAAAA==",
+              "ViewState": "AgIAACoBAAAAAAAAAADwv0EBAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-29T07:51:47.754Z",
               "EditorCaption": ""
@@ -102,8 +99,7 @@
               "RelativeToolTip": "DAL\\Repository\\Implementations\\Repository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T07:52:06.413Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-29T07:52:06.413Z"
             },
             {
               "$type": "Document",
@@ -115,8 +111,7 @@
               "RelativeToolTip": "BLL\\Services\\Implementations\\AuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T07:51:54.968Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-29T07:51:54.968Z"
             }
           ]
         }
