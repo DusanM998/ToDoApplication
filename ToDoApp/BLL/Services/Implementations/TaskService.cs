@@ -294,6 +294,7 @@ namespace BLL.Services.Implementations
 
         // Metoda za pribavljanje taskova i filter ujedno
         // Celo filtriranje se radi nad bazom, a u memoriju se smesta samo trenutna stranica taskova
+        // nakon sto je zahtev stigao do controlera, controler poziva servisni sloj
         public async Task<ApiResponse> GetFilteredTasksAsync(
             string userId,
             string? search,
@@ -310,8 +311,11 @@ namespace BLL.Services.Implementations
 
             try
             {
+                // Servisni sloj poziva repository metod kojim se dobija IQueryable objekat koji nije jos izvrsen
+                // vec je samo pripremljen SQL upit
                 var query = _unitOfWork.Tasks.GetAllAsQueryable(userId, search, status, dueDateFrom, dueDateTo, category, priority, sortBy);
 
+                // ovde tek EF Core prevodi IQueryable u SQL upit
                 var totalRecords = await query.CountAsync(); // Vraca ukupan broj taskova nakon primene svih filtera (racunaju se direktno u bazi)
                 var tasks = await query
                     .Select(t => new ToDoTaskResponseDTO

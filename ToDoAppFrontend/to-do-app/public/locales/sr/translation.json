@@ -195,7 +195,14 @@
     "unread": "Nepročitano",
     "you": "Vi",
     "online": "Dostupan",
-    "offline": "Nedostupan"
+    "offline": "Nedostupan",
+    "loading": "Učitavanje..."
+  },
+  "groupInfo": {
+    "title": "Informacije o grupi",
+    "members": "Članovi:",
+    "admin": "Administrator",
+    "close": "Zatvori"
   },
   "toastNotify": {
     "uploadImageError": "Molimo vas da otpremite sliku.",

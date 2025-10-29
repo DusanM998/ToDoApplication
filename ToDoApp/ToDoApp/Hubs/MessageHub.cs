@@ -105,5 +105,6 @@ namespace ToDoApp.Hubs
 
             await Clients.User(userId).SendAsync("ReceiveNotification", notification);
         }
+
     }
 }

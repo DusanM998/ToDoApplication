@@ -1,4 +1,5 @@
 ﻿using DAL.Repository.Interfaces;
+using EL.Models.Group;
 using EL.Models.Messages;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,11 @@ namespace DAL.Repository.UoF.Interfaces
         ITaskRepository Tasks { get; }
 
         IMessageRepository Messages { get; }
-        
+
+        IGroupRepository Groups { get; }
+        IRepository<GroupMessage> GroupMessages { get; }
+        IRepository<GroupMember> GroupMembers { get; }
+
         Task SaveChangesAsync();
     }
 }

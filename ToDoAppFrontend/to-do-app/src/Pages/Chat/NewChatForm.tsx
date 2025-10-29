@@ -2,6 +2,11 @@ import { useState } from "react";
 import { Button, Form, ListGroup } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { toastNotify } from "../../Helper";
+import type { CreateGroupDTO } from "../../Interfaces/createGroupDTO";
+import {
+  useCreateGroupMutation,
+  useSendGroupMessageMutation,
+} from "../../apis/groupApi";
 
 interface NewChatFormProps {
   receiverEmail: string;
@@ -32,21 +37,50 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
   const [groupName, setGroupName] = useState("");
   const [groupMembers, setGroupMembers] = useState<string[]>([]);
   const [tempMemberEmail, setTempMemberEmail] = useState("");
+  const [createdGroupId, setCreatedGroupId] = useState<number | null>(null);
+
+  const [createGroup] = useCreateGroupMutation();
+  const [sendGroupMessage] = useSendGroupMessageMutation();
 
   // Handle confirming the email or group setup
-  const handleConfirm = () => {
-    if (chatType === "individual" && !receiverEmail.includes("@")) {
-      alert(t("chat.validationError"));
-      return;
+  const handleConfirm = async () => {
+    if (chatType === "individual") {
+      if (!receiverEmail.includes("@")) {
+        toastNotify(t("chat.validationError"), "error");
+        return;
+      }
+      setIsEmailConfirmed(true);
+    } else {
+      if (!groupName.trim() || groupMembers.length === 0) {
+        toastNotify(t("chat.groupValidationError"), "error");
+        return;
+      }
+
+      try {
+        const groupData: CreateGroupDTO = {
+          name: groupName.trim(),
+          members: groupMembers, // ✅ DTO expects "members"
+        };
+
+        const response = await createGroup(groupData).unwrap();
+
+        console.log('Create group response:', response);
+
+        if (response.data?.isSuccess && response.data.result) {
+          setCreatedGroupId(response.data.result.id);
+          toastNotify(t("chat.groupCreated"), "success");
+          setIsEmailConfirmed(true);
+        } else {
+          toastNotify(
+            response.data?.errorMessage?.join(", ") || t("chat.groupError"),
+            "error"
+          );
+        }
+      } catch (error) {
+        console.error("Group creation failed:", error);
+        toastNotify(t("chat.groupError"), "error");
+      }
     }
-    if (
-      chatType === "group" &&
-      (!groupName.trim() || groupMembers.length === 0)
-    ) {
-      alert(t("chat.groupValidationError"));
-      return;
-    }
-    setIsEmailConfirmed(true);
   };
 
   // Add a member to the group
@@ -73,8 +107,22 @@ const NewChatForm: React.FC<NewChatFormProps> = ({
     try {
       if (chatType === "individual") {
         await handleSendMessage(messageContent, receiverEmail);
+      } else if (createdGroupId) {
+        const res = await sendGroupMessage({
+          groupIdentifier: createdGroupId.toString(),
+          content: messageContent,
+        }).unwrap();
+
+        if (res.data?.isSuccess) {
+          toastNotify(t("chat.sentSuccess"), "success");
+        } else {
+          toastNotify(
+            res.data?.errorMessage?.join(", ") || t("chat.sendError"),
+            "error"
+          );
+        }
       } else {
-        await handleSendMessage(messageContent, groupMembers, groupName);
+        toastNotify(t("chat.groupNotReady"), "error");
       }
 
       setMessageContent("");

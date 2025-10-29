@@ -1,4 +1,5 @@
-﻿using EL.Models.Messages;
+﻿using EL.Models.Group;
+using EL.Models.Messages;
 using EL.Models.Task;
 using EL.Models.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -21,12 +22,15 @@ namespace DAL.DbContexts
         public DbSet<ApplicationUser> ApplicationUsers { get; set; } // Odgovara tabeli ApplicationUsers u bazi
         public DbSet<ToDoTask> ToDoTasks { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<GroupMessage> GroupMessages { get; set; }
+        public DbSet<GroupMember> GroupMembers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            // 🔹 Onemogući kaskadno brisanje za bar jednu FK relaciju (najčešće za obe)
+            // Onemoguci kaskadno brisanje za bar jednu FK relaciju (najčešće za obe)
             builder.Entity<Message>()
                 .HasOne(m => m.Sender)
                 .WithMany()
@@ -37,6 +41,39 @@ namespace DAL.DbContexts
                 .HasOne(m => m.Receiver)
                 .WithMany()
                 .HasForeignKey(m => m.ReceiverId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Konfiguracija Group entiteta
+            builder.Entity<Group>()
+                .HasOne(g => g.CreatedBy)
+                .WithMany()
+                .HasForeignKey(g => g.CreatedById)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Konfiguracija GroupMember entiteta
+            builder.Entity<GroupMember>()
+                .HasOne(gm => gm.Group)
+                .WithMany(g => g.Members)
+                .HasForeignKey(gm => gm.GroupId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<GroupMember>()
+                .HasOne(gm => gm.User)
+                .WithMany()
+                .HasForeignKey(gm => gm.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Konfiguracija GroupMessage entiteta
+            builder.Entity<GroupMessage>()
+                .HasOne(gm => gm.Group)
+                .WithMany(g => g.Messages)
+                .HasForeignKey(gm => gm.GroupId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<GroupMessage>()
+                .HasOne(gm => gm.Sender)
+                .WithMany()
+                .HasForeignKey(gm => gm.SenderId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
 

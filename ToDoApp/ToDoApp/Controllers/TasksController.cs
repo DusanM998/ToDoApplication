@@ -80,6 +80,8 @@ namespace ToDoApp.Controllers
             return StatusCode((int)response.StatusCode, response);
         }
 
+        // Kada klijent posalje zahtev, Controller ga prima
+        // 
         [HttpGet("filter")]
         public async Task<IActionResult> GetFilteredTasks(
             string? search,
@@ -92,8 +94,8 @@ namespace ToDoApp.Controllers
             int pageNumber = 1,
             int pageSize = 10)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var response = await _taskService.GetFilteredTasksAsync(
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // zatim controller izvlaci userId iz JWT-a
+            var response = await _taskService.GetFilteredTasksAsync( // ..i poziva servisni sloj za obradu logike filtera
                 userId,
                 search,
                 status,

@@ -3,6 +3,7 @@ using DAL.Repository.Implementations;
 using DAL.Repository.Interfaces;
 using DAL.Repository.UoF.Implementations;
 using DAL.Repository.UoF.Interfaces;
+using EL.Models.Group;
 using EL.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,9 @@ namespace DAL.Repository.Setup
 
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();
+            services.AddScoped<IGroupRepository, GroupRepository>();
+            services.AddScoped<IRepository<GroupMessage>, Repository<GroupMessage>>();
+            services.AddScoped<IRepository<GroupMember>, Repository<GroupMember>>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

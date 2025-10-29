@@ -8,6 +8,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import messageApi from "../../apis/messageApi";
+import groupApi from "../../apis/groupApi";
 
 const persistConfig = {
   key: "root",
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
   [taskApi.reducerPath]: taskApi.reducer,
   [messageApi.reducerPath]: messageApi.reducer,
+  [groupApi.reducerPath]: groupApi.reducer,
 });
 
 // persistedReducer - da se stanje (userAuthStore i taskStore) cuva u localStorage
@@ -37,6 +39,7 @@ const store = configureStore({
         .concat(authApi.middleware)
         .concat(taskApi.middleware)
         .concat(messageApi.middleware)
+        .concat(groupApi.middleware)
 });
 
 //RootState - tip celog redux storea

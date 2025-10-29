@@ -195,7 +195,14 @@
     "unread": "Unread",
     "you": "You",
     "online": "Online",
-    "offline": "Offline"
+    "offline": "Offline",
+    "loading": "Loading..."
+  },
+  "groupInfo": {
+    "title": "Group Info",
+    "members": "Members:",
+    "admin": "Admin",
+    "close": "Close"
   },
   "toastNotify": {
     "uploadImageError": "Please upload an image.",

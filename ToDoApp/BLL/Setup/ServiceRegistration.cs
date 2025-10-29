@@ -16,6 +16,7 @@ namespace BLL.Setup
         {
             services.AddScoped<ITaskService, TaskService>();
             services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<IGroupService, GroupService>();
             return services;
         }
     }

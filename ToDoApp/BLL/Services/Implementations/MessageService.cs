@@ -93,10 +93,10 @@ namespace BLL.Services.Implementations
                 IsRead = message.IsRead
             };
 
-            // ❗ Realtime obaveštenje PRIMAOCU
+            // Realtime obavestenje PRIMAOCU
             await _notifier.NotifyUserAsync(receiverId, messageData);
 
-            // ❗ Realtime obaveštenje POŠILJAOCU (da dobije poruku sa pravim ID-jem iz baze)
+            // Realtime obaveštenje POSILJAOCU (da dobije poruku sa pravim ID-jem iz baze)
             await _notifier.NotifyUserAsync(senderId, messageData);
 
             response.Result = new

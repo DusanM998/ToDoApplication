@@ -1,0 +1,90 @@
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { apiResponse, Group, GroupMessage } from "../Interfaces";
+import type { CreateGroupDTO } from "../Interfaces/createGroupDTO";
+
+export const groupApi = createApi({
+  reducerPath: "groupApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://localhost:7070/api/",
+    credentials: "include",
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
+  tagTypes: ["Groups", "GroupMessages"],
+
+  endpoints: (builder) => ({
+    // Kreiranje nove grupe
+    createGroup: builder.mutation<apiResponse<Group>, CreateGroupDTO>({
+      query: (groupData) => ({
+        url: "groups/create",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: groupData,
+      }),
+      transformResponse: (response: any) => ({
+        data: {
+          statusCode: response.statusCode,
+          isSuccess: response.isSuccess,
+          errorMessage: response.errorMessages,
+          result: response.result,
+        },
+      }),
+      invalidatesTags: ["Groups"],
+    }),
+
+    // Dohvatanje svih grupa trenutnog korisnika
+    getMyGroups: builder.query<apiResponse<Group[]>, void>({
+      query: () => ({
+        url: "groups/my-groups",
+        method: "GET",
+      }),
+      transformResponse: (response: any) => ({
+        data: {
+          statusCode: response.statusCode,
+          isSuccess: response.isSuccess,
+          errorMessage: response.errorMessages,
+          result: response.result,
+        },
+      }),
+      providesTags: ["Groups"],
+    }),
+
+    // Slanje poruke u grupu (po emailu ili ID-u)
+    sendGroupMessage: builder.mutation<
+      apiResponse<GroupMessage>,
+      { groupIdentifier: string; content: string }
+    >({
+      query: ({ groupIdentifier, content }) => ({
+        url: `groups/${groupIdentifier}/send`,
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: { content },
+      }),
+      invalidatesTags: ["GroupMessages"],
+    }),
+
+    // Dohvatanje svih poruka u grupi
+    getGroupMessages: builder.query<apiResponse<GroupMessage[]>, number>({
+      query: (groupId) => ({
+        url: `groups/${groupId}/messages`,
+        method: "GET",
+      }),
+      providesTags: ["GroupMessages"],
+    }),
+  }),
+});
+
+// Export hook-ova
+export const {
+  useCreateGroupMutation,
+  useGetMyGroupsQuery,
+  useSendGroupMessageMutation,
+  useGetGroupMessagesQuery,
+} = groupApi;
+
+export default groupApi;

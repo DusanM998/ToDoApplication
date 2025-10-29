@@ -8,7 +8,9 @@ import {
   useMarkAsReadMutation,
   useSendMessageMutation,
 } from "../../apis/messageApi";
-import type { ConversationPartner, Message } from "../../Interfaces";
+import type { ConversationPartner, Group, Message } from "../../Interfaces";
+import { useGetMyGroupsQuery } from "../../apis/groupApi";
+import GroupInfoModal from "./GroupInfoModal";
 
 interface ChatListProps {
   currentUserId: string;
@@ -23,6 +25,11 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
   const [conversationPartners, setConversationPartners] = useState<
     ConversationPartner[]
   >([]);
+
+  const [selectedGroupInfo, setSelectedGroupInfo] = useState<Group | null>(
+    null
+  );
+
   const hubConnection = useRef<signalR.HubConnection | null>(null);
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -36,6 +43,10 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     isLoading: isConversationLoading,
     refetch,
   } = useGetConversationQuery(selectedUserId || "", { skip: !selectedUserId });
+  
+  const { data: myGroups, isLoading: isGroupsLoading } = useGetMyGroupsQuery();
+
+  
   const [markAsRead] = useMarkAsReadMutation();
   const [sendMessage, { isLoading: isSending }] = useSendMessageMutation();
 
@@ -389,6 +400,10 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     );
   }, [conversationPartners]);
 
+  const selectedPartner = conversationPartners.find(
+    (p) => p.userId === selectedUserId
+  );
+
   return (
     <div className="d-flex h-100" style={{ height: "100vh" }}>
       {/* Conversation List */}
@@ -451,71 +466,158 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
             </div>
           ))
         )}
+        {/* Groups Section */}
+        <div className="mt-3 border-top">
+          <h6
+            className="p-3 mb-0 fw-bold"
+            style={{ backgroundColor: "#f0f0f0" }}
+          >
+            {t("chat.groups") || "Groups"}
+          </h6>
+          {isGroupsLoading ? (
+            <div className="p-3 text-center">
+              {t("chat.loadingGroups") || "Loading..."}
+            </div>
+          ) : myGroups?.data?.result && myGroups.data.result.length > 0 ? (
+            myGroups.data.result.map((group) => (
+              <div
+                key={group.id}
+                className={`p-3 border-bottom d-flex align-items-center ${
+                  selectedUserId === "group-" + group.id ? "bg-light" : ""
+                }`}
+                style={{ cursor: "pointer" }}
+                onClick={() => setSelectedUserId("group-" + group.id)}
+              >
+                <div className="me-3">
+                  <i
+                    className="bi bi-people-fill fs-4"
+                    style={{ color: "#6b3a7a" }}
+                  ></i>
+                </div>
+                <div className="flex-grow-1">
+                  <div className="fw-semibold">{group.name}</div>
+                  <small className="text-muted d-block text-truncate">
+                    {group.messages?.length
+                      ? group.messages[group.messages.length - 1].content
+                      : t("chat.noMessages") || "No messages yet"}
+                  </small>
+                  <small className="text-muted d-block">
+                    {group.messages?.length
+                      ? new Date(
+                          group.messages[group.messages.length - 1].sentAt
+                        ).toLocaleString("sr-RS", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : ""}
+                  </small>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="p-3 text-center">
+              {t("chat.noGroups") || "No groups found"}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Chat Area */}
       <div className="flex-grow-1 d-flex flex-column">
-        {selectedUserId &&
-          (() => {
-            const selectedPartner = sortedConversationPartners.find(
-              (p) => p.userId === selectedUserId
-            );
-
-            return (
-              <div className="p-3 border-bottom bg-white d-flex align-items-center">
-                {selectedPartner?.profileImageUrl ? (
-                  <div className="position-relative me-3">
-                    <img
-                      src={selectedPartner.profileImageUrl}
-                      alt="User"
-                      className="rounded-circle"
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        objectFit: "cover",
-                        border: "2px solid #6b3a7a",
-                      }}
-                    />
-                    {onlineUsers.has(selectedPartner.userId) && (
-                      <span
-                        className="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-light rounded-circle"
-                        style={{ width: "12px", height: "12px" }}
-                      ></span>
-                    )}
-                  </div>
-                ) : (
-                  <div className="position-relative me-3">
-                    <i
-                      className="bi bi-person-circle fs-1"
-                      style={{ color: "#6b3a7a" }}
-                    ></i>
-                    {onlineUsers.has(selectedPartner?.userId || "") && (
-                      <span
-                        className="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-light rounded-circle"
-                        style={{ width: "12px", height: "12px" }}
-                      ></span>
-                    )}
-                  </div>
-                )}
-                <div>
-                  <div className="fw-semibold">
-                    {selectedPartner?.email || t("chat.unknownUser")}
-                  </div>
-                  <div
-                    className={`small ${
-                      onlineUsers.has(selectedPartner?.userId || "")
-                        ? "text-success"
-                        : "text-muted"
-                    }`}
-                  >
-                    {onlineUsers.has(selectedPartner?.userId || "")
-                      ? t("chat.online") || "Online"
-                      : t("chat.offline") || "Offline"}
-                  </div>
+        {selectedUserId && (
+          <div className="p-3 border-bottom bg-white d-flex align-items-center justify-content-between">
+            <div className="d-flex align-items-center">
+              {selectedUserId.startsWith("group-") ? (
+                <div className="position-relative me-3">
+                  <i
+                    className="bi bi-people-fill fs-1"
+                    style={{ color: "#6b3a7a" }}
+                  ></i>
+                </div>
+              ) : selectedPartner?.profileImageUrl ? (
+                <div className="position-relative me-3">
+                  <img
+                    src={selectedPartner.profileImageUrl}
+                    alt="User"
+                    className="rounded-circle"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      objectFit: "cover",
+                      border: "2px solid #6b3a7a",
+                    }}
+                  />
+                  {onlineUsers.has(selectedPartner.userId) && (
+                    <span
+                      className="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-light rounded-circle"
+                      style={{ width: "12px", height: "12px" }}
+                    ></span>
+                  )}
+                </div>
+              ) : (
+                <div className="position-relative me-3">
+                  <i
+                    className="bi bi-person-circle fs-1"
+                    style={{ color: "#6b3a7a" }}
+                  ></i>
+                </div>
+              )}
+              <div>
+                <div className="fw-semibold">
+                  {selectedUserId.startsWith("group-")
+                    ? myGroups?.data?.result.find(
+                        (g) => "group-" + g.id === selectedUserId
+                      )?.name || "Unknown Group"
+                    : selectedPartner?.email || t("chat.unknownUser")}
+                </div>
+                <div
+                  className={`small ${
+                    selectedUserId.startsWith("group-")
+                      ? "text-muted"
+                      : onlineUsers.has(selectedPartner?.userId || "")
+                      ? "text-success"
+                      : "text-muted"
+                  }`}
+                >
+                  {selectedUserId.startsWith("group-")
+                    ? "Group Chat"
+                    : onlineUsers.has(selectedPartner?.userId || "")
+                    ? t("chat.online") || "Online"
+                    : t("chat.offline") || "Offline"}
                 </div>
               </div>
-            );
-          })()}
+            </div>
+
+            {selectedUserId.startsWith("group-") && (
+              <Button
+                variant="outline-secondary"
+                size="sm"
+                onClick={() => {
+                  const group = myGroups?.data?.result.find(
+                    (g) => "group-" + g.id === selectedUserId
+                  );
+                  if (group) {
+                    setSelectedGroupInfo({
+                      id: group.id,
+                      name: group.name,
+                      messages: group.messages || [],
+                      members: group.members || [],
+                    });
+                  }
+                }}
+              >
+                <i className="bi bi-info-circle"></i>
+              </Button>
+            )}
+          </div>
+        )}
+        <GroupInfoModal
+          group={selectedGroupInfo}
+          onClose={() => setSelectedGroupInfo(null)}
+        />
 
         <div
           ref={messagesContainerRef}
