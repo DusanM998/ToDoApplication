@@ -45,6 +45,7 @@ namespace ToDoApp.Controllers
         }
 
         [HttpGet("{id}", Name = "GetUserDetails")]
+        [Authorize(Roles = "admin,customer")]
         public async Task<IActionResult> GetUserDetails(string id)
         {
             var result = await _authService.GetUserDetailsAsync(id);
@@ -53,6 +54,7 @@ namespace ToDoApp.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin,customer")]
         public async Task<IActionResult> UpdateUserDetails(string id, [FromForm] UserDetailsUpdateDTO userDetailsUpdateDTO)
         {
             var result = await _authService.UpdateUserDetailsAsync(id, userDetailsUpdateDTO);

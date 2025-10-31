@@ -369,20 +369,10 @@ namespace BLL.Services.Implementations
         {
             var response = new ApiResponse();
 
-            try
-            {
-                var categories = await _unitOfWork.Tasks.GetCategoriesAsQueryable(userId).ToListAsync();
+            var categories = await _unitOfWork.Tasks.GetCategoriesAsQueryable(userId).ToListAsync();
 
-                response.Result = categories;
-                response.StatusCode = HttpStatusCode.OK;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"ERROR: {ex}");
-                response.IsSuccess = false;
-                response.ErrorMessages = new List<string> { ex.Message };
-                response.StatusCode = HttpStatusCode.InternalServerError;
-            }
+            response.Result = categories;
+            response.StatusCode = HttpStatusCode.OK;
 
             return response;
         }

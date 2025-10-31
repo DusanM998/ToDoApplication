@@ -85,7 +85,7 @@ const MyTasks: React.FC = () => {
     skip: !userData?.id, // da ne poziva dok se userId ne ucita
   });
 
-  console.log(categoriesResponse);
+  //console.log(categoriesResponse);
 
   // Resetuje taskove i ucitava nove kada se korisnik promeni
   useEffect(() => {
@@ -213,7 +213,7 @@ const MyTasks: React.FC = () => {
     return categoriesResponse;
   }, [categoriesResponse]);
 
-  console.log(categories);
+  //console.log(categories);
 
   const hasActiveFilters = Boolean(
     filters.search ||

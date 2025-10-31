@@ -22,6 +22,7 @@ using Scalar.AspNetCore;
 using System.Text;
 using ToDoApp.Hubs;
 using ToDoApp.Infrastructure.Setup;
+using ToDoApp.Middlewares;
 
 // Middleware - komponenta kroz koju prolazi svaki HTTP zahtev (i odgovor)
 // Middleware je komponenta koja ucestvuje u obradi HTTP zahteva i odgovora
@@ -76,6 +77,9 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddSwaggerSetup();
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -116,6 +120,9 @@ if (app.Environment.IsDevelopment())
             .WithOpenApiRoutePattern("/swagger/v1/swagger.json");
     });
 }
+
+//Globalni Exception Handler
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 

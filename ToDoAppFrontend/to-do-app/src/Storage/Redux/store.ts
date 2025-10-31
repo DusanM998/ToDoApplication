@@ -10,10 +10,12 @@ import { combineReducers } from "redux";
 import messageApi from "../../apis/messageApi";
 import groupApi from "../../apis/groupApi";
 
+// Ovde konfigurisem redux-persist tako da mi podaci ostaju ucitani u storu
+// unutar localStorage persist:root mi se cuvaju podaci o korisniku i taskovima
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["userAuthStore", "taskStore"],
+  whitelist: ["userAuthStore", "taskStore"], // taskovi i ulogovani korisnik cuvaju se u localStorage
 };
 
 const rootReducer = combineReducers({
@@ -26,7 +28,7 @@ const rootReducer = combineReducers({
 });
 
 // persistedReducer - da se stanje (userAuthStore i taskStore) cuva u localStorage
-// pomocu redux-persist
+// pomocu redux-persist, tj da podaci ostaju unutar store-a i nakon sto se refreshuje stranica
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // Store - mesto za cuvanje stanja cele aplikacije (kombinacija svih slice-ova)

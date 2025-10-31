@@ -4,7 +4,7 @@ import type toDoTaskModel from "../Interfaces/toDoTaskModel";
 export const taskApi = createApi({
   reducerPath: "taskApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://localhost:7070/api/tasks",
+    baseUrl: `${import.meta.env.VITE_API_URL}tasks`,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) headers.set("Authorization", `Bearer ${token}`);

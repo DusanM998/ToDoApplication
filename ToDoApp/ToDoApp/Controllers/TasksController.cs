@@ -4,6 +4,7 @@ using El.DTOs.ToDoTaskDTO;
 using EL.DTOs.ToDoTaskDTO;
 using EL.Models.Task;
 using EL.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ namespace ToDoApp.Controllers
 {
     [Route("api/tasks")]
     [ApiController]
+    [Authorize]
     public class TasksController : ControllerBase
     {
         private readonly ITaskService _taskService;
@@ -27,6 +29,7 @@ namespace ToDoApp.Controllers
 
         // Dohvatanje svih taskova za trenutnog korisnika
         [HttpGet("all")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ApiResponse>> GetTasks()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -45,7 +48,9 @@ namespace ToDoApp.Controllers
         }
 
         // Dohvatanje taska po ID
+        
         [HttpGet("{id:int}")]
+        [Authorize(Roles = "admin,customer")]
         public async Task<ActionResult<ApiResponse>> GetTaskById(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -55,6 +60,7 @@ namespace ToDoApp.Controllers
 
         // Kreiranje novog taska
         [HttpPost]
+        [Authorize(Roles = "admin,customer")]
         public async Task<ActionResult<ApiResponse>> CreateTask([FromBody] ToDoTaskCreateDTO taskDto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -64,6 +70,7 @@ namespace ToDoApp.Controllers
 
         // Azuriranje taska
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "admin,customer")]
         public async Task<ActionResult<ApiResponse>> UpdateTask(int id, [FromBody] ToDoTaskUpdateDTO taskDto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -73,6 +80,7 @@ namespace ToDoApp.Controllers
 
         // Brisanje taska
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "admin,customer")]
         public async Task<ActionResult<ApiResponse>> DeleteTask(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -83,6 +91,7 @@ namespace ToDoApp.Controllers
         // Kada klijent posalje zahtev, Controller ga prima
         // 
         [HttpGet("filter")]
+        [Authorize(Roles = "admin,customer")]
         public async Task<IActionResult> GetFilteredTasks(
             string? search,
             StatusTaska? status,
@@ -118,7 +127,9 @@ namespace ToDoApp.Controllers
             return Ok(result.ToDoTasks);
         }
 
+        
         [HttpGet("categories")]
+        [Authorize(Roles = "admin,customer")]
         public async Task<IActionResult> GetCategories([FromQuery] string userId)
         {
             var response = await _taskService.GetCategoriesAsync(userId);

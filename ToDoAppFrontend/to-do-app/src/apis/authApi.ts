@@ -5,7 +5,7 @@ const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     // fetchBaseQuery - f-ja za kreiranje HTTP requesta
-    baseUrl: "https://localhost:7070/api/",
+    baseUrl: `${import.meta.env.VITE_API_URL}`,
     credentials: "include", // salje cookies sa svakim zahtevom
     prepareHeaders: (headers) => {
       // Automatski dodaje token u header svakog zahteva ako je korisnik ulogovan
