@@ -196,7 +196,8 @@
     "you": "Vi",
     "online": "Dostupan",
     "offline": "Nedostupan",
-    "loading": "Učitavanje..."
+    "loading": "Učitavanje...",
+    "noMessages": "Nema Poruka..."
   },
   "groupInfo": {
     "title": "Informacije o grupi",

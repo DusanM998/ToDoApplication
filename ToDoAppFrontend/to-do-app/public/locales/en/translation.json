@@ -196,7 +196,8 @@
     "you": "You",
     "online": "Online",
     "offline": "Offline",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "noMessages": "No Messages..."
   },
   "groupInfo": {
     "title": "Group Info",

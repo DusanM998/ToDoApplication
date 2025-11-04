@@ -43,10 +43,9 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     isLoading: isConversationLoading,
     refetch,
   } = useGetConversationQuery(selectedUserId || "", { skip: !selectedUserId });
-  
+
   const { data: myGroups, isLoading: isGroupsLoading } = useGetMyGroupsQuery();
 
-  
   const [markAsRead] = useMarkAsReadMutation();
   const [sendMessage, { isLoading: isSending }] = useSendMessageMutation();
 
@@ -404,6 +403,11 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     (p) => p.userId === selectedUserId
   );
 
+  const isGroupChat = selectedUserId?.startsWith("group-");
+  const selectedGroup = isGroupChat
+    ? myGroups?.data?.result.find((g) => "group-" + g.id === selectedUserId)
+    : null;
+
   return (
     <div className="d-flex h-100" style={{ height: "100vh" }}>
       {/* Conversation List */}
@@ -624,51 +628,83 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
           className="flex-grow-1 p-3"
           style={{ overflowY: "auto", backgroundColor: "#f8f9fa" }}
         >
-          {isConversationLoading ? (
-            <div className="p-3 text-center">{t("chat.loading")}</div>
-          ) : !selectedUserId ? (
-            <div className="text-center">{t("chat.selectChat")}</div>
-          ) : displayedMessages.length === 0 ? (
-            <div className="text-center">{t("chat.noMessages")}</div>
-          ) : (
-            displayedMessages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`p-3 rounded mb-2 ${
-                  msg.senderId === currentUserId
-                    ? "ms-auto text-white"
-                    : "bg-white"
-                }`}
-                style={{
-                  maxWidth: "70%",
-                  backgroundColor:
-                    msg.senderId === currentUserId ? "#6b3a7a" : "#ffffff",
-                }}
-              >
-                <div>{msg.content}</div>
-                <div className="d-flex align-items-center justify-content-end mt-1 gap-1">
-                  <small
-                    className={
+          <div
+            ref={messagesContainerRef}
+            className="flex-grow-1 p-3"
+            style={{ overflowY: "auto", backgroundColor: "#f8f9fa" }}
+          >
+            {isConversationLoading && !isGroupChat ? (
+              <div className="p-3 text-center">{t("chat.loading")}</div>
+            ) : !selectedUserId ? (
+              <div className="text-center">{t("chat.selectChat")}</div>
+            ) : isGroupChat ? (
+              selectedGroup?.messages?.length ? (
+                selectedGroup.messages.map((msg) => (
+                  <div
+                    key={msg.id}
+                    className={`p-3 rounded mb-2 ${
                       msg.senderId === currentUserId
-                        ? "text-light"
-                        : "text-muted"
-                    }
+                        ? "ms-auto text-white"
+                        : "bg-white"
+                    }`}
+                    style={{
+                      maxWidth: "70%",
+                      backgroundColor:
+                        msg.senderId === currentUserId ? "#6b3a7a" : "#ffffff",
+                    }}
                   >
-                    {formatMessageTime(msg.sendAt)}
-                  </small>
-                  {msg.senderId === currentUserId &&
-                    (msg.isRead ? (
-                      <i
-                        className="bi bi-check-all"
-                        style={{ color: "#00c853" }}
-                      ></i>
-                    ) : (
-                      <i className="bi bi-check" style={{ color: "#bbb" }}></i>
-                    ))}
+                    <div>{msg.content}</div>
+                    <div className="d-flex align-items-center justify-content-end mt-1 gap-1">
+                      <small
+                        className={
+                          msg.senderId === currentUserId
+                            ? "text-light"
+                            : "text-muted"
+                        }
+                      >
+                        {formatMessageTime(msg.sentAt)}
+                      </small>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center">
+                  {t("chat.noMessages") || "No messages yet"}
                 </div>
-              </div>
-            ))
-          )}
+              )
+            ) : displayedMessages.length === 0 ? (
+              <div className="text-center">{t("chat.noMessages")}</div>
+            ) : (
+              displayedMessages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`p-3 rounded mb-2 ${
+                    msg.senderId === currentUserId
+                      ? "ms-auto text-white"
+                      : "bg-white"
+                  }`}
+                  style={{
+                    maxWidth: "70%",
+                    backgroundColor:
+                      msg.senderId === currentUserId ? "#6b3a7a" : "#ffffff",
+                  }}
+                >
+                  <div>{msg.content}</div>
+                  <div className="d-flex align-items-center justify-content-end mt-1 gap-1">
+                    <small
+                      className={
+                        msg.senderId === currentUserId
+                          ? "text-light"
+                          : "text-muted"
+                      }
+                    >
+                      {formatMessageTime(msg.sendAt)}
+                    </small>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </div>
 
         {selectedUserId && (
