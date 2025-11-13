@@ -30,6 +30,10 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     null
   );
 
+  const [selectedImages, setSelectedImages] = useState<
+    { file: File; preview: string }[]
+  >([]);
+
   const hubConnection = useRef<signalR.HubConnection | null>(null);
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -308,9 +312,14 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
   // Send message
   const handleSendMessage = async () => {
-    if (!selectedUserId || !newMessage.trim() || !hubConnection.current) return;
+    if (
+      !selectedUserId ||
+      (!newMessage.trim() && selectedImages.length === 0) ||
+      !hubConnection.current
+    )
+      return;
 
-    const messageContent = newMessage;
+    const messageContent = newMessage.trim();
     setNewMessage("");
 
     try {
@@ -323,6 +332,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
         isRead: false,
         sender: { id: currentUserId, email: "", name: "" },
         receiver: { id: selectedUserId, email: "", name: "" },
+        imageUrls: selectedImages.map((img) => img.preview),
       };
 
       setRealTimeMessages((prev) => [...prev, tempMsg]);
@@ -333,7 +343,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
           if (partner.userId === selectedUserId) {
             return {
               ...partner,
-              lastMessage: messageContent,
+              lastMessage: messageContent || "[Image]",
               lastMessageTime: tempMsg.sendAt,
               hasUnread: false,
             };
@@ -347,7 +357,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
             userId: selectedUserId,
             email: tempMsg.receiver.email,
             profileImageUrl: "",
-            lastMessage: messageContent,
+            lastMessage: messageContent || "[Image]",
             lastMessageTime: tempMsg.sendAt,
             hasUnread: false,
           });
@@ -360,6 +370,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
         );
       });
 
+      // Posalji kroz SignalR (samo tekst poruke)
       await hubConnection.current.invoke(
         "SendMessage",
         currentUserId,
@@ -367,12 +378,15 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
         messageContent
       );
 
-      sendMessage({
+      // Posalji na backend (REST API) sa FormData
+      await sendMessage({
         receiverId: selectedUserId,
         content: messageContent,
-      }).catch((error) => {
-        console.error("REST API error (non-blocking):", error);
-      });
+        images: selectedImages.map((img) => img.file), // samo fajlovi
+      }).unwrap();
+
+      // Ocisti slike nakon uspesnog slanja
+      setSelectedImages([]);
     } catch (error) {
       console.error("Error sending message:", error);
       alert(t("chat.sendError"));
@@ -389,6 +403,38 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
       hour: "2-digit",
       minute: "2-digit",
     });
+  };
+
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    const newImages = Array.from(files).map((file) => ({
+      file,
+      preview: URL.createObjectURL(file),
+    }));
+
+    setSelectedImages((prev) => [...prev, ...newImages]);
+    e.target.value = "";
+  };
+
+  const removeImage = (index: number) => {
+    setSelectedImages((prev) => {
+      const removed = prev[index];
+      URL.revokeObjectURL(removed.preview);
+      return prev.filter((_, i) => i !== index);
+    });
+  };
+
+  const getImageUrls = (imageUrls: string | string[] | undefined): string[] => {
+    if (!imageUrls) return [];
+    if (Array.isArray(imageUrls)) {
+      return imageUrls.filter((url) => url && url.trim() !== "");
+    }
+    return imageUrls
+      .split(";")
+      .map((url) => url.trim())
+      .filter((url) => url !== "");
   };
 
   const sortedConversationPartners = useMemo(() => {
@@ -594,28 +640,6 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
                 </div>
               </div>
             </div>
-
-            {selectedUserId.startsWith("group-") && (
-              <Button
-                variant="outline-secondary"
-                size="sm"
-                onClick={() => {
-                  const group = myGroups?.data?.result.find(
-                    (g) => "group-" + g.id === selectedUserId
-                  );
-                  if (group) {
-                    setSelectedGroupInfo({
-                      id: group.id,
-                      name: group.name,
-                      messages: group.messages || [],
-                      members: group.members || [],
-                    });
-                  }
-                }}
-              >
-                <i className="bi bi-info-circle"></i>
-              </Button>
-            )}
           </div>
         )}
         <GroupInfoModal
@@ -689,7 +713,44 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
                       msg.senderId === currentUserId ? "#6b3a7a" : "#ffffff",
                   }}
                 >
-                  <div>{msg.content}</div>
+                  {msg.imageUrls && (
+                    <div className="mt-2">
+                      <div
+                        className="grid gap-1"
+                        style={{
+                          gridTemplateColumns:
+                            getImageUrls(msg.imageUrls).length === 1
+                              ? "1fr"
+                              : getImageUrls(msg.imageUrls).length === 2
+                              ? "1fr 1fr"
+                              : "repeat(auto-fit, minmax(80px, 1fr))",
+                          maxHeight: "300px",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {getImageUrls(msg.imageUrls).map((url, index) => (
+                          <img
+                            key={index}
+                            src={url}
+                            alt={`attachment-${index}`}
+                            className="rounded-lg border border-gray-200 object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                            style={{
+                              width: "100%",
+                              height:
+                                getImageUrls(msg.imageUrls).length === 1
+                                  ? "180px"
+                                  : getImageUrls(msg.imageUrls).length === 2
+                                  ? "140px"
+                                  : "100px",
+                            }}
+                            onClick={() => window.open(url, "_blank")}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {msg.content && <div>{msg.content}</div>}
                   <div className="d-flex align-items-center justify-content-end mt-1 gap-1">
                     <small
                       className={
@@ -709,6 +770,40 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
         {selectedUserId && (
           <div className="p-3 border-top bg-white">
+            {/* Prikaz minijatura izabranih slika */}
+            {selectedImages.length > 0 && (
+              <div className="d-flex flex-wrap gap-2 mb-2 p-2 bg-light rounded">
+                {selectedImages.map((img, index) => (
+                  <div
+                    key={index}
+                    className="position-relative"
+                    style={{ width: "60px", height: "60px" }}
+                  >
+                    <img
+                      src={img.preview}
+                      alt="preview"
+                      className="rounded"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className="btn-close position-absolute top-0 end-0 bg-danger text-white rounded-circle"
+                      style={{
+                        fontSize: "10px",
+                        width: "16px",
+                        height: "16px",
+                      }}
+                      onClick={() => removeImage(index)}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div className="input-group">
               <Form.Control
                 type="text"
@@ -722,21 +817,43 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
                   }
                 }}
                 disabled={isSending}
-                style={{ borderRadius: "20px 0 0 20px" }}
+                style={{ borderRadius: "20px 0 0 0" }}
               />
+
+              {/* Dugme za izbor slike */}
+              <label
+                className="btn btn-outline-secondary d-flex align-items-center justify-content-center"
+                style={{
+                  borderRadius: "0",
+                  borderLeft: "none",
+                  borderRight: "none",
+                }}
+              >
+                <i className="bi bi-image"></i>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  hidden
+                  onChange={handleImageSelect}
+                />
+              </label>
+
               <Button
                 onClick={handleSendMessage}
-                disabled={isSending || newMessage.trim().length === 0}
+                disabled={
+                  isSending ||
+                  (!newMessage.trim() && selectedImages.length === 0)
+                }
                 style={{
                   borderRadius: "0 20px 20px 0",
                   backgroundColor: "#6b3a7a",
                   border: "none",
                   opacity:
-                    isSending || newMessage.trim().length === 0 ? 0.6 : 1,
-                  cursor:
-                    isSending || newMessage.trim().length === 0
-                      ? "not-allowed"
-                      : "pointer",
+                    isSending ||
+                    (!newMessage.trim() && selectedImages.length === 0)
+                      ? 0.6
+                      : 1,
                 }}
               >
                 <i className="bi bi-send"></i>

@@ -5,6 +5,7 @@ export default interface Message {
   content: string;
   sendAt: string; // string for DateTime serialization
   isRead: boolean;
+  imageUrls?: string[] | string;
   sender: {
     id: string;
     email: string;

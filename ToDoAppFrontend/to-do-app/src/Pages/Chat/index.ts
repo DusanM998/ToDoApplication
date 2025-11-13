@@ -3,4 +3,4 @@ import ChatList from "./ChatList";
 import NewChatForm from "./NewChatForm";
 import GroupInfoModal from "./GroupInfoModal";
 
-export {ChatList, ChatWidget, NewChatForm, GroupInfoModal}
+export { ChatList, ChatWidget, NewChatForm, GroupInfoModal };

@@ -21,9 +21,11 @@ namespace EL.Models.Messages
         public string ReceiverId { get; set; } = string.Empty;
         [ForeignKey(nameof(ReceiverId))]
         public virtual ApplicationUser Receiver { get; set; }
-        [Required]
-        public string Content { get; set; } = string.Empty;
+        
+        public string? Content { get; set; }
         public DateTime SendAt { get; set; } = DateTime.Now;
         public bool IsRead { get; set; } = false;
+
+        public string? ImageUrls { get; set; }
     }
 }

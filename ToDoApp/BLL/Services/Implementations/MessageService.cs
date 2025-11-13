@@ -1,6 +1,7 @@
 ﻿using BLL.Services.Interfaces;
 using DAL.Repository.UoF.Interfaces;
 using EL.DTOs.MessagesDTO;
+using EL.DTOs.UserDTO;
 using EL.Models.Messages;
 using EL.Models.User;
 using EL.Shared;
@@ -19,28 +20,32 @@ namespace BLL.Services.Implementations
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMessageNotifier _notifier;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ICloudinaryService _cloudinaryService;
 
-        public MessageService(IUnitOfWork unitOfWork, IMessageNotifier notifier, UserManager<ApplicationUser> userManager)
+        public MessageService(IUnitOfWork unitOfWork, IMessageNotifier notifier,
+            UserManager<ApplicationUser> userManager,
+            ICloudinaryService cloudinaryService)
         {
             _unitOfWork = unitOfWork;
             _notifier = notifier;
             _userManager = userManager;
+            _cloudinaryService = cloudinaryService;
         }
 
         public async Task<ApiResponse> SendMessageAsync(string senderId, MessageCreateDTO dto)
         {
             var response = new ApiResponse();
 
-            // Validacija sadržaja poruke
-            if (string.IsNullOrWhiteSpace(dto.Content))
+            // Validacija sadrzaja poruke
+            if (string.IsNullOrWhiteSpace(dto.Content) && dto.Images == null)
             {
                 response.IsSuccess = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
-                response.ErrorMessages.Add("Poruka ne može biti prazna.");
+                response.ErrorMessages.Add("Poruka ne može biti prazna. Unesite tekst ili dodajte sliku!");
                 return response;
             }
 
-            // Ako je prosleđen email, koristi UserManager za pronalaženje korisnika
+            // Ako je prosledjen email ili id, koristi UserManager za pronalazenje korisnika
             string? receiverId = dto.ReceiverId;
 
             if (string.IsNullOrWhiteSpace(receiverId) && !string.IsNullOrWhiteSpace(dto.ReceiverEmail))
@@ -66,6 +71,17 @@ namespace BLL.Services.Implementations
                 return response;
             }
 
+            var imageUrls = new List<string>();
+            if (dto.Images != null && dto.Images.Any())
+            {
+                foreach (var image in dto.Images)
+                {
+                    var url = await _cloudinaryService.UploadImageAsync(image);
+                    if (!string.IsNullOrEmpty(url))
+                        imageUrls.Add(url);
+                }
+            }
+
             // Kreira se poruka
             var message = new Message
             {
@@ -73,7 +89,8 @@ namespace BLL.Services.Implementations
                 ReceiverId = receiverId,
                 Content = dto.Content,
                 SendAt = DateTime.UtcNow,
-                IsRead = false
+                IsRead = false,
+                ImageUrls = string.Join(";", imageUrls) // Cuvam string slike sa ; separatorom
             };
 
             await _unitOfWork.Messages.AddAsync(message);
@@ -90,13 +107,14 @@ namespace BLL.Services.Implementations
                 ReceiverId = receiverId,
                 Content = dto.Content,
                 SendAt = localTime.ToString("yyyy-MM-ddTHH:mm:ss"), // ISO format sa lokalnim vremenom
-                IsRead = message.IsRead
+                IsRead = message.IsRead,
+                ImageUrls = imageUrls
             };
 
             // Realtime obavestenje PRIMAOCU
             await _notifier.NotifyUserAsync(receiverId, messageData);
 
-            // Realtime obaveštenje POSILJAOCU (da dobije poruku sa pravim ID-jem iz baze)
+            // Realtime obavestenje POSILJAOCU (da dobije poruku sa pravim ID-jem iz baze)
             await _notifier.NotifyUserAsync(senderId, messageData);
 
             response.Result = new
@@ -106,7 +124,8 @@ namespace BLL.Services.Implementations
                 message.ReceiverId,
                 message.Content,
                 SendAt = localTime.ToString("dd.MM.yyyy. HH:mm"),
-                message.IsRead
+                message.IsRead,
+                ImageUrls = imageUrls
             };
             response.StatusCode = HttpStatusCode.OK;
             return response;
@@ -128,7 +147,18 @@ namespace BLL.Services.Implementations
                 ReceiverId = m.ReceiverId,
                 Content = m.Content,
                 SendAt = TimeZoneInfo.ConvertTimeFromUtc(m.SendAt, myTimeZone), // Konvertuj u lokalno
-                IsRead = m.IsRead
+                IsRead = m.IsRead,
+                ImageUrls = m.ImageUrls,
+                Sender = new UserDto
+                {
+                    Id = m.Sender?.Id,
+                    Email = m.Sender?.Email
+                },
+                Receiver = new UserDto
+                {
+                    Id = m.Receiver?.Id,
+                    Email = m.Receiver?.Email
+                }
             }).ToList();
 
             response.Result = dto;
@@ -151,7 +181,8 @@ namespace BLL.Services.Implementations
                 ReceiverId = m.ReceiverId,
                 Content = m.Content,
                 SendAt = TimeZoneInfo.ConvertTimeFromUtc(m.SendAt, myTimeZone),
-                IsRead = m.IsRead
+                IsRead = m.IsRead,
+                ImageUrls= m.ImageUrls
             }).ToList();
 
             response.StatusCode = HttpStatusCode.OK;
@@ -185,7 +216,8 @@ namespace BLL.Services.Implementations
                 ReceiverId = message.ReceiverId,
                 Content = message.Content,
                 SendAt = TimeZoneInfo.ConvertTimeFromUtc(message.SendAt, myTimeZone),
-                IsRead = message.IsRead
+                IsRead = message.IsRead,
+                ImageUrls = message.ImageUrls
             };
             return response;
         }

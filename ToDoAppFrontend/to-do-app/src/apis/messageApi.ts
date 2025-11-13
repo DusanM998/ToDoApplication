@@ -20,12 +20,25 @@ export const messageApi = createApi({
   endpoints: (builder) => ({
     // Slanje poruke
     sendMessage: builder.mutation({
-      query: (messageData) => ({
-        url: "messages/send",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: messageData, // { receiverId or receiverEmail, content }
-      }),
+      query: (messageData) => {
+        const formData = new FormData();
+
+        formData.append("receiverId", messageData.receiverId);
+        if (messageData.content)
+          formData.append("content", messageData.content);
+
+        if (messageData.images && messageData.images.length > 0) {
+          messageData.images.forEach((img: File) => {
+            formData.append("images", img);
+          });
+        }
+
+        return {
+          url: "messages/send",
+          method: "POST",
+          body: formData,
+        };
+      },
       invalidatesTags: ["Messages"],
     }),
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace EL.DTOs.MessagesDTO
     {
         public string? ReceiverId { get; set; }
         public string? ReceiverEmail { get; set; }
-        public string[]? ReceiverEmails { get; set; }  // Za grupu
-        public string? GroupName { get; set; }         // Za grupu
-        public string Content { get; set; } = string.Empty;
+        public string? Content { get; set; } = string.Empty;
+
+        public List<IFormFile>? Images { get; set; }
     }
 }

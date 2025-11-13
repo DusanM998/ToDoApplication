@@ -23,6 +23,8 @@ namespace DAL.Repository.Implementations
             return await _context.Messages
                 .Where(m => (m.SenderId == userId1 && m.ReceiverId == userId2) ||
                             (m.SenderId == userId2 && m.ReceiverId == userId1))
+                .Include(m => m.Sender)
+                .Include(m => m.Receiver)
                 .OrderBy(m => m.SendAt)
                 .ToListAsync();
         }

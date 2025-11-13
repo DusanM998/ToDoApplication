@@ -23,7 +23,7 @@ namespace ToDoApp.Controllers
 
         // Slanje poruke
         [HttpPost("send")]
-        public async Task<ActionResult<ApiResponse>> SendMessage([FromBody] MessageCreateDTO dto)
+        public async Task<ActionResult<ApiResponse>> SendMessage([FromForm] MessageCreateDTO dto)
         {
             var senderId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (senderId == null)
@@ -71,7 +71,7 @@ namespace ToDoApp.Controllers
 
             var response = await _messageService.MarkAsReadAsync(messageId, userId);
 
-            // Obavesti pošiljaoca da je poruka pročitana
+            // Obavesti posiljaoca da je poruka procitana
             if (response.IsSuccess && response.Result is MessageResponseDTO message)
             {
                 await _hubContext.Clients.User(message.SenderId)

@@ -204,6 +204,7 @@ namespace BLL.Services.Implementations
                 SecurityTokenDescriptor tokenDescriptor = new()
                 {
                     // Sastavljam Claims koji ce biti u payloadu tokena
+                    // Claims (tvrdnje) - key-value parovi koji opisuju identitet korisnika i informacije o njemu
                     Subject = new ClaimsIdentity(new Claim[]
                     {
                         new Claim(ClaimTypes.NameIdentifier, userFromDb.Id.ToString()),
