@@ -37,7 +37,7 @@ namespace DAL.Repository.Implementations
                 .Include(g => g.Messages)
                     .ThenInclude(m => m.Sender)
                 .Where(g => g.Members.Any(m => m.UserId == userId))
-                .OrderByDescending(g => g.Messages.Max(m => m.SentAt))
+                .OrderByDescending(g => g.Messages.Max(m => m.SendAt))
                 .ToListAsync();
         }
 
@@ -47,7 +47,7 @@ namespace DAL.Repository.Implementations
             return await _context.GroupMessages
                 .Include(m => m.Sender)
                 .Where(m => m.GroupId == groupId)
-                .OrderBy(m => m.SentAt)
+                .OrderBy(m => m.SendAt)
                 .ToListAsync();
         }
     }

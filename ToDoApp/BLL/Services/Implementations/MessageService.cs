@@ -12,6 +12,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Microsoft.EntityFrameworkCore;
 
 namespace BLL.Services.Implementations
 {
@@ -135,33 +137,38 @@ namespace BLL.Services.Implementations
         {
             var response = new ApiResponse();
 
-            var messages = await _unitOfWork.Messages.GetConversationAsync(currentUserId, otherUserId);
+            var query = _unitOfWork.Messages.GetConversationAsQueryable(currentUserId, otherUserId);
 
-            // Konvertuj UTC vreme u srpsko lokalno vreme
-            var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
-
-            var dto = messages.Select(m => new MessageResponseDTO
-            {
-                Id = m.Id,
-                SenderId = m.SenderId,
-                ReceiverId = m.ReceiverId,
-                Content = m.Content,
-                SendAt = TimeZoneInfo.ConvertTimeFromUtc(m.SendAt, myTimeZone), // Konvertuj u lokalno
-                IsRead = m.IsRead,
-                ImageUrls = m.ImageUrls,
-                Sender = new UserDto
+            var messages = await query
+                .Select(m => new MessageResponseDTO
                 {
-                    Id = m.Sender?.Id,
-                    Email = m.Sender?.Email
-                },
-                Receiver = new UserDto
-                {
-                    Id = m.Receiver?.Id,
-                    Email = m.Receiver?.Email
-                }
-            }).ToList();
+                    Id = m.Id,
+                    SenderId = m.SenderId,
+                    ReceiverId = m.ReceiverId,
+                    Content = m.Content,
+                    SendAt = m.SendAt,
+                    IsRead = m.IsRead,
+                    ImageUrls = m.ImageUrls,
+                    Sender = new UserDto
+                    {
+                        Id = m.Sender.Id,
+                        Email = m.Sender.Email
+                    },
+                    Receiver = new UserDto
+                    {
+                        Id = m.Receiver.Id,
+                        Email = m.Receiver.Email
+                    }
+                })
+                .ToListAsync(); // SQL se izvrsava ovde
 
-            response.Result = dto;
+            // Konvertujemo vreme nakon izvlacenja iz baze
+            var tz = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
+
+            foreach (var msg in messages)
+                msg.SendAt = TimeZoneInfo.ConvertTimeFromUtc(msg.SendAt, tz);
+
+            response.Result = messages;
             response.StatusCode = HttpStatusCode.OK;
             return response;
         }
@@ -225,27 +232,47 @@ namespace BLL.Services.Implementations
         public async Task<ApiResponse> GetAllConversationsAsync(string userId)
         {
             var response = new ApiResponse();
-            var messages = await _unitOfWork.Messages.GetAllMessagesForUserAsync(userId);
+
+            // 1) Uzimamo IQueryable iz repository-a
+            var query = _unitOfWork.Messages.GetAllMessagesForUserAsQueeyable(userId);
+
+            // 2) Izvršavamo SQL — ali vadimo samo potrebne kolone
+            var messages = await query
+                .Select(m => new
+                {
+                    m.Id,
+                    m.SenderId,
+                    m.ReceiverId,
+                    m.Content,
+                    m.SendAt,
+                    m.IsRead,
+                    SenderEmail = m.Sender.Email,
+                    ReceiverEmail = m.Receiver.Email,
+                    SenderImage = m.Sender.Image,
+                    ReceiverImage = m.Receiver.Image
+                })
+                .ToListAsync();
 
             var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
 
+            // 3) Grupisanje u memoriji
             var conversationPartners = messages
                 .GroupBy(m => m.SenderId == userId ? m.ReceiverId : m.SenderId)
-                .Select(g => new ConversationPartnerDTO
+                .Select(g =>
                 {
-                    UserId = g.Key,
-                    Email = g.First().SenderId == userId ? g.First().Receiver.Email : g.First().Sender.Email,
-                    LastMessage = g.OrderByDescending(m => m.SendAt).First().Content,
-                    LastMessageTime = TimeZoneInfo.ConvertTimeFromUtc(
-                        g.OrderByDescending(m => m.SendAt).First().SendAt,
-                        myTimeZone
-                    ),
-                    HasUnread = g.Any(m => !m.IsRead && m.ReceiverId == userId),
-                    ProfileImageUrl = g.First().SenderId == userId
-                        ? g.First().Receiver.Image
-                        : g.First().Sender.Image
+                    var lastMsg = g.OrderByDescending(m => m.SendAt).First();
+
+                    return new ConversationPartnerDTO
+                    {
+                        UserId = g.Key,
+                        Email = lastMsg.SenderId == userId ? lastMsg.ReceiverEmail : lastMsg.SenderEmail,
+                        LastMessage = lastMsg.Content,
+                        LastMessageTime = TimeZoneInfo.ConvertTimeFromUtc(lastMsg.SendAt, myTimeZone),
+                        HasUnread = g.Any(m => !m.IsRead && m.ReceiverId == userId),
+                        ProfileImageUrl = lastMsg.SenderId == userId ? lastMsg.ReceiverImage : lastMsg.SenderImage
+                    };
                 })
-                .OrderByDescending(p => p.LastMessageTime)
+                .OrderByDescending(c => c.LastMessageTime)
                 .ToList();
 
             response.Result = conversationPartners;

@@ -27,6 +27,6 @@ namespace EL.Models.Group
         [Required]
         public string Content { get; set; } = string.Empty;
 
-        public DateTime SentAt { get; set; } = DateTime.UtcNow;
+        public DateTime SendAt { get; set; } = DateTime.UtcNow;
     }
 }

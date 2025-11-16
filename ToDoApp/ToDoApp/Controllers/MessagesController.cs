@@ -31,8 +31,7 @@ namespace ToDoApp.Controllers
 
             var response = await _messageService.SendMessageAsync(senderId, dto);
 
-            // MessageService već šalje real-time notifikacije preko IMessageNotifier
-            // Ovde ne treba ništa dodatno
+            // MessageService vec salje real-time notifikacije preko IMessageNotifier
 
             return StatusCode((int)response.StatusCode, response);
         }

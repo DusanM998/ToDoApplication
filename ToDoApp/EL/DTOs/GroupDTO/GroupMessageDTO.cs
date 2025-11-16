@@ -12,6 +12,6 @@ namespace EL.DTOs.GroupDTO
         public string SenderId { get; set; } = string.Empty;
         public string SenderEmail { get; set; } = string.Empty;
         public string Content { get; set; } = string.Empty;
-        public DateTime SentAt { get; set; }
+        public DateTime SendAt { get; set; }
     }
 }

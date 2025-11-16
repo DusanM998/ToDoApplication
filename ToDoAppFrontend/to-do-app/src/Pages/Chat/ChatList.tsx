@@ -554,7 +554,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
                   <small className="text-muted d-block">
                     {group.messages?.length
                       ? new Date(
-                          group.messages[group.messages.length - 1].sentAt
+                          group.messages[group.messages.length - 1].sendAt
                         ).toLocaleString("sr-RS", {
                           day: "2-digit",
                           month: "2-digit",
@@ -686,7 +686,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
                             : "text-muted"
                         }
                       >
-                        {formatMessageTime(msg.sentAt)}
+                        {formatMessageTime(msg.sendAt)}
                       </small>
                     </div>
                   </div>

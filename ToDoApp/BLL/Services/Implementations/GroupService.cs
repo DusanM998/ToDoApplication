@@ -127,14 +127,14 @@ namespace BLL.Services.Implementations
                 Id = g.Id,
                 Name = g.Name,
                 Messages = g.Messages
-                    .OrderBy(m => m.SentAt)
+                    .OrderBy(m => m.SendAt)
                     .Select(m => new GroupMessageDTO
                     {
                         Id = m.Id,
                         SenderId = m.SenderId,
                         SenderEmail = m.Sender.Email,
                         Content = m.Content,
-                        SentAt = m.SentAt
+                        SendAt = m.SendAt
                     }).ToList(),
 
                 // Dodaj i clanove grupe
@@ -189,7 +189,7 @@ namespace BLL.Services.Implementations
                 GroupId = group.Id,
                 SenderId = senderId,
                 Content = content,
-                SentAt = DateTime.UtcNow
+                SendAt = DateTime.UtcNow
             };
 
             group.Messages.Add(message);
@@ -204,7 +204,7 @@ namespace BLL.Services.Implementations
                 SenderId = senderId,
                 SenderEmail = senderUser?.Email ?? string.Empty,
                 Content = content,
-                SentAt = message.SentAt
+                SendAt = message.SendAt
             };
 
             // Notify all group members
@@ -238,7 +238,7 @@ namespace BLL.Services.Implementations
                 SenderId = m.SenderId,
                 SenderEmail = m.Sender.Email,
                 Content = m.Content,
-                SentAt = m.SentAt
+                SendAt = m.SendAt
             }).ToList();
 
             response.StatusCode = HttpStatusCode.OK;
@@ -278,14 +278,14 @@ namespace BLL.Services.Implementations
                 return response;
             }
 
-            // Ako korisnik želi sam da napusti grupu
+            // Ako korisnik zeli sam da napusti grupu
             if (requesterId == memberId)
             {
                 group.Members.Remove(member);
             }
             else
             {
-                // Samo admin može da izbaci druge članove
+                // Samo admin moze da izbaci druge clanove
                 if (!requester.IsAdmin)
                 {
                     response.IsSuccess = false;
@@ -300,7 +300,7 @@ namespace BLL.Services.Implementations
             _unitOfWork.Groups.Update(group);
             await _unitOfWork.SaveChangesAsync();
 
-            // Obavesti izbačenog korisnika
+            // Obavesti izbacenog korisnika
             await _messageNotifier.NotifyUserAsync(member.UserId, new
             {
                 GroupId = group.Id,

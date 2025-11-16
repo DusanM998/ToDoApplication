@@ -18,15 +18,14 @@ namespace DAL.Repository.Implementations
         }
 
         // Vraca sve poruke izmedju dva korisnika (bilo koji smer)
-        public async Task<List<Message>> GetConversationAsync(string userId1, string userId2)
+        public IQueryable<Message> GetConversationAsQueryable(string userId1, string userId2)
         {
-            return await _context.Messages
+            return _context.Messages
                 .Where(m => (m.SenderId == userId1 && m.ReceiverId == userId2) ||
                             (m.SenderId == userId2 && m.ReceiverId == userId1))
                 .Include(m => m.Sender)
                 .Include(m => m.Receiver)
-                .OrderBy(m => m.SendAt)
-                .ToListAsync();
+                .OrderBy(m => m.SendAt);
         }
 
         // Vraca sve neprocitane poruke korisnika
@@ -39,14 +38,13 @@ namespace DAL.Repository.Implementations
         }
 
         // Vraca sve konverzacije za korisnika
-        public async Task<List<Message>> GetAllMessagesForUserAsync(string userId)
+        public IQueryable<Message> GetAllMessagesForUserAsQueeyable(string userId)
         {
-            return await _context.Messages
+            return _context.Messages
                 .Include(m => m.Sender)
                 .Include(m => m.Receiver)
                 .Where(m => m.SenderId == userId || m.ReceiverId == userId)
-                .OrderBy(m => m.SendAt)
-                .ToListAsync();
+                .OrderBy(m => m.SendAt);
         }
     }
 }

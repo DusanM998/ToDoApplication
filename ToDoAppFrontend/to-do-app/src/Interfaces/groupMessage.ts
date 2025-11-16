@@ -3,6 +3,6 @@ export default interface GroupMessage {
   senderId: string;
   senderEmail: string;
   content: string;
-  sentAt: string;  
+  sendAt: string;  
   imageUrls?: string[];
 }
