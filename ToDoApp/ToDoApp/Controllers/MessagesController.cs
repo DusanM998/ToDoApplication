@@ -1,6 +1,7 @@
 ﻿using BLL.Services.Interfaces;
 using EL.DTOs.MessagesDTO;
 using EL.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -10,6 +11,7 @@ using ToDoApp.Hubs;
 namespace ToDoApp.Controllers
 {
     [Route("api/messages")]
+    [Authorize]
     [ApiController]
     public class MessagesController : ControllerBase
     {

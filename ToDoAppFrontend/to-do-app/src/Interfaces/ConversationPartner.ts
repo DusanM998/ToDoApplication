@@ -5,4 +5,5 @@ export default interface ConversationPartner {
   lastMessageTime: string;
   hasUnread: boolean;
   profileImageUrl?: string;
+  totalMessages?: number;
 }

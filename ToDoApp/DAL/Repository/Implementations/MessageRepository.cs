@@ -29,12 +29,12 @@ namespace DAL.Repository.Implementations
         }
 
         // Vraca sve neprocitane poruke korisnika
-        public async Task<List<Message>> GetUnreadMessagesAsync(string userId)
+        public IQueryable<Message> GetUnreadMessagesAsQueryable(string userId)
         {
-            return await _context.Messages
+            return _context.Messages
                 .Where(m => m.ReceiverId == userId && !m.IsRead)
                 .OrderByDescending(m => m.SendAt)
-                .ToListAsync();
+                .AsQueryable();
         }
 
         // Vraca sve konverzacije za korisnika

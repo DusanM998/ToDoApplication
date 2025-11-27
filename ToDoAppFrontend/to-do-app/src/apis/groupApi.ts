@@ -59,12 +59,17 @@ export const groupApi = createApi({
       apiResponse<GroupMessage>,
       { groupIdentifier: string; content: string }
     >({
-      query: ({ groupIdentifier, content }) => ({
-        url: `groups/${groupIdentifier}/send`,
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: { content },
-      }),
+      query: ({ groupIdentifier, content }) => {
+        const formData = new FormData();
+        formData.append("Content", content);
+
+        return {
+          url: `groups/${groupIdentifier}/send`,
+          method: "POST",
+          body: formData,
+          // ne stavljam Content-Type, browser ga sam postavlja
+        };
+      },
       invalidatesTags: ["GroupMessages"],
     }),
 

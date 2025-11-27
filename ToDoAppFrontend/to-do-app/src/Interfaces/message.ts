@@ -1,5 +1,6 @@
 export default interface Message {
   id: number;
+  groupId?: number;
   senderId: string;
   receiverId: string;
   content: string;

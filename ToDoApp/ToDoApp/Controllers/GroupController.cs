@@ -45,13 +45,13 @@ namespace ToDoApp.Controllers
 
         // Slanje poruke u grupu
         [HttpPost("{groupIdentifier}/send")]
-        public async Task<ActionResult<ApiResponse>> SendGroupMessage(string groupIdentifier, [FromBody] SendGroupMessageDTO dto)
+        public async Task<ActionResult<ApiResponse>> SendGroupMessage(string groupIdentifier, [FromForm] GroupMessageCreateDTO dto)
         {
             var senderId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (senderId == null)
                 return Unauthorized("User is not authenticated.");
 
-            var response = await _groupService.SendGroupMessageAsync(senderId, groupIdentifier, dto.Content);
+            var response = await _groupService.SendGroupMessageAsync(senderId, groupIdentifier, dto);
 
             return StatusCode((int)response.StatusCode, response);
         }

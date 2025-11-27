@@ -3,32 +3,84 @@
   "WorkspaceRootPath": "D:\\Projects 1\\ToDoApp\\ToDoApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\interfaces\\imessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\interfaces\\imessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\hubs\\messagehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\hubs\\messagehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\implementations\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\implementations\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\group\\groupmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\group\\groupmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\group\\groupmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\group\\groupmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\group\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\models\\group\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\interfaces\\igroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\interfaces\\igroupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\groupdto\\groupmessagecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\groupdto\\groupmessagecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\messagesdto\\messagecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\messagesdto\\messagecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\groupdto\\groupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\groupdto\\groupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\groupdto\\creategroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\groupdto\\creategroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\messagesdto\\messageresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\messagesdto\\messageresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\messagesdto\\unreadermessagesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\messagesdto\\unreadermessagesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\dtos\\messagesdto\\messageunreaddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|solutionrelative:el\\dtos\\messagesdto\\messageunreaddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\implementations\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\implementations\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|d:\\projects 1\\todoapp\\todoapp\\todoapp\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5480FAA2-4085-4140-B92A-C61C23E9C67A}|ToDoApp\\ToDoApp.csproj|solutionrelative:todoapp\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\interfaces\\imessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\interfaces\\imessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|d:\\projects 1\\todoapp\\todoapp\\dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{744D4940-24B3-4F8F-968B-CE5DB38E1FA2}|DAL\\DAL.csproj|solutionrelative:dal\\repository\\implementations\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|d:\\projects 1\\todoapp\\todoapp\\bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F10B98DC-AC78-4670-A3C7-9CF5E01E4F7D}|BLL\\BLL.csproj|solutionrelative:bll\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5AFDF46-AAD5-43A3-8084-84C3C9D5D70F}|EL\\EL.csproj|d:\\projects 1\\todoapp\\todoapp\\el\\models\\messages\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,59 +102,166 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MessageResponseDTO.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\MessageResponseDTO.cs",
-              "RelativeDocumentMoniker": "EL\\DTOs\\MessagesDTO\\MessageResponseDTO.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\MessageResponseDTO.cs",
-              "RelativeToolTip": "EL\\DTOs\\MessagesDTO\\MessageResponseDTO.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAwBgAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "MessageHub.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\MessageHub.cs",
+              "RelativeDocumentMoniker": "ToDoApp\\Hubs\\MessageHub.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Hubs\\MessageHub.cs",
+              "RelativeToolTip": "ToDoApp\\Hubs\\MessageHub.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAA4wF8AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T08:19:20.619Z",
+              "WhenOpened": "2025-11-26T14:54:44.506Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GroupMessageCreateDTO.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\GroupDTO\\GroupMessageCreateDTO.cs",
+              "RelativeDocumentMoniker": "EL\\DTOs\\GroupDTO\\GroupMessageCreateDTO.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\GroupDTO\\GroupMessageCreateDTO.cs",
+              "RelativeToolTip": "EL\\DTOs\\GroupDTO\\GroupMessageCreateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T11:00:26.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GroupController.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\GroupController.cs",
+              "RelativeDocumentMoniker": "ToDoApp\\Controllers\\GroupController.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\GroupController.cs",
+              "RelativeToolTip": "ToDoApp\\Controllers\\GroupController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAADgvzUAAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T10:57:04.506Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "TaskRepository.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "RelativeToolTip": "DAL\\Repository\\Implementations\\TaskRepository.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAuwD4AAAA7AAAAAAAAAA==",
+              "Title": "GroupMember.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Group\\GroupMember.cs",
+              "RelativeDocumentMoniker": "EL\\Models\\Group\\GroupMember.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Group\\GroupMember.cs",
+              "RelativeToolTip": "EL\\Models\\Group\\GroupMember.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAADwvx0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T08:09:29.735Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T10:48:20.59Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MessageRepository.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\MessageRepository.cs",
-              "RelativeDocumentMoniker": "DAL\\Repository\\Implementations\\MessageRepository.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\MessageRepository.cs",
-              "RelativeToolTip": "DAL\\Repository\\Implementations\\MessageRepository.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAmwCgAAABDAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "GroupMessage.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Group\\GroupMessage.cs",
+              "RelativeDocumentMoniker": "EL\\Models\\Group\\GroupMessage.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Group\\GroupMessage.cs",
+              "RelativeToolTip": "EL\\Models\\Group\\GroupMessage.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAADwvyAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T08:10:23.877Z",
+              "WhenOpened": "2025-11-26T10:48:11.435Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GroupService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\GroupService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\GroupService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\GroupService.cs",
+              "RelativeToolTip": "BLL\\Services\\Implementations\\GroupService.cs",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAiwKAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T10:38:32.233Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MessageService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\MessageService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\MessageService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\MessageService.cs",
+              "RelativeToolTip": "BLL\\Services\\Implementations\\MessageService.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAowCUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T21:28:18.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IGroupService.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IGroupService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Interfaces\\IGroupService.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Interfaces\\IGroupService.cs",
+              "RelativeToolTip": "BLL\\Services\\Interfaces\\IGroupService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAUwA0AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T11:05:02.112Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Group.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Group\\Group.cs",
+              "RelativeDocumentMoniker": "EL\\Models\\Group\\Group.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Group\\Group.cs",
+              "RelativeToolTip": "EL\\Models\\Group\\Group.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAwwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T10:47:59.833Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CreateGroupDTO.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\GroupDTO\\CreateGroupDTO.cs",
+              "RelativeDocumentMoniker": "EL\\DTOs\\GroupDTO\\CreateGroupDTO.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\GroupDTO\\CreateGroupDTO.cs",
+              "RelativeToolTip": "EL\\DTOs\\GroupDTO\\CreateGroupDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T10:55:24.746Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GroupDTO.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\GroupDTO\\GroupDTO.cs",
+              "RelativeDocumentMoniker": "EL\\DTOs\\GroupDTO\\GroupDTO.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\GroupDTO\\GroupDTO.cs",
+              "RelativeToolTip": "EL\\DTOs\\GroupDTO\\GroupDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T10:55:33.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MessageCreateDTO.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\MessageCreateDTO.cs",
+              "RelativeDocumentMoniker": "EL\\DTOs\\MessagesDTO\\MessageCreateDTO.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\MessageCreateDTO.cs",
+              "RelativeToolTip": "EL\\DTOs\\MessagesDTO\\MessageCreateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T10:55:49.095Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "IMessageRepository.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Interfaces\\IMessageRepository.cs",
               "RelativeDocumentMoniker": "DAL\\Repository\\Interfaces\\IMessageRepository.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Interfaces\\IMessageRepository.cs",
               "RelativeToolTip": "DAL\\Repository\\Interfaces\\IMessageRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-16T08:12:30.837Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-16T08:12:30.837Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 19,
               "Title": "TaskService.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\TaskService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\TaskService.cs",
@@ -115,33 +274,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MessageService.cs",
-              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\MessageService.cs",
-              "RelativeDocumentMoniker": "BLL\\Services\\Implementations\\MessageService.cs",
-              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\BLL\\Services\\Implementations\\MessageService.cs",
-              "RelativeToolTip": "BLL\\Services\\Implementations\\MessageService.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAwwIsAAABHAAAAAAAAAA==",
+              "DocumentIndex": 15,
+              "Title": "MessageRepository.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\MessageRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\Repository\\Implementations\\MessageRepository.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\MessageRepository.cs",
+              "RelativeToolTip": "DAL\\Repository\\Implementations\\MessageRepository.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAmwCUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T21:28:18.179Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-16T08:10:23.877Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
+              "Title": "UnreaderMessagesDTO.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\UnreaderMessagesDTO.cs",
+              "RelativeDocumentMoniker": "EL\\DTOs\\MessagesDTO\\UnreaderMessagesDTO.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\UnreaderMessagesDTO.cs",
+              "RelativeToolTip": "EL\\DTOs\\MessagesDTO\\UnreaderMessagesDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T10:11:18.532Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MessageResponseDTO.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\MessageResponseDTO.cs",
+              "RelativeDocumentMoniker": "EL\\DTOs\\MessagesDTO\\MessageResponseDTO.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\MessageResponseDTO.cs",
+              "RelativeToolTip": "EL\\DTOs\\MessagesDTO\\MessageResponseDTO.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAwBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T08:19:20.619Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MessageUnreadDTO.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\MessageUnreadDTO.cs",
+              "RelativeDocumentMoniker": "EL\\DTOs\\MessagesDTO\\MessageUnreadDTO.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\DTOs\\MessagesDTO\\MessageUnreadDTO.cs",
+              "RelativeToolTip": "EL\\DTOs\\MessagesDTO\\MessageUnreadDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T10:24:58.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "TaskRepository.cs",
+              "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\Repository\\Implementations\\TaskRepository.cs",
+              "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\DAL\\Repository\\Implementations\\TaskRepository.cs",
+              "RelativeToolTip": "DAL\\Repository\\Implementations\\TaskRepository.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAuwD4AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T08:09:29.735Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "MessagesController.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\MessagesController.cs",
               "RelativeDocumentMoniker": "ToDoApp\\Controllers\\MessagesController.cs",
               "ToolTip": "D:\\Projects 1\\ToDoApp\\ToDoApp\\ToDoApp\\Controllers\\MessagesController.cs",
               "RelativeToolTip": "ToDoApp\\Controllers\\MessagesController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwDAAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAIwFQAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T10:18:39.711Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T10:18:39.711Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 20,
               "Title": "Message.cs",
               "DocumentMoniker": "D:\\Projects 1\\ToDoApp\\ToDoApp\\EL\\Models\\Messages\\Message.cs",
               "RelativeDocumentMoniker": "EL\\Models\\Messages\\Message.cs",
@@ -149,8 +354,7 @@
               "RelativeToolTip": "EL\\Models\\Messages\\Message.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAuwBkAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T21:15:45.619Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-12T21:15:45.619Z"
             }
           ]
         }

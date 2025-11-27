@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useEffect, useMemo, useState, useRef, use } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Form } from "react-bootstrap";
 import * as signalR from "@microsoft/signalr";
@@ -9,8 +9,13 @@ import {
   useSendMessageMutation,
 } from "../../apis/messageApi";
 import type { ConversationPartner, Group, Message } from "../../Interfaces";
-import { useGetMyGroupsQuery } from "../../apis/groupApi";
+import {
+  useGetMyGroupsQuery,
+  useSendGroupMessageMutation,
+} from "../../apis/groupApi";
 import GroupInfoModal from "./GroupInfoModal";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../Storage/Redux/store";
 
 interface ChatListProps {
   currentUserId: string;
@@ -50,8 +55,25 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
   const { data: myGroups, isLoading: isGroupsLoading } = useGetMyGroupsQuery();
 
+  const userData = useSelector((state: RootState) => state.userAuthStore);
+
+  //console.log("Korisnik", userData);
+
+  //console.log("My Groups:", myGroups);
+
   const [markAsRead] = useMarkAsReadMutation();
   const [sendMessage, { isLoading: isSending }] = useSendMessageMutation();
+  const [sendGroupMessage, { isLoading: isSendingGroup }] =
+    useSendGroupMessageMutation();
+
+  const selectedPartner = conversationPartners.find(
+    (p) => p.userId === selectedUserId
+  );
+
+  const isGroupChat = selectedUserId?.startsWith("group-");
+  const selectedGroup = isGroupChat
+    ? myGroups?.data?.result.find((g) => "group-" + g.id === selectedUserId)
+    : null;
 
   // SignalR Connection
   useEffect(() => {
@@ -97,6 +119,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
         id: msg.Id || msg.id || Date.now(),
         senderId: msg.SenderId || msg.senderId,
         receiverId: msg.ReceiverId || msg.receiverId,
+        groupId: msg.GroupId || msg.groupId,
         content: msg.Content || msg.content,
         sendAt: msg.SendAt || msg.sendAt || new Date().toISOString(),
         isRead: msg.IsRead || msg.isRead || false,
@@ -114,7 +137,22 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
 
       setRealTimeMessages((prev) => {
         // Ako je od trenutnog korisnika, zameni temp poruku (privremeni ID < 0)
-        if (newMsg.senderId === currentUserId) {
+        if (newMsg.groupId && selectedUserId === `group-${newMsg.groupId}`) {
+          const tempIndex = prev.findIndex(
+            (m) =>
+              m.senderId === currentUserId &&
+              m.groupId === newMsg.groupId &&
+              m.content === newMsg.content &&
+              m.id < 0
+          );
+          if (tempIndex !== -1) {
+            const updated = [...prev];
+            updated[tempIndex] = newMsg;
+            return updated;
+          }
+        }
+
+        if (newMsg.senderId === currentUserId && !newMsg.groupId) {
           const tempIndex = prev.findIndex(
             (m) =>
               m.senderId === currentUserId &&
@@ -135,6 +173,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
             m.id === newMsg.id ||
             (m.senderId === newMsg.senderId &&
               m.receiverId === newMsg.receiverId &&
+              m.groupId === newMsg.groupId &&
               m.content === newMsg.content &&
               Math.abs(
                 new Date(m.sendAt).getTime() - new Date(newMsg.sendAt).getTime()
@@ -262,11 +301,17 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
   // Kombinuje REST + Real Time poruke
   const displayedMessages: Message[] = useMemo(() => {
     const restMessages = (conversation?.result as Message[]) || [];
-    const relevantRealTime = realTimeMessages.filter(
-      (m) =>
-        (m.senderId === selectedUserId && m.receiverId === currentUserId) ||
-        (m.senderId === currentUserId && m.receiverId === selectedUserId)
-    );
+    const relevantRealTime = realTimeMessages.filter((m) => {
+      if (selectedGroup) {
+        return m.groupId === selectedGroup.id;
+      } else if (selectedUserId) {
+        return (
+          (m.senderId === selectedUserId && m.receiverId === currentUserId) ||
+          (m.senderId === currentUserId && m.receiverId === selectedUserId)
+        );
+      }
+      return false;
+    });
 
     const all = [...restMessages];
     relevantRealTime.forEach((rtMsg) => {
@@ -275,6 +320,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
           restMsg.id === rtMsg.id ||
           (restMsg.senderId === rtMsg.senderId &&
             restMsg.receiverId === rtMsg.receiverId &&
+            restMsg.groupId === rtMsg.groupId &&
             restMsg.content === rtMsg.content &&
             Math.abs(
               new Date(restMsg.sendAt).getTime() -
@@ -292,7 +338,13 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     );
 
     return unique;
-  }, [conversation, realTimeMessages, selectedUserId, currentUserId]);
+  }, [
+    conversation,
+    realTimeMessages,
+    selectedUserId,
+    currentUserId,
+    selectedGroup,
+  ]);
 
   // Da mi odmah skroluje na dno chata
   useEffect(() => {
@@ -313,7 +365,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
   // Send message
   const handleSendMessage = async () => {
     if (
-      !selectedUserId ||
+      (!selectedUserId && !selectedGroup) || // mora postojati user ili grupa
       (!newMessage.trim() && selectedImages.length === 0) ||
       !hubConnection.current
     )
@@ -323,69 +375,54 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     setNewMessage("");
 
     try {
+      // Privremena poruka za UI
       const tempMsg: Message = {
         id: -Date.now(),
         senderId: currentUserId,
-        receiverId: selectedUserId,
+        receiverId: selectedUserId ?? "", // dummy vrednost za grupu
+        groupId: selectedGroup ? selectedGroup.id : undefined, // optional property
         content: messageContent,
         sendAt: new Date().toISOString(),
         isRead: false,
         sender: { id: currentUserId, email: "", name: "" },
-        receiver: { id: selectedUserId, email: "", name: "" },
+        receiver: selectedUserId
+          ? { id: selectedUserId, email: "", name: "" }
+          : { id: "", email: "", name: "" }, // dummy objekat za grupnu poruku
         imageUrls: selectedImages.map((img) => img.preview),
       };
 
       setRealTimeMessages((prev) => [...prev, tempMsg]);
 
-      // Update conversationPartners with the new sent message
-      setConversationPartners((prev) => {
-        const updatedPartners = prev.map((partner) => {
-          if (partner.userId === selectedUserId) {
-            return {
-              ...partner,
-              lastMessage: messageContent || "[Image]",
-              lastMessageTime: tempMsg.sendAt,
-              hasUnread: false,
-            };
-          }
-          return partner;
-        });
-
-        // If partner doesn't exist, add it
-        if (!updatedPartners.some((p) => p.userId === selectedUserId)) {
-          updatedPartners.push({
-            userId: selectedUserId,
-            email: tempMsg.receiver.email,
-            profileImageUrl: "",
-            lastMessage: messageContent || "[Image]",
-            lastMessageTime: tempMsg.sendAt,
-            hasUnread: false,
-          });
-        }
-
-        return updatedPartners.sort(
-          (a, b) =>
-            new Date(b.lastMessageTime).getTime() -
-            new Date(a.lastMessageTime).getTime()
+      if (selectedGroup) {
+        // GRUPNA PORUKA
+        await hubConnection.current.invoke(
+          "SendGroupMessage",
+          selectedGroup.id.toString(),
+          currentUserId,
+          messageContent
         );
-      });
 
-      // Posalji kroz SignalR (samo tekst poruke)
-      await hubConnection.current.invoke(
-        "SendMessage",
-        currentUserId,
-        selectedUserId,
-        messageContent
-      );
+        await sendGroupMessage({
+          groupIdentifier: selectedGroup.id.toString(),
+          content: messageContent,
+        }).unwrap();
+      } else if (selectedUserId) {
+        // PRIVATNA PORUKA
+        await hubConnection.current.invoke(
+          "SendMessage",
+          currentUserId,
+          selectedUserId,
+          messageContent
+        );
 
-      // Posalji na backend (REST API) sa FormData
-      await sendMessage({
-        receiverId: selectedUserId,
-        content: messageContent,
-        images: selectedImages.map((img) => img.file), // samo fajlovi
-      }).unwrap();
+        await sendMessage({
+          receiverId: selectedUserId,
+          content: messageContent,
+          images: selectedImages.map((img) => img.file),
+        }).unwrap();
+      }
 
-      // Ocisti slike nakon uspesnog slanja
+      // Očisti slike
       setSelectedImages([]);
     } catch (error) {
       console.error("Error sending message:", error);
@@ -445,14 +482,39 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     );
   }, [conversationPartners]);
 
-  const selectedPartner = conversationPartners.find(
-    (p) => p.userId === selectedUserId
-  );
+  const handleRemoveMember = async (memberId: string) => {
+    if (!selectedGroupInfo) return;
 
-  const isGroupChat = selectedUserId?.startsWith("group-");
-  const selectedGroup = isGroupChat
-    ? myGroups?.data?.result.find((g) => "group-" + g.id === selectedUserId)
-    : null;
+    try {
+      // API poziv
+
+      // Azurira lokalno stanje
+      setSelectedGroupInfo({
+        ...selectedGroupInfo,
+        members:
+          selectedGroupInfo.members?.filter((m) => m.id !== memberId) || [],
+      });
+
+      // toast.success("Član je uklonjen iz grupe");
+    } catch (err) {
+      // toast.error("Došlo je do greške");
+    }
+  };
+
+  const handleLeaveGroup = async () => {
+    if (!selectedGroupInfo) return;
+
+    try {
+      //await api.post(`/groups/${selectedGroupInfo.id}/leave`);
+
+      // Zatvori modal i osvezi listu grupa
+      setSelectedGroupInfo(null);
+
+      // toast.success("Uspešno si napustio/la grupu");
+    } catch (err) {
+      // toast.error("Neuspešno napuštanje grupe");
+    }
+  };
 
   return (
     <div className="d-flex h-100" style={{ height: "100vh" }}>
@@ -640,12 +702,27 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
                 </div>
               </div>
             </div>
+            {selectedUserId.startsWith("group-") && selectedGroup && (
+              <button
+                className="btn btn-link text-muted p-0"
+                onClick={() => setSelectedGroupInfo(selectedGroup)}
+                title={t("chat.groupInfo") || "Group Info"}
+                style={{ fontSize: "1.5rem" }}
+              >
+                <i className="bi bi-info-circle"></i>
+              </button>
+            )}
           </div>
         )}
-        <GroupInfoModal
-          group={selectedGroupInfo}
-          onClose={() => setSelectedGroupInfo(null)}
-        />
+        {selectedGroupInfo && userData && (
+          <GroupInfoModal
+            group={selectedGroupInfo}
+            currentUser={userData}
+            onClose={() => setSelectedGroupInfo(null)}
+            onRemoveMember={handleRemoveMember} // Obavezno za admina
+            onLeaveGroup={handleLeaveGroup} // OBAVEZNO za obicne clanove
+          />
+        )}
 
         <div
           ref={messagesContainerRef}

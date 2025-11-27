@@ -20,5 +20,6 @@ namespace EL.DTOs.MessagesDTO
         public UserDto Receiver { get; set; } = new UserDto();
 
         public string? ImageUrls { get; set; }
+
     }
 }

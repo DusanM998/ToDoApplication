@@ -274,9 +274,9 @@
         "IsRequired": true
       },
       {
-        "Name": "dto",
-        "Type": "EL.DTOs.GroupDTO.SendGroupMessageDTO",
-        "IsRequired": true
+        "Name": "Content",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

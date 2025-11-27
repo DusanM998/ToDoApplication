@@ -10,7 +10,7 @@ namespace DAL.Repository.Interfaces
     public interface IMessageRepository : IRepository<Message>
     {
         IQueryable<Message> GetConversationAsQueryable(string userId1, string userId2);
-        Task<List<Message>> GetUnreadMessagesAsync(string userId);
+        IQueryable<Message> GetUnreadMessagesAsQueryable(string userId);
         IQueryable<Message> GetAllMessagesForUserAsQueeyable(string userId);
     }
 }

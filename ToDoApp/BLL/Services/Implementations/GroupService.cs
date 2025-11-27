@@ -153,11 +153,11 @@ namespace BLL.Services.Implementations
         }
 
         // Slanje poruke u grupu
-        public async Task<ApiResponse> SendGroupMessageAsync(string senderId, string groupIdentifier, string content)
+        public async Task<ApiResponse> SendGroupMessageAsync(string senderId, string groupIdentifier, GroupMessageCreateDTO dto)
         {
             var response = new ApiResponse();
 
-            if (string.IsNullOrWhiteSpace(content))
+            if (string.IsNullOrWhiteSpace(dto.Content))
             {
                 response.IsSuccess = false;
                 response.StatusCode = HttpStatusCode.BadRequest;
@@ -188,7 +188,7 @@ namespace BLL.Services.Implementations
             {
                 GroupId = group.Id,
                 SenderId = senderId,
-                Content = content,
+                Content = dto.Content,
                 SendAt = DateTime.UtcNow
             };
 
@@ -203,7 +203,7 @@ namespace BLL.Services.Implementations
                 Id = message.Id,
                 SenderId = senderId,
                 SenderEmail = senderUser?.Email ?? string.Empty,
-                Content = content,
+                Content = dto.Content,
                 SendAt = message.SendAt
             };
 

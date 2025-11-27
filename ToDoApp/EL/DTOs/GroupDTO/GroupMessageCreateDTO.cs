@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EL.DTOs.GroupDTO
 {
-    public class SendGroupMessageDTO
+    public class GroupMessageCreateDTO
     {
         public string Content { get; set; } = string.Empty;
     }

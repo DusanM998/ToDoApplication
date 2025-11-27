@@ -81,17 +81,19 @@ namespace ToDoApp.Hubs
             await Clients.Group(groupName).SendAsync("GroupNotification", $"{Context.UserIdentifier} left the group {groupName}");
         }
 
-        public async Task SendGroupMessage(string groupName, string senderId, string content)
+        public async Task SendGroupMessage(string groupId, string senderId, string content)
         {
             var messageObj = new
             {
+                Id = Guid.NewGuid(),
                 SenderId = senderId,
+                ReceiverId = (string?)null,
+                groupId = groupId,
                 Content = content,
-                SendAt = DateTime.UtcNow,
-                Group = groupName
+                SendAt = DateTime.UtcNow
             };
 
-            await Clients.Group(groupName).SendAsync("ReceiveGroupMessage", messageObj);
+            await Clients.Group(groupId).SendAsync("ReceiveMessage", messageObj);
         }
 
         // Real - time notifikacije

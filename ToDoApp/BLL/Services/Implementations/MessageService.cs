@@ -177,20 +177,33 @@ namespace BLL.Services.Implementations
         {
             var response = new ApiResponse();
 
-            var unread = await _unitOfWork.Messages.GetUnreadMessagesAsync(userId);
+            // IQueryable upit, jos uvek nije izvrsen
+            var query = _unitOfWork.Messages.GetUnreadMessagesAsQueryable(userId);
 
+            var totalMessages = await query.CountAsync();
+
+            // Konverzija vremena u lokalno
             var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
 
-            response.Result = unread.Select(m => new MessageResponseDTO
+            // SQL se izvrsava ovde — vadimo samo potrebna polja
+            var unreadMessages = await query
+                .Select(m => new MessageUnreadDTO
+                {
+                    Id = m.Id,
+                    SenderId = m.SenderId,
+                    ReceiverId = m.ReceiverId,
+                    Content = m.Content,
+                    SendAt = TimeZoneInfo.ConvertTimeFromUtc(m.SendAt, myTimeZone),
+                    IsRead = m.IsRead,
+                    ImageUrls = m.ImageUrls
+                })
+                .ToListAsync();
+
+            response.Result = new UnreaderMessagesDTO
             {
-                Id = m.Id,
-                SenderId = m.SenderId,
-                ReceiverId = m.ReceiverId,
-                Content = m.Content,
-                SendAt = TimeZoneInfo.ConvertTimeFromUtc(m.SendAt, myTimeZone),
-                IsRead = m.IsRead,
-                ImageUrls= m.ImageUrls
-            }).ToList();
+                TotalMessages = totalMessages,
+                Messages = unreadMessages
+            };
 
             response.StatusCode = HttpStatusCode.OK;
             return response;
