@@ -81,6 +81,34 @@ export const groupApi = createApi({
       }),
       providesTags: ["GroupMessages"],
     }),
+    // Uklanjanje clana iz grupe (admin moze da ukloni clana ili da clan samostalno napusti grupu)
+    removeMember: builder.mutation<
+      apiResponse<any>,
+      { groupId: number; memberId: string }
+    >({
+      query: ({ groupId, memberId }) => ({
+        url: `groups/${groupId}/members/${memberId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Groups"],
+    }),
+
+    //Brisanje grupe - samo admin moze da obrise grupu
+    deleteGroup: builder.mutation<apiResponse<any>, number>({
+      query: (groupId) => ({
+        url: `groups/${groupId}`,
+        method: "DELETE",
+      }),
+      transformResponse: (response: any) => ({
+        data: {
+          statusCode: response.statusCode,
+          isSuccess: response.isSuccess,
+          errorMessage: response.errorMessages,
+          result: response.result,
+        },
+      }),
+      invalidatesTags: ["Groups"],
+    }),
   }),
 });
 
@@ -90,6 +118,8 @@ export const {
   useGetMyGroupsQuery,
   useSendGroupMessageMutation,
   useGetGroupMessagesQuery,
+  useRemoveMemberMutation,
+  useDeleteGroupMutation,
 } = groupApi;
 
 export default groupApi;

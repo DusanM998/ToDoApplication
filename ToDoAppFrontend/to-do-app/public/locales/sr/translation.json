@@ -197,13 +197,27 @@
     "online": "Dostupan",
     "offline": "Nedostupan",
     "loading": "Učitavanje...",
-    "noMessages": "Nema Poruka..."
+    "noMessages": "Nema Poruka...",
+    "groupCreated": "Grupa je uspešno kreirana!",
+    "groupDeleted": "Grupa je uspešno obrisana!",
+    "groups": "Grupe"
   },
   "groupInfo": {
     "title": "Informacije o grupi",
-    "members": "Članovi:",
+    "members": "Članovi",
+    "you": "Ti",
     "admin": "Administrator",
-    "close": "Zatvori"
+    "removeMember": "Ukloni člana",
+    "leaveGroup": "Napusti grupu",
+    "deleteGroup": "Obriši grupu",
+    "confirmDeleteTitle": "Brisanje grupe",
+    "confirmDeleteBody": "Da li ste sigurni da želite trajno da obrišete grupu <strong>{groupName}</strong>? Ova akcija je nepovratna.",
+    "close": "Zatvori",
+    "noMembers": "Nema članova u grupi.",
+    "confirmRemoveTitle": "Uklanjanje člana iz grupe",
+    "confirmRemoveBody": "Da li ste sigurni da želite da uklonite <strong>{name}</strong> iz grupe <strong>{groupName}</strong>? Ova akcija je nepovratna.",
+    "confirmLeaveTitle": "Napustanje grupe",
+    "confirmLeaveBody": "Da li ste sigurni da želite da napustite grupu <strong>{groupName}</strong>? Izgubićete pristup svim deljenim porukama."
   },
   "toastNotify": {
     "uploadImageError": "Molimo vas da otpremite sliku.",

@@ -1,5 +1,5 @@
 export interface GroupMember {
-  id: string;
+  userId: string;
   name: string;
   email: string;
   isAdmin?: boolean;

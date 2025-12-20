@@ -50,5 +50,19 @@ namespace DAL.Repository.Implementations
                 .OrderBy(m => m.SendAt)
                 .ToListAsync();
         }
+
+        public async Task<Group?> GetByIdWithMembersAsync(int groupId)
+        {
+            return await _context.Groups
+                .Include(g => g.Members)
+                    .ThenInclude(m => m.User)
+                .FirstOrDefaultAsync(g => g.Id == groupId);
+        }
+
+        public void Remove(Group group)
+        {
+            _context.Groups.Remove(group);
+        }
+
     }
 }

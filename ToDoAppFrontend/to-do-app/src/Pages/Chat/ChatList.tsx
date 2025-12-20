@@ -10,12 +10,15 @@ import {
 } from "../../apis/messageApi";
 import type { ConversationPartner, Group, Message } from "../../Interfaces";
 import {
+  useDeleteGroupMutation,
   useGetMyGroupsQuery,
+  useRemoveMemberMutation,
   useSendGroupMessageMutation,
 } from "../../apis/groupApi";
 import GroupInfoModal from "./GroupInfoModal";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../Storage/Redux/store";
+import { toastNotify } from "../../Helper";
 
 interface ChatListProps {
   currentUserId: string;
@@ -56,6 +59,10 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
   const { data: myGroups, isLoading: isGroupsLoading } = useGetMyGroupsQuery();
 
   const userData = useSelector((state: RootState) => state.userAuthStore);
+
+  const [removeMember] = useRemoveMemberMutation();
+
+  const [deleteGroup] = useDeleteGroupMutation();
 
   //console.log("Korisnik", userData);
 
@@ -486,13 +493,15 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     if (!selectedGroupInfo) return;
 
     try {
-      // API poziv
+      await removeMember({
+        groupId: selectedGroupInfo.id,
+        memberId: memberId,
+      }).unwrap();
 
-      // Azurira lokalno stanje
       setSelectedGroupInfo({
         ...selectedGroupInfo,
         members:
-          selectedGroupInfo.members?.filter((m) => m.id !== memberId) || [],
+          selectedGroupInfo.members?.filter((m) => m.userId !== memberId) || [],
       });
 
       // toast.success("Član je uklonjen iz grupe");
@@ -505,14 +514,33 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
     if (!selectedGroupInfo) return;
 
     try {
-      //await api.post(`/groups/${selectedGroupInfo.id}/leave`);
+      await removeMember({
+        groupId: selectedGroupInfo.id,
+        memberId: currentUserId,
+      }).unwrap();
 
-      // Zatvori modal i osvezi listu grupa
       setSelectedGroupInfo(null);
-
-      // toast.success("Uspešno si napustio/la grupu");
+      ("");
+      // toast.success("Uspešno si napustio grupu");
     } catch (err) {
       // toast.error("Neuspešno napuštanje grupe");
+    }
+  };
+
+  const handleDeleteGroup = async (groupId: number) => {
+    try {
+      const response = await deleteGroup(groupId).unwrap();
+
+      if (response?.data?.isSuccess) {
+        // Ocisti UI – zatvori modal i ukloni selektovanu grupu
+        setSelectedGroupInfo(null);
+
+        toastNotify(t("chat.groupDeleted"), "success");
+      } else {
+        console.error("Delete failed:", response?.data?.errorMessage);
+      }
+    } catch (error) {
+      console.error("Error deleting group:", error);
     }
   };
 
@@ -721,6 +749,7 @@ const ChatList: React.FC<ChatListProps> = ({ currentUserId }) => {
             onClose={() => setSelectedGroupInfo(null)}
             onRemoveMember={handleRemoveMember} // Obavezno za admina
             onLeaveGroup={handleLeaveGroup} // OBAVEZNO za obicne clanove
+            onDeleteGroup={() => handleDeleteGroup(selectedGroupInfo.id)}
           />
         )}
 

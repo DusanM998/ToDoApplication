@@ -15,5 +15,7 @@ namespace BLL.Services.Interfaces
         Task<ApiResponse> GetMessagesForGroupAsync(int groupId);
         Task<ApiResponse> GetGroupsForUserAsync(string userId);
         Task<ApiResponse> RemoveMemberAsync(string requesterId, int groupId, string memberId);
+        Task<ApiResponse> DeleteGroupAsync(string requesterId, int groupId);
+
     }
 }

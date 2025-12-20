@@ -122,6 +122,8 @@ namespace BLL.Services.Implementations
 
             var groups = await _unitOfWork.Groups.GetGroupsForUserAsync(userId);
 
+            var tz = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
+
             var dto = groups.Select(g => new GroupDTO
             {
                 Id = g.Id,
@@ -134,7 +136,7 @@ namespace BLL.Services.Implementations
                         SenderId = m.SenderId,
                         SenderEmail = m.Sender.Email,
                         Content = m.Content,
-                        SendAt = m.SendAt
+                        SendAt = TimeZoneInfo.ConvertTimeFromUtc(m.SendAt, tz)
                     }).ToList(),
 
                 // Dodaj i clanove grupe
@@ -198,29 +200,50 @@ namespace BLL.Services.Implementations
 
             var senderUser = await _userManager.FindByIdAsync(senderId);
 
+            // Formatiranje vremena u lokalno
+            var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
+            var localTime = TimeZoneInfo.ConvertTimeFromUtc(message.SendAt, myTimeZone);
+
             var messageDto = new GroupMessageDTO
             {
                 Id = message.Id,
                 SenderId = senderId,
                 SenderEmail = senderUser?.Email ?? string.Empty,
                 Content = dto.Content,
-                SendAt = message.SendAt
+                SendAt = localTime,
+            };
+
+            //Realtime payload
+            var realTimePayload = new
+            {
+                GroupId = group.Id,
+                GroupName = group.Name,
+                Message = new
+                {
+                    Id = message.Id,
+                    SenderId = senderId,
+                    SenderEmail = senderUser?.Email ?? string.Empty,
+                    Content = dto.Content,
+                    SendAt = localTime.ToString("yyyy-MM-ddTHH:mm:ss"),
+                },
+                Action = "NewGroupMessage"
             };
 
             // Notify all group members
             foreach (var member in group.Members)
             {
-                await _messageNotifier.NotifyUserAsync(member.UserId, new
-                {
-                    GroupId = group.Id,
-                    GroupName = group.Name,
-                    Message = messageDto,
-                    Action = "NewGroupMessage"
-                });
+                await _messageNotifier.NotifyUserAsync(member.UserId, realTimePayload);
             }
 
             response.StatusCode = HttpStatusCode.OK;
-            response.Result = messageDto;
+            response.Result = new
+            {
+                message.Id,
+                message.SenderId,
+                SenderEmail = senderUser?.Email ?? "",
+                message.Content,
+                SendAt = localTime.ToString("dd.MM.yyyy. HH:mm")
+            };
             return response;
         }
 
@@ -232,13 +255,15 @@ namespace BLL.Services.Implementations
 
             var messages = await _unitOfWork.Groups.GetMessageForGroupAsync(groupId);
 
+            var tz = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
+
             var dto = messages.Select(m => new GroupMessageDTO
             {
                 Id = m.Id,
                 SenderId = m.SenderId,
                 SenderEmail = m.Sender.Email,
                 Content = m.Content,
-                SendAt = m.SendAt
+                SendAt = TimeZoneInfo.ConvertTimeFromUtc(m.SendAt, tz)
             }).ToList();
 
             response.StatusCode = HttpStatusCode.OK;
@@ -251,7 +276,7 @@ namespace BLL.Services.Implementations
         {
             var response = new ApiResponse();
 
-            var group = await _unitOfWork.Groups.GetByIdAsync(groupId);
+            var group = await _unitOfWork.Groups.GetByIdWithMembersAsync(groupId);
             if (group == null)
             {
                 response.IsSuccess = false;
@@ -261,6 +286,8 @@ namespace BLL.Services.Implementations
             }
 
             var requester = group.Members.FirstOrDefault(m => m.UserId == requesterId);
+            var member = group.Members.FirstOrDefault(m => m.UserId == memberId);
+
             if (requester == null)
             {
                 response.IsSuccess = false;
@@ -269,7 +296,6 @@ namespace BLL.Services.Implementations
                 return response;
             }
 
-            var member = group.Members.FirstOrDefault(m => m.UserId == memberId);
             if (member == null)
             {
                 response.IsSuccess = false;
@@ -278,14 +304,13 @@ namespace BLL.Services.Implementations
                 return response;
             }
 
-            // Ako korisnik zeli sam da napusti grupu
+            // Ako korisnik sam sebe uklanja - izlazak iz grupe
             if (requesterId == memberId)
             {
                 group.Members.Remove(member);
             }
             else
             {
-                // Samo admin moze da izbaci druge clanove
                 if (!requester.IsAdmin)
                 {
                     response.IsSuccess = false;
@@ -300,17 +325,52 @@ namespace BLL.Services.Implementations
             _unitOfWork.Groups.Update(group);
             await _unitOfWork.SaveChangesAsync();
 
-            // Obavesti izbacenog korisnika
-            await _messageNotifier.NotifyUserAsync(member.UserId, new
-            {
-                GroupId = group.Id,
-                GroupName = group.Name,
-                Action = "RemovedFromGroup"
-            });
-
             response.StatusCode = HttpStatusCode.OK;
             response.Result = new { Message = "Korisnik je uspesno uklonjen iz grupe." };
+
             return response;
         }
+
+        public async Task<ApiResponse> DeleteGroupAsync(string requesterId, int groupId)
+        {
+            var response = new ApiResponse();
+
+            var group = await _unitOfWork.Groups.GetByIdWithMembersAsync(groupId);
+            if (group == null)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = HttpStatusCode.NotFound;
+                response.ErrorMessages.Add("Grupa nije pronađena.");
+                return response;
+            }
+
+            var requester = group.Members.FirstOrDefault(m => m.UserId == requesterId);
+
+            if (requester == null)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = HttpStatusCode.Forbidden;
+                response.ErrorMessages.Add("Niste član ove grupe.");
+                return response;
+            }
+
+            if (!requester.IsAdmin)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = HttpStatusCode.Forbidden;
+                response.ErrorMessages.Add("Samo admin može obrisati grupu.");
+                return response;
+            }
+
+            // Sve poruke i clanovi ce se obrisati automatski ako je u modelima uključen cascade delete
+            _unitOfWork.Groups.Remove(group);
+            await _unitOfWork.SaveChangesAsync();
+
+            response.StatusCode = HttpStatusCode.OK;
+            response.Result = new { Message = "Grupa je uspešno obrisana." };
+
+            return response;
+        }
+
     }
 }

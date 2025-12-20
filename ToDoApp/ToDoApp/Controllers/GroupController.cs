@@ -68,12 +68,29 @@ namespace ToDoApp.Controllers
         [HttpDelete("{groupId}/members/{memberId}")]
         public async Task<ActionResult<ApiResponse>> RemoveMember(int groupId, string memberId)
         {
-            var requesterId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var requesterId = User.FindFirstValue("id")
+                   ?? User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (requesterId == null)
                 return Unauthorized("User is not authenticated.");
 
             var response = await _groupService.RemoveMemberAsync(requesterId, groupId, memberId);
             return StatusCode((int)response.StatusCode, response);
         }
+
+        // Brisanje grupe (samo admin ima mogucnost da je obrise)
+        [HttpDelete("{groupId}")]
+        public async Task<ActionResult<ApiResponse>> DeleteGroup(int groupId)
+        {
+            var requesterId = User.FindFirstValue("id")
+                   ?? User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (requesterId == null)
+                return Unauthorized("User is not authenticated.");
+
+            var response = await _groupService.DeleteGroupAsync(requesterId, groupId);
+            return StatusCode((int)response.StatusCode, response);
+        }
+
     }
 }

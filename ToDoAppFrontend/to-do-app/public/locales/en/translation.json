@@ -197,13 +197,27 @@
     "online": "Online",
     "offline": "Offline",
     "loading": "Loading...",
-    "noMessages": "No Messages..."
+    "noMessages": "No Messages...",
+    "groupCreated": "Group created successfully!",
+    "groupDeleted": "Group deleted successfully!",
+    "groups" : "Groups"
   },
   "groupInfo": {
     "title": "Group Info",
-    "members": "Members:",
+    "members": "Members",
+    "you": "You",
     "admin": "Admin",
-    "close": "Close"
+    "removeMember": "Remove member",
+    "leaveGroup": "Leave group",
+    "deleteGroup": "Delete group",
+    "confirmDeleteTitle": "Delete group",
+    "confirmDeleteBody": "Are you sure you want to delete the group <strong>{groupName}</strong>? This action cannot be undone.",
+    "close": "Close",
+    "noMembers": "No members in the group.",
+    "confirmRemoveTitle": "Remove member from group",
+    "confirmRemoveBody": "Are you sure you want to remove <strong>{name}</strong> from the group <strong>{groupName}</strong>? This action cannot be undone.",
+    "confirmLeaveTitle": "Leave group",
+    "confirmLeaveBody": "Are you sure you want to leave the group <strong>{groupName}</strong>? You will lose access to all shared content."
   },
   "toastNotify": {
     "uploadImageError": "Please upload an image.",
