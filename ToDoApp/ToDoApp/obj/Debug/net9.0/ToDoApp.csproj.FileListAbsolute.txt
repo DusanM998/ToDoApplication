@@ -193,3 +193,7 @@ D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\Microsoft.Extensions.Host
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\System.Net.WebSockets.WebSocketProtocol.dll
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\AutoMapper.dll
 D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\System.Diagnostics.DiagnosticSource.dll
+D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\FluentValidation.dll
+D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+D:\Projects 1\ToDoApp\ToDoApp\ToDoApp\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
