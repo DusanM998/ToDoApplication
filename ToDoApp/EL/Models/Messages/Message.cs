@@ -11,21 +11,19 @@ namespace EL.Models.Messages
 {
     public class Message
     {
-        [Key]
         public int Id { get; set; }
-        [Required]
-        public string SenderId { get; set; } = string.Empty;
-        [ForeignKey(nameof(SenderId))]
-        public virtual ApplicationUser Sender { get; set; }
-        [Required]
-        public string ReceiverId { get; set; } = string.Empty;
-        [ForeignKey(nameof(ReceiverId))]
-        public virtual ApplicationUser Receiver { get; set; }
-        
-        public string? Content { get; set; }
-        public DateTime SendAt { get; set; } = DateTime.Now;
-        public bool IsRead { get; set; } = false;
 
+        public string SenderId { get; set; } = string.Empty;
+        public ApplicationUser Sender { get; set; }
+
+        public string ReceiverId { get; set; } = string.Empty;
+        public ApplicationUser Receiver { get; set; }
+
+        public string? Content { get; set; }
+
+        public DateTime SendAt { get; set; } = DateTime.UtcNow;
+
+        public bool IsRead { get; set; } = false;
         public string? ImageUrls { get; set; }
     }
 }

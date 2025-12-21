@@ -1,6 +1,9 @@
-﻿using BLL.Services.Implementations;
+﻿using BLL.Mapping;
+using BLL.Services.Implementations;
 using BLL.Services.Interfaces;
+using BLL.Validators;
 using DAL.Repository.Interfaces;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,6 +20,10 @@ namespace BLL.Setup
             services.AddScoped<ITaskService, TaskService>();
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IGroupService, GroupService>();
+
+            services.AddAutoMapper(typeof(GroupProfile));
+
+            services.AddValidatorsFromAssemblyContaining<MessageValidator>();
             return services;
         }
     }
