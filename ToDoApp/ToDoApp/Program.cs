@@ -10,6 +10,7 @@ using DAL.Repository.UoF.Implementations;
 using DAL.Repository.UoF.Interfaces;
 using El.Shared;
 using EL.Models.User;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -54,6 +55,9 @@ builder.Services.AddDataAccess(builder.Configuration);
 // Konfiguracija Business Logic
 builder.Services.AddBusinessLogic();
 builder.Services.AddScoped<IAuthService, AuthService>();
+
+// FluentValidation pipeline
+builder.Services.AddFluentValidationAutoValidation();
 
 // Registracija background servisa za automatsko azuriranje statusa taska
 builder.Services.AddHostedService<OverdueTaskBackgroundService>();
