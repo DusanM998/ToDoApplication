@@ -38,6 +38,9 @@ _ReSharper*/
 x64/
 x86/
 artifacts/
+*.AssemblyInfo.*
+*.csproj.AssemblyReference.cache
+*.AssemblyInfoInputs.cache
 
 ##################################
 # Logs & temp

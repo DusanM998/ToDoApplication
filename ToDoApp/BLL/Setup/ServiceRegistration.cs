@@ -21,6 +21,7 @@ namespace BLL.Setup
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IGroupService, GroupService>();
 
+            services.AddAutoMapper(typeof(MessageProfile));
             services.AddAutoMapper(typeof(GroupProfile));
 
             services.AddValidatorsFromAssemblyContaining<MessageValidator>();
