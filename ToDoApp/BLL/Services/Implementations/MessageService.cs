@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace BLL.Services.Implementations
 {
@@ -23,15 +24,18 @@ namespace BLL.Services.Implementations
         private readonly IMessageNotifier _notifier;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ICloudinaryService _cloudinaryService;
+        private readonly IMapper _mapper;
 
         public MessageService(IUnitOfWork unitOfWork, IMessageNotifier notifier,
             UserManager<ApplicationUser> userManager,
-            ICloudinaryService cloudinaryService)
+            ICloudinaryService cloudinaryService,
+            IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _notifier = notifier;
             _userManager = userManager;
             _cloudinaryService = cloudinaryService;
+            _mapper = mapper;
         }
 
         public async Task<ApiResponse> SendMessageAsync(string senderId, MessageCreateDTO dto)
